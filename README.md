@@ -1,4 +1,5 @@
-# fresh project
+# Caterpillar 🐛
+A clean frontend for Parasite - Built with Fresh.
 
 ### Usage
 

@@ -4,8 +4,6 @@ import { PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../../settings.ts";
 import { tw } from "@twind";
 
-// let res = await fetch(c.href);
-
 export const handler = {
   async GET(_, ctx) {
     let res = {};
@@ -16,15 +14,18 @@ export const handler = {
     let req = await fetch(torrentAPI.href);
 
     res.torrent = await req.json();
+
     req = await fetch(res.torrent.attributedTo);
     res.user = await req.json();
+
+    /* TODO: Also go with replies. */
+
     return ctx.render(res);
   },
 };
 
 export default function Torrent(props: PageProps) {
   const submitter = props.data.user;
-  console.log(submitter);
   const torrent = props.data.torrent;
 
   return (
