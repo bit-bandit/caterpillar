@@ -7,15 +7,13 @@ export function ListItemTorrent(props: any) {
   let d = new Date(props.date);
   return (
     <div class={tw`max-h-26 m-4 flex rounded-3xl p-4 shadow-md`}>
-      <div
-        class={tw`max-h-16 rounded-full bg-slate-200 p-4 text-4xl`}
-      >
-      🧲
+      <div class={tw`w-24 p-5 rounded-full bg-slate-300`}>
+        <img class={tw`w-24`} src="/magnet.svg" />
       </div>
       <div>
         <div class={tw`mx-4 my-2 text-3xl font-bold hover:underline`}>
-	  <a href={props.href}>{props.name}</a>
-	</div>
+          <a href={props.href}>{props.name}</a>
+        </div>
         <div class={tw`flex`}>
           <div class={tw`w-6 mx-3`}>
             <img class={tw`rounded-full shadow-md`} src={props.icon} />

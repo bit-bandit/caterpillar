@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 -256 1792 1792"
+   id="svg3013"
+   version="1.1"
+   inkscape:version="0.48.3.1 r9886"
+   width="100%"
+   height="100%"
+   sodipodi:docname="magnet_font_awesome.svg">
+  <metadata
+     id="metadata3023">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3021" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview3019"
+     showgrid="false"
+     inkscape:zoom="0.13169643"
+     inkscape:cx="896"
+     inkscape:cy="896"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg3013" />
+  <g
+     transform="matrix(1,0,0,-1,129.08475,1270.2373)"
+     id="g3015">
+    <path
+       d="M 1536,704 V 576 Q 1536,375 1437.5,214 1339,53 1163.5,-37.5 988,-128 768,-128 548,-128 372.5,-37.5 197,53 98.5,214 0,375 0,576 v 128 q 0,26 19,45 19,19 45,19 h 384 q 26,0 45,-19 19,-19 19,-45 V 576 q 0,-52 23.5,-90 23.5,-38 53.5,-57 30,-19 71,-30 41,-11 64,-13 23,-2 44,-2 21,0 44,2 23,2 64,13 41,11 71,30 30,19 53.5,57 23.5,38 23.5,90 v 128 q 0,26 19,45 19,19 45,19 h 384 q 26,0 45,-19 19,-19 19,-45 z M 512,1344 V 960 q 0,-26 -19,-45 -19,-19 -45,-19 H 64 Q 38,896 19,915 0,934 0,960 v 384 q 0,26 19,45 19,19 45,19 h 384 q 26,0 45,-19 19,-19 19,-45 z m 1024,0 V 960 q 0,-26 -19,-45 -19,-19 -45,-19 h -384 q -26,0 -45,19 -19,19 -19,45 v 384 q 0,26 19,45 19,19 45,19 h 384 q 26,0 45,-19 19,-19 19,-45 z"
+       id="path3017"
+       inkscape:connector-curvature="0"
+       style="fill:currentColor" />
+  </g>
+</svg>
