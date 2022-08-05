@@ -126,7 +126,6 @@ export default function List(props: PageProps) {
           })}
         </div>
       </div>
-      <pre>{JSON.stringify(list, null, "  ")}</pre>
     </div>
   );
 }
