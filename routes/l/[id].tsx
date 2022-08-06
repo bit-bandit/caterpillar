@@ -83,25 +83,43 @@ export default function List(props: PageProps) {
 
   return (
     <div>
-      <div class={tw`p-4 mx-auto max-w-screen-lg`}>
+      <div class={tw`p-4 mx-auto max-w-screen-md`}>
         <div class={tw`text-5xl font-bold leading-tight text-center`}>
           <h1>{list.name}</h1>
         </div>
+	<div class={tw`grid grid-cols-2 gap-12 content-center px-28 m-3`}>
+          <div
+            class={tw`justify-center px-6 py-3 rounded-3xl shadow-lg text-center flex gap-6 hover:bg-gray-100 hover:shadow-xl`}
+          >
+            <div class={tw`w-6 h-6 rounded-3xl`}>
+              <img class={tw`rounded-full`} src={submitter.icon[0]} />
+            </div>
+            <div class={tw`font-bold`}>
+              <a href={new URL(list.attributedTo).pathname}>{submitter.name}</a>
+            </div>
+          </div>
+          <div
+            class={tw`px-6 py-3 rounded-full shadow-lg text-center hover:bg-gray-100 hover:shadow-xl justify-center`}
+          >
+            <a href="">Score</a>
+          </div>
+        </div>
         <div
           id="description"
-          class={tw`m-4 p-6 shadow-lg rounded-full`}
+          class={tw`m-4 p-6 shadow-md rounded-3xl`}
           dangerouslySetInnerHTML={{ __html: list.summary }}
         />
         <div class={tw`text-3xl font-bold leading-tight text-center`}>
           <h2>Items</h2>
         </div>
-        <div>
+        <div class="m-auto">
           {list.orderedItems.map((x) => {
             if (x.type === "OrderedCollection") {
               return (
                 <ListItemList
                   href={(new URL(x.id)).pathname}
                   name={x.name}
+		  uploaderHref={new URL(x.actor.id).pathname}
                   uploader={x.actor.name}
                   icon={x.actor.icon[0]}
                   date={list.published}
@@ -115,6 +133,7 @@ export default function List(props: PageProps) {
               <ListItemTorrent
                 href={(new URL(x.id)).pathname}
                 name={x.name}
+		uploaderHref={new URL(x.actor.id).pathname}
                 uploader={x.actor.name}
                 icon={x.actor.icon[0]}
                 date={list.published}
