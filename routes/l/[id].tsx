@@ -87,7 +87,7 @@ export default function List(props: PageProps) {
         <div class={tw`text-5xl font-bold leading-tight text-center`}>
           <h1>{list.name}</h1>
         </div>
-	<div class={tw`grid grid-cols-2 gap-12 content-center px-28 m-3`}>
+        <div class={tw`grid grid-cols-2 gap-12 content-center px-28 m-3`}>
           <div
             class={tw`justify-center px-6 py-3 rounded-3xl shadow-lg text-center flex gap-6 hover:bg-gray-100 hover:shadow-xl`}
           >
@@ -119,7 +119,7 @@ export default function List(props: PageProps) {
                 <ListItemList
                   href={(new URL(x.id)).pathname}
                   name={x.name}
-		  uploaderHref={new URL(x.actor.id).pathname}
+                  uploaderHref={new URL(x.actor.id).pathname}
                   uploader={x.actor.name}
                   icon={x.actor.icon[0]}
                   date={list.published}
@@ -133,7 +133,7 @@ export default function List(props: PageProps) {
               <ListItemTorrent
                 href={(new URL(x.id)).pathname}
                 name={x.name}
-		uploaderHref={new URL(x.actor.id).pathname}
+                uploaderHref={new URL(x.actor.id).pathname}
                 uploader={x.actor.name}
                 icon={x.actor.icon[0]}
                 date={list.published}

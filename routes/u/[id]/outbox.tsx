@@ -12,12 +12,10 @@ export const handler = {
     const { id } = ctx.params;
 
     const userAPI = new URL(`/u/${id}`, caterpillarSettings.apiURL);
-
     let req = await fetch(userAPI.href);
+    req = await req.json();
 
-    res.user = await req.json();
-
-    req = await fetch(res.user.outbox);
+    req = await fetch(req.outbox);
     req = await req.json();
 
     for (let i in req.orderedItems) {
@@ -86,40 +84,15 @@ function UserBox(props: any) {
   );
 }
 
-export default function User(props: any) {
-  const user = props.data.user;
-  const outbox = props.data.outbox.slice(10); // I hate this
+export default function Outbox(props: any) {
+  const outbox = props.data.outbox;
+
   return (
     <div class={tw`mx-auto max-w-screen-md`}>
-      <div class={tw`shadow-md p-9 rounded-3xl m-11 max-w-screen-md`}>
-        <div class={tw`relative`}>
-          <img
-            class={tw`rounded-2xl my-3 mx-auto object-fill min-w-full`}
-            src={user.image}
-          />
-          <div class={tw`flex`}>
-            <div class={tw`p-4`}>
-              <img
-                class={tw`absolute -bottom-6 w-40 rounded-full shadow-md`}
-                src={user.icon[0]}
-              />
-            </div>
-            <br />
-            <div>
-              <h1 class={tw`mx-40 text-2xl py-1 font-bold`}>{user.name}</h1>
-              <h2 class={tw`mx-40 text-gray-500`}>
-                {`${user.name}@${props.url.host}`}
-              </h2>
-            </div>
-          </div>
-        </div>
-        <div class={tw`my-8`}>
-          <UserBox name="Likes" href={`${props.url.pathname}/likes`} />
-          <UserBox name="Following" href={`${props.url.pathname}/following`} />
-        </div>
+      <div class={tw`text-5xl font-bold leading-tight text-center`}>
+        <h1>Posts by {props.params.id}</h1>
       </div>
-      <h1 class={tw`font-bold text-3xl text-center`}>Recent Uploads</h1>
-      <div>
+      <div class={tw`shadow-md p-9 rounded-3xl m-11 max-w-screen-md`}>
         {outbox.map((x) => {
           if (x.type === "OrderedCollection") {
             return (
@@ -140,7 +113,7 @@ export default function User(props: any) {
             <ListItemTorrent
               href={(new URL(x.id)).pathname}
               name={x.name}
-              uploaderHref={new URL(x.actor.id).pathname}
+              uploaderHref={new URL(x.attributedTo).pathname}
               uploader={x.actor.name}
               icon={x.actor.icon[0]}
               date={x.published}

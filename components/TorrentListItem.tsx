@@ -6,7 +6,9 @@ import { tw } from "@twind";
 export function ListItemTorrent(props: any) {
   let d = new Date(props.date);
   return (
-    <div class={tw`max-w-screen-md max-h-26 m-4 flex rounded-3xl p-4 shadow-md`}>
+    <div
+      class={tw`max-w-screen-md max-h-26 m-4 flex rounded-3xl p-4 shadow-md`}
+    >
       <div class={tw`w-24 p-5 rounded-full bg-slate-300`}>
         <img class={tw`w-24`} src="/magnet.svg" />
       </div>
@@ -18,7 +20,9 @@ export function ListItemTorrent(props: any) {
           <div class={tw`w-6 mx-3`}>
             <img class={tw`rounded-full shadow-md`} src={props.icon} />
           </div>
-          <div class={tw`font-bold hover:underline`}><a href={props.uploaderHref}>{props.uploader}</a></div>
+          <div class={tw`font-bold hover:underline`}>
+            <a href={props.uploaderHref}>{props.uploader}</a>
+          </div>
           <p class={tw`mx-2`}>-</p>
           <div class={tw`italic text-slate-500"`}>{d.toLocaleString()}</div>
           <p class={tw`mx-2`}>-</p>

@@ -18,7 +18,9 @@ export function ListItemList(props: any) {
           <div class={tw`w-6 mx-3`}>
             <img class={tw`rounded-full shadow-md`} src={props.icon} />
           </div>
-          <div class={tw`font-bold hover:underline`}><a href={props.uploaderHref}>{props.uploader}</a></div>
+          <div class={tw`font-bold hover:underline`}>
+            <a href={props.uploaderHref}>{props.uploader}</a>
+          </div>
           <p class={tw`mx-2`}>-</p>
           <div class={tw`italic text-slate-500"`}>{d.toLocaleString()}</div>
           <p class={tw`mx-2`}>-</p>
