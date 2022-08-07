@@ -76,7 +76,7 @@ function UserBox(props: any){
   )
 }
 
-export default function User(props: any) {
+export default function User(props: any) { 
   const user = props.data.user;
   const outbox = props.data.outbox;
   return (
@@ -104,8 +104,8 @@ export default function User(props: any) {
           </div>
         </div>
 	<div class={tw`my-8`}>
-        <UserBox name="Hello!" href="/hello"/>
-	<UserBox name="Hello!" href="/hello"/>
+        <UserBox name="Likes" href={`${props.url.pathname}/likes`}/>
+	<UserBox name="Following" href={`${props.url.pathname}/following`}/>
       </div>
       </div>
       <h1 class={tw`font-bold text-3xl text-center`}>Recent Uploads</h1>
