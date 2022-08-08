@@ -50,13 +50,24 @@ export const handler = {
 
           const index = req.orderedItems[i].orderedItems.indexOf(url);
 
-          req.orderedItems[i].orderedItems[index] = {
-            "type": subObj.type,
-            "name": subObj.name,
-            "likes": likes.totalItems,
-            "dislikes": dislikes.totalItems,
-            "url": u.pathname,
-          };
+          if (subObj.type !== "Note") {
+            req.orderedItems[i].orderedItems[index] = {
+              "type": subObj.type,
+              "name": subObj.name,
+              "likes": likes.totalItems,
+              "dislikes": dislikes.totalItems,
+              "url": u.pathname,
+              "totalItems": subObj.totalItems,
+            };
+          } else {
+            req.orderedItems[i].orderedItems[index] = {
+              "type": subObj.type,
+              "name": subObj.name,
+              "likes": likes.totalItems,
+              "dislikes": dislikes.totalItems,
+              "url": u.pathname,
+            };
+          }
         }
       }
     }
@@ -124,7 +135,7 @@ export default function User(props: any) {
           if (x.type === "OrderedCollection") {
             return (
               <ListItemList
-                href={(new URL(x.id)).pathname}
+                href={new URL(x.id).pathname}
                 name={x.name}
                 uploaderHref={new URL(x.actor.id).pathname}
                 uploader={x.actor.name}
@@ -138,7 +149,7 @@ export default function User(props: any) {
           }
           return (
             <ListItemTorrent
-              href={(new URL(x.id)).pathname}
+              href={new URL(x.id).pathname}
               name={x.name}
               uploaderHref={new URL(x.actor.id).pathname}
               uploader={x.actor.name}
@@ -150,6 +161,24 @@ export default function User(props: any) {
             />
           );
         })}
+        <div
+          class={tw`flex max-h-16 p-3 shadow-md items-center place-content-between rounded-2xl my-9 mx-auto hover:bg-gray-100 hover:shadow-lg max-w-lg
+	  `}
+        >
+          <p class={tw`text-xl hover:underline`}>
+            <a href={`${props.url.pathname}/outbox`}>
+              All posts by {user.name} ({props.data.outbox.length})
+            </a>
+          </p>
+          <svg
+            class={tw`w-3 fill-gray-400 object-right`}
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 320 512"
+          >
+            <path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z">
+            </path>
+          </svg>
+        </div>
       </div>
     </div>
   );

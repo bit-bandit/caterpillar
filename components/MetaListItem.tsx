@@ -2,6 +2,7 @@
 import { h } from "preact";
 import { PageProps } from "$fresh/server.ts";
 import { tw } from "@twind";
+import { Subcomp } from "./Subcomponent.tsx";
 
 export function ListItemList(props: any) {
   let d = new Date(props.date);
@@ -35,19 +36,9 @@ export function ListItemList(props: any) {
             <summary>Items ({props.subitems.length})</summary>
             {props.subitems.map((x) => {
               return (
-                <div
-                  class={tw`max-h-26 m-3 flex rounded-2xl bg-slate-200 p-3 shadow-md`}
-                >
-                  <img class={tw`w-7`} src="/magnet.svg" />
-                  <h4 class={tw`mx-3 text-xl font-bold hover:underline`}>
-                    <a href={x.url}>{x.name}</a>
-                  </h4>
-                  <div class={tw`mx-1 flex`}>
-                    <div class={tw`text-green-700`}>+{x.likes}</div>
-                    <div>/</div>
-                    <div class={tw`text-red-700`}>-{x.dislikes}</div>
-                  </div>
-                </div>
+                <Subcomp
+                  APIObject={x}
+                />
               );
             })}
           </details>

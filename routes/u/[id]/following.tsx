@@ -20,18 +20,18 @@ export const handler = {
     req = await req.json();
 
     for (const url in req.orderedItems) {
-	let f = await fetch(req.orderedItems[url]);
-	f = await f.json();
+      let f = await fetch(req.orderedItems[url]);
+      f = await f.json();
 
-	let followers = await fetch(f.followers);
-	followers = await followers.json();
+      let followers = await fetch(f.followers);
+      followers = await followers.json();
 
-	f.followers = followers.totalItems;
+      f.followers = followers.totalItems;
 
-	req.orderedItems[url] = f;
+      req.orderedItems[url] = f;
     }
 
-    res.followers = req.orderedItems
+    res.followers = req.orderedItems;
     return ctx.render(res);
   },
 };
@@ -47,12 +47,12 @@ export default function Following(props: any) {
         {followers.map((x) => {
           return (
             <UserCard
-	    id={x.id}
-	    followers={x.followers}
-	    href={new URL(x.id).pathname}
-	    icon={x.icon[0]}
-	    name={x.name}
-	    />
+              id={x.id}
+              followers={x.followers}
+              href={new URL(x.id).pathname}
+              icon={x.icon[0]}
+              name={x.name}
+            />
           );
         })}
       </div>
