@@ -38,7 +38,6 @@ export const handler = {
 
 export default function Following(props: any) {
   const followers = props.data.followers;
-  console.log(followers)
   return (
     <div class={tw`mx-auto max-w-screen-md`}>
       <div class={tw`text-5xl font-bold leading-tight text-center`}>
@@ -46,7 +45,6 @@ export default function Following(props: any) {
       </div>
       <div class={tw`shadow-md p-9 rounded-3xl m-11 max-w-screen-md`}>
         {followers.map((x) => {
-	  console.log(x.id);
           return (
             <UserCard
 	    id={x.id}
