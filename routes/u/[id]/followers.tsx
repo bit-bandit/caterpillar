@@ -16,7 +16,7 @@ export const handler = {
 
     res.user = await req.json();
 
-    req = await fetch(res.user.following);
+    req = await fetch(res.user.followers);
     req = await req.json();
 
     for (const url in req.orderedItems) {
@@ -41,7 +41,7 @@ export default function Following(props: any) {
   return (
     <div class={tw`mx-auto max-w-screen-md`}>
       <div class={tw`text-5xl font-bold leading-tight text-center`}>
-        <h1>Followed by {props.params.id}</h1>
+        <h1>Followers of {props.params.id}</h1>
       </div>
       <div class={tw`shadow-md p-9 rounded-3xl m-11 max-w-screen-md`}>
         {followers.map((x) => {
