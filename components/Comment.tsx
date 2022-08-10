@@ -27,21 +27,41 @@ export function Comment(props: any) {
       </div>
       <div class={tw`flex-none`}>
         <div
-          class={tw`max-w-4xl flex-wrap py-1 px-5 text-lg`}
+          class={tw`max-w-4xl flex-wrap py-1 px-5 text-base`}
           dangerouslySetInnerHTML={{ __html: props.commentBody }}
         />
-        <div class={tw`flex px-4`}>
+        <div class={tw`flex px-3 text-sm`}>
           <div class={tw`px-2 font-bold`}>{props.username}</div>
           <p>-</p>
           <div class={tw`px-2 italic text-slate-500`}>{d.toLocaleString()}</div>
           <p>-</p>
-          <div class="mx-2 flex">
-            <div class="text-green-700">+{props.likes}</div>
+          <div class={tw`mx-2 flex`}>
+            <div class={tw`text-green-700`}>+{props.likes}</div>
             <div>/</div>
-            <div class="text-red-700">-{props.dislikes}</div>
+            <div class={tw`text-red-700`}>-{props.dislikes}</div>
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+// Requires an array of objects that share the same syntax as Comment
+export function RenderReplies(props: any) {
+  return (
+    <div class={tw`pl-9 ml-7`}>
+      {props.items.map((x) => {
+        return (
+          <Comment
+            username={x.attributedTo.name}
+            avatarURL={x.attributedTo.icon[0]}
+            date={x.published}
+            commentBody={x.content}
+            likes={x.likes}
+            dislikes={x.dislikes}
+          />
+        );
+      })}
     </div>
   );
 }
