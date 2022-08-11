@@ -49,7 +49,7 @@ export function Comment(props: any) {
 // Requires an array of objects that share the same syntax as Comment
 export function RenderReplies(props: any) {
   return (
-    <div class={tw`pl-9 ml-7`}>
+    <div class={tw`px-9 mx-7`}>
       {props.items.map((x) => {
         return (
           <Comment
