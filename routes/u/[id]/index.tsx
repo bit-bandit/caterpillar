@@ -99,7 +99,7 @@ function UserBox(props: any) {
 
 export default function User(props: any) {
   const user = props.data.user;
-  const outbox = props.data.outbox.slice(10); // I hate this
+  const outbox = props.data.outbox.slice(0, 10); // I hate this
   return (
     <div class={tw`mx-auto max-w-screen-md`}>
       <div class={tw`shadow-md p-9 rounded-3xl m-11 max-w-screen-md`}>
