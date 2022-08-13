@@ -50,6 +50,8 @@ export function Comment(props: any) {
 export function RenderReplies(props: any) {
   return (
     <div class={tw`px-9 mx-7`}>
+    <details>
+    <summary>View Replies ({props.items.length})</summary>
       {props.items.map((x) => {
         return (
           <Comment
@@ -62,6 +64,7 @@ export function RenderReplies(props: any) {
           />
         );
       })}
+      </details>
     </div>
   );
 }
