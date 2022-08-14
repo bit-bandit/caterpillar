@@ -4,24 +4,26 @@
 
 import * as $0 from "./routes/index.tsx";
 import * as $1 from "./routes/l/[id].tsx";
-import * as $2 from "./routes/t/[id].tsx";
-import * as $3 from "./routes/u/[id]/followers.tsx";
-import * as $4 from "./routes/u/[id]/following.tsx";
-import * as $5 from "./routes/u/[id]/index.tsx";
-import * as $6 from "./routes/u/[id]/likes.tsx";
-import * as $7 from "./routes/u/[id]/outbox.tsx";
+import * as $2 from "./routes/s/index.tsx";
+import * as $3 from "./routes/t/[id].tsx";
+import * as $4 from "./routes/u/[id]/followers.tsx";
+import * as $5 from "./routes/u/[id]/following.tsx";
+import * as $6 from "./routes/u/[id]/index.tsx";
+import * as $7 from "./routes/u/[id]/likes.tsx";
+import * as $8 from "./routes/u/[id]/outbox.tsx";
 import * as $$0 from "./islands/Counter.tsx";
 
 const manifest = {
   routes: {
     "./routes/index.tsx": $0,
     "./routes/l/[id].tsx": $1,
-    "./routes/t/[id].tsx": $2,
-    "./routes/u/[id]/followers.tsx": $3,
-    "./routes/u/[id]/following.tsx": $4,
-    "./routes/u/[id]/index.tsx": $5,
-    "./routes/u/[id]/likes.tsx": $6,
-    "./routes/u/[id]/outbox.tsx": $7,
+    "./routes/s/index.tsx": $2,
+    "./routes/t/[id].tsx": $3,
+    "./routes/u/[id]/followers.tsx": $4,
+    "./routes/u/[id]/following.tsx": $5,
+    "./routes/u/[id]/index.tsx": $6,
+    "./routes/u/[id]/likes.tsx": $7,
+    "./routes/u/[id]/outbox.tsx": $8,
   },
   islands: {
     "./islands/Counter.tsx": $$0,

@@ -50,20 +50,20 @@ export function Comment(props: any) {
 export function RenderReplies(props: any) {
   return (
     <div class={tw`px-9 mx-7`}>
-    <details>
-    <summary>View Replies ({props.items.length})</summary>
-      {props.items.map((x) => {
-        return (
-          <Comment
-            username={x.attributedTo.name}
-            avatarURL={x.attributedTo.icon[0]}
-            date={x.published}
-            commentBody={x.content}
-            likes={x.likes}
-            dislikes={x.dislikes}
-          />
-        );
-      })}
+      <details>
+        <summary>View Replies ({props.items.length})</summary>
+        {props.items.map((x) => {
+          return (
+            <Comment
+              username={x.attributedTo.name}
+              avatarURL={x.attributedTo.icon[0]}
+              date={x.published}
+              commentBody={x.content}
+              likes={x.likes}
+              dislikes={x.dislikes}
+            />
+          );
+        })}
       </details>
     </div>
   );
