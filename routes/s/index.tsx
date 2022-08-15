@@ -18,7 +18,12 @@ export const handler = {
     let res = await r.json();
 
     for (let i = 0; i < res.orderedItems.length; i++) {
-      res.orderedItems[i] = res.orderedItems[i].item;
+      // There's a bug in the API server where the behavior of either returning
+      // *just* the item, or the item *and* its match score are inconsistant.
+      // We'll fix that later - For now, this will do.
+      if (res.orderedItems[i].item) {
+        res.orderedItems[i] = res.orderedItems[i].item;
+      }
 
       const likes = await fetch(`${res.orderedItems[i].id}/likes`);
       res.orderedItems[i].likes = (await likes.json()).totalItems;
