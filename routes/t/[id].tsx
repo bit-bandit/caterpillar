@@ -92,25 +92,25 @@ export default function Torrent(props: PageProps) {
           <h1>{torrent.name}</h1>
         </div>
         <div class={tw`grid grid-cols-3 gap-12 content-center px-28 m-3`}>
-	<a href={torrent.attributedTo}>
-          <div
-            class={tw`px-6 py-3 rounded-2xl shadow-md text-center flex gap-6 hover:bg-gray-100 hover:shadow-lg`}
-          >
-            <div class={tw`w-6 h-6 rounded-full`}>
-              <img class={tw`rounded-full`} src={submitter.icon[0]} />
+          <a href={torrent.attributedTo}>
+            <div
+              class={tw`px-6 py-3 rounded-2xl shadow-md text-center flex gap-6 hover:bg-gray-100 hover:shadow-lg`}
+            >
+              <div class={tw`w-6 h-6 rounded-full`}>
+                <img class={tw`rounded-full`} src={submitter.icon[0]} />
+              </div>
+              <div class={tw`font-bold`}>
+                {submitter.name}
+              </div>
             </div>
-            <div class={tw`font-bold`}>
-              {submitter.name}
+          </a>
+          <a href={torrent.attachment.href}>
+            <div
+              class={tw`px-6 py-3 rounded-2xl shadow-md text-center hover:bg-gray-100 hover:shadow-lg`}
+            >
+              Magnet
             </div>
-          </div>
-	  </a>
-	  <a href={torrent.attachment.href}>
-          <div
-            class={tw`px-6 py-3 rounded-2xl shadow-md text-center hover:bg-gray-100 hover:shadow-lg`}
-          >
-            Magnet
-          </div>
-	  </a>
+          </a>
           <div
             class={tw`px-6 py-3 rounded-2xl shadow-md text-center hover:bg-gray-100 hover:shadow-lg`}
           >

@@ -89,45 +89,45 @@ export default function Outbox(props: any) {
   const outbox = props.data.outbox;
 
   return (
-  <div>
-  <Header />
-    <div class={tw`mx-auto max-w-screen-md`}>
-      <div class={tw`text-5xl font-bold leading-tight text-center`}>
-        <h1>Posts by {props.params.id}</h1>
-      </div>
-      <div class={tw`shadow-md p-9 rounded-2xl m-11 max-w-screen-md`}>
-        {outbox.map((x) => {
-          if (x.type === "OrderedCollection") {
+    <div>
+      <Header />
+      <div class={tw`mx-auto max-w-screen-md`}>
+        <div class={tw`text-5xl font-bold leading-tight text-center`}>
+          <h1>Posts by {props.params.id}</h1>
+        </div>
+        <div class={tw`shadow-md p-9 rounded-2xl m-11 max-w-screen-md`}>
+          {outbox.map((x) => {
+            if (x.type === "OrderedCollection") {
+              return (
+                <ListItemList
+                  href={(new URL(x.id)).pathname}
+                  name={x.name}
+                  uploaderHref={new URL(x.actor.id).pathname}
+                  uploader={x.actor.name}
+                  icon={x.actor.icon[0]}
+                  date={x.published}
+                  likes={x.likes}
+                  dislikes={x.dislikes}
+                  subitems={x.orderedItems}
+                />
+              );
+            }
             return (
-              <ListItemList
+              <ListItemTorrent
                 href={(new URL(x.id)).pathname}
                 name={x.name}
-                uploaderHref={new URL(x.actor.id).pathname}
+                uploaderHref={new URL(x.attributedTo).pathname}
                 uploader={x.actor.name}
                 icon={x.actor.icon[0]}
                 date={x.published}
                 likes={x.likes}
                 dislikes={x.dislikes}
-                subitems={x.orderedItems}
+                magnet={x.attachment.href}
               />
             );
-          }
-          return (
-            <ListItemTorrent
-              href={(new URL(x.id)).pathname}
-              name={x.name}
-              uploaderHref={new URL(x.attributedTo).pathname}
-              uploader={x.actor.name}
-              icon={x.actor.icon[0]}
-              date={x.published}
-              likes={x.likes}
-              dislikes={x.dislikes}
-              magnet={x.attachment.href}
-            />
-          );
-        })}
+          })}
+        </div>
       </div>
-    </div>
     </div>
   );
 }

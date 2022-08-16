@@ -129,7 +129,7 @@ export default function List(props: PageProps) {
 
   return (
     <div>
-    <Header/>
+      <Header />
       <div class={tw`p-4 mx-auto max-w-screen-md`}>
         <div class={tw`text-5xl font-bold leading-tight text-center`}>
           <h1>{list.name}</h1>

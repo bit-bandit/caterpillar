@@ -41,25 +41,25 @@ export default function Following(props: any) {
   const followers = props.data.followers;
   return (
     <div>
-  <Header/>
-    <div class={tw`mx-auto max-w-screen-md`}>
-      <div class={tw`text-5xl font-bold leading-tight text-center`}>
-        <h1>Followers of {props.params.id}</h1>
+      <Header />
+      <div class={tw`mx-auto max-w-screen-md`}>
+        <div class={tw`text-5xl font-bold leading-tight text-center`}>
+          <h1>Followers of {props.params.id}</h1>
+        </div>
+        <div class={tw`shadow-md p-9 rounded-3xl m-11 max-w-screen-md`}>
+          {followers.map((x) => {
+            return (
+              <UserCard
+                id={x.id}
+                followers={x.followers}
+                href={new URL(x.id).pathname}
+                icon={x.icon[0]}
+                name={x.name}
+              />
+            );
+          })}
+        </div>
       </div>
-      <div class={tw`shadow-md p-9 rounded-3xl m-11 max-w-screen-md`}>
-        {followers.map((x) => {
-          return (
-            <UserCard
-              id={x.id}
-              followers={x.followers}
-              href={new URL(x.id).pathname}
-              icon={x.icon[0]}
-              name={x.name}
-            />
-          );
-        })}
-      </div>
-    </div>
     </div>
   );
 }

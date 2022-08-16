@@ -12,10 +12,10 @@ export default function SearchBar() {
   };
 
   return (
-    <div class={tw`flex`}>
+    <div class={tw`flex m-3`}>
       <input
         ref={input}
-        class={tw`ml-3 mr-2 rounded-2xl bg-white p-2 shadow-md`}
+        class={tw`mx-3 rounded-2xl bg-white p-2 shadow-md`}
         placeholder="Search"
         onKeyPress={(e) => {
           if (e.key === "Enter") {
@@ -25,7 +25,7 @@ export default function SearchBar() {
       />
       <button onClick={searchInput}>
         <svg
-          class={tw`w-12 mr-3 rounded-full bg-white p-3 text-gray-500 shadow-md hover:bg-gray-100 hover:shadow-lg`}
+          class={tw`w-12 rounded-full bg-white p-3 text-gray-500 shadow-md hover:bg-gray-100 hover:shadow-lg`}
           xmlns:svg="http://www.w3.org/2000/svg"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 -256 1792 1792"
@@ -62,8 +62,8 @@ export function SmallSearchBar() {
       <input
         ref={input}
         class={tw`ml-3 mr-2 rounded-2xl bg-white px-2 max-h-9 shadow-md`}
-	placeholder="Search"
-	onKeyPress={(e) => {
+        placeholder="Search"
+        onKeyPress={(e) => {
           if (e.key === "Enter") {
             searchInput();
           }
