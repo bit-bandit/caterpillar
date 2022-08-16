@@ -5,6 +5,7 @@ import { caterpillarSettings } from "../../../settings.ts";
 import { tw } from "@twind";
 import { ListItemTorrent } from "../../../components/TorrentListItem.tsx";
 import { ListItemList } from "../../../components/MetaListItem.tsx";
+import Header from "../../../islands/Header.tsx";
 
 export const handler = {
   async GET(_, ctx) {
@@ -80,29 +81,34 @@ export const handler = {
 
 function UserBox(props: any) {
   return (
-    <div
-      class={tw`flex max-w-xl max-h-16 p-3 shadow-md items-center place-content-between rounded-2xl my-4 mx-auto hover:bg-gray-100 hover:shadow-lg`}
-    >
-      <p class={tw`text-xl hover:underline`}>
-        <a href={props.href}>{props.name}</a>
-      </p>
-      <svg
-        class={tw`w-3 fill-gray-400 object-right`}
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 320 512"
+    <div>
+      <div
+        class={tw`flex max-w-xl max-h-16 p-3 shadow-md items-center place-content-between rounded-2xl my-4 mx-auto hover:bg-gray-100 hover:shadow-lg`}
       >
-        <path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" />
-      </svg>
+        <p class={tw`text-xl hover:underline`}>
+          <a href={props.href}>{props.name}</a>
+        </p>
+        <svg
+          class={tw`w-3 fill-gray-400 object-right`}
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 320 512"
+        >
+          <path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z" />
+        </svg>
+      </div>
     </div>
   );
 }
+
 
 export default function User(props: any) {
   const user = props.data.user;
   const outbox = props.data.outbox.slice(0, 10); // I hate this
   return (
+  <div>
+  <Header/>
     <div class={tw`mx-auto max-w-screen-md`}>
-      <div class={tw`shadow-md p-9 rounded-3xl m-11 max-w-screen-md`}>
+      <div class={tw`shadow-md p-9 rounded-2xl m-11 max-w-screen-md`}>
         <div class={tw`relative`}>
           <img
             class={tw`rounded-2xl my-3 mx-auto object-fill min-w-full`}
@@ -181,5 +187,6 @@ export default function User(props: any) {
         </div>
       </div>
     </div>
-  );
+    </div>
+  )
 }

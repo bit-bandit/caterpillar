@@ -20,7 +20,7 @@ export function Comment(props: any) {
 
   return (
     <div
-      class={tw`m-4 flex max-w-3xl items-center rounded-3xl py-4 px-5 shadow-lg`}
+      class={tw`m-4 flex max-w-3xl items-center rounded-2xl py-4 px-5 shadow-md`}
     >
       <div class={tw`w-16`}>
         <img class={tw`rounded-full shadow-md`} src={props.avatarURL} />

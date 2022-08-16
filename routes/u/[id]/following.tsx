@@ -4,6 +4,7 @@ import { PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../../../settings.ts";
 import { tw } from "@twind";
 import { UserCard } from "../../../components/UserCard.tsx";
+import Header from "../../../islands/Header.tsx";
 
 export const handler = {
   async GET(_, ctx) {
@@ -39,6 +40,8 @@ export const handler = {
 export default function Following(props: any) {
   const followers = props.data.followers;
   return (
+    <div>
+  <Header/>
     <div class={tw`mx-auto max-w-screen-md`}>
       <div class={tw`text-5xl font-bold leading-tight text-center`}>
         <h1>Followed by {props.params.id}</h1>
@@ -56,6 +59,7 @@ export default function Following(props: any) {
           );
         })}
       </div>
+    </div>
     </div>
   );
 }

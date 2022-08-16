@@ -5,6 +5,7 @@ import { caterpillarSettings } from "../../../settings.ts";
 import { tw } from "@twind";
 import { ListItemTorrent } from "../../../components/TorrentListItem.tsx";
 import { ListItemList } from "../../../components/MetaListItem.tsx";
+import Header from "../../../islands/Header.tsx";
 
 export const handler = {
   async GET(_, ctx) {
@@ -69,11 +70,13 @@ export const handler = {
 export default function Likes(props: any) {
   const likes = props.data.likes;
   return (
+  <div>
+  <Header/>
     <div class={tw`mx-auto max-w-screen-md`}>
       <div class={tw`text-5xl font-bold leading-tight text-center`}>
         <h1>Liked by {props.params.id}</h1>
       </div>
-      <div class={tw`shadow-md p-9 rounded-3xl m-11 max-w-screen-md`}>
+      <div class={tw`shadow-md p-9 rounded-2xl m-11 max-w-screen-md`}>
         {likes.orderedItems.map((x) => {
           if (x.type === "OrderedCollection") {
             return (
@@ -105,6 +108,7 @@ export default function Likes(props: any) {
           );
         })}
       </div>
+    </div>
     </div>
   );
 }

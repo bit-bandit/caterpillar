@@ -7,9 +7,9 @@ export function ListItemTorrent(props: any) {
   let d = new Date(props.date);
   return (
     <div
-      class={tw`max-w-screen-md max-h-26 m-4 flex rounded-3xl p-4 shadow-md`}
+      class={tw`max-w-screen-md max-h-26 m-4 flex rounded-2xl p-4 shadow-md`}
     >
-      <div class={tw`w-24 p-5 rounded-full bg-slate-300`}>
+      <div class={tw`w-24 h-24 p-5 rounded-full bg-gray-200`}>
         <img class={tw`w-24`} src="/magnet.svg" />
       </div>
       <div>

@@ -20,7 +20,7 @@ export function UserCard(props: any) {
 
   return (
     <div
-      class={tw`p-5 m-4 shadow-md flex items-center max-w-lg rounded-3xl bg-white justify-between m-auto`}
+      class={tw`p-5 m-4 shadow-md flex items-center max-w-lg rounded-2xl bg-white justify-between m-auto`}
     >
       <div class={tw`flex`}>
         <div>
