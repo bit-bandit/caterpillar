@@ -13,6 +13,9 @@ import * as $7 from "./routes/u/[id]/following.tsx";
 import * as $8 from "./routes/u/[id]/index.tsx";
 import * as $9 from "./routes/u/[id]/likes.tsx";
 import * as $10 from "./routes/u/[id]/outbox.tsx";
+import * as $11 from "./routes/upload/index.tsx";
+import * as $12 from "./routes/upload/list.tsx";
+import * as $13 from "./routes/upload/torrent.tsx";
 import * as $$0 from "./islands/Header.tsx";
 import * as $$1 from "./islands/Login.tsx";
 import * as $$2 from "./islands/Register.tsx";
@@ -31,6 +34,9 @@ const manifest = {
     "./routes/u/[id]/index.tsx": $8,
     "./routes/u/[id]/likes.tsx": $9,
     "./routes/u/[id]/outbox.tsx": $10,
+    "./routes/upload/index.tsx": $11,
+    "./routes/upload/list.tsx": $12,
+    "./routes/upload/torrent.tsx": $13,
   },
   islands: {
     "./islands/Header.tsx": $$0,
