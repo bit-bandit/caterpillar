@@ -2,13 +2,12 @@
 import { h } from "preact";
 import { tw } from "@twind";
 import { caterpillarSettings } from "../settings.ts";
+import RegistrationForm from "../islands/Register.tsx";
 
-export default function Index(props: any) {
+export default function Register(props: any) {
   return (
     <div class={tw`p-4 mx-auto max-w-screen-md`}>
-      <div class={tw`my-6 text-center`}>
-        <p>Register</p>
-      </div>
+      <RegistrationForm />
     </div>
   );
 }

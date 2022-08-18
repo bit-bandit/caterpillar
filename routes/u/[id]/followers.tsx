@@ -37,7 +37,7 @@ export const handler = {
   },
 };
 
-export default function Following(props: any) {
+export default function Followers(props: any) {
   const followers = props.data.followers;
   return (
     <div>

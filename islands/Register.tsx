@@ -5,7 +5,7 @@ import { IS_BROWSER } from "$fresh/runtime.ts";
 import { tw } from "@twind";
 import { caterpillarSettings } from "../settings.ts";
 
-export default function LoginForm() {
+export default function RegistrationForm() {
   const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {
@@ -17,7 +17,7 @@ export default function LoginForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    let u = new URL("/login", caterpillarSettings.apiURL);
+    let u = new URL("/register", caterpillarSettings.apiURL);
 
     console.log(JSON.stringify(inputs));
     console.log(u.href);
@@ -37,7 +37,7 @@ export default function LoginForm() {
 
   return (
     <div class={tw`p-5 mx-auto max-w-screen-md text-center`}>
-      <h1 class={tw`mb-8 text-4xl font-bold`}>Login</h1>
+      <h1 class={tw`mb-8 text-4xl font-bold`}>Register</h1>
       <form onSubmit={handleSubmit}>
         <label>
           Username: <br />
@@ -66,11 +66,6 @@ export default function LoginForm() {
           class={tw`bg-white p-2 shadow-md rounded-md hover:bg-gray-100`}
         />
       </form>
-      <br />
-      <p>
-        Don't have an account?{" "}
-        <a href="/register" class={tw`underline -bold`}>Register.</a>
-      </p>
     </div>
   );
 }
