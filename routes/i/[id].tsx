@@ -9,9 +9,10 @@ import Header from "../../islands/Header.tsx";
 
 export const handler = {
   async GET(_, ctx) {
-    const c = new URL(_.url);
+    const { id } = ctx.params;
+
     const query = new URL(
-      `${c.pathname}${c.search}`,
+      `/i/${id}`,
       caterpillarSettings.apiURL,
     );
 
@@ -19,12 +20,13 @@ export const handler = {
     let res = await r.json();
 
     for (let i = 0; i < res.orderedItems.length; i++) {
-      // There's a bug in the API server where the behavior of either returning
-      // *just* the item, or the item *and* its match score are inconsistant.
-      // We'll fix that later - For now, this will do.
       if (res.orderedItems[i].item) {
         res.orderedItems[i] = res.orderedItems[i].item;
       }
+
+      let r = await fetch(res.orderedItems[i]);
+
+      res.orderedItems[i] = await r.json();
 
       const likes = await fetch(`${res.orderedItems[i].id}/likes`);
       res.orderedItems[i].likes = (await likes.json()).totalItems;
@@ -40,13 +42,13 @@ export const handler = {
   },
 };
 
-export default function Search(props: any) {
+export default function Tag(props: any) {
   return (
     <div>
       <Header />
       <div class={tw`mx-auto max-w-screen-md`}>
         <div class={tw`text-3xl font-bold leading-tight text-center m-6`}>
-          <h1>Search results</h1>
+          <h1>Posts tagged with '{props.params.id}'</h1>
         </div>
         <div class={tw`shadow-md p-5 rounded-2xl m-0 max-w-screen-md`}>
           {props.data.orderedItems.map((x) => {
