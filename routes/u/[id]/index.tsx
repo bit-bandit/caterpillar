@@ -1,13 +1,13 @@
 /** @jsx h */
 import { h } from "preact";
-import { PageProps } from "$fresh/server.ts";
+import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../../../settings.ts";
 import { tw } from "@twind";
 import { ListItemTorrent } from "../../../components/TorrentListItem.tsx";
 import { ListItemList } from "../../../components/MetaListItem.tsx";
 import Header from "../../../islands/Header.tsx";
 
-export const handler = {
+export const handler: Handlers = {
   async GET(_, ctx) {
     let res = {};
     const { id } = ctx.params;
@@ -100,7 +100,7 @@ function UserBox(props: any) {
   );
 }
 
-export default function User(props: any) {
+export default function User(props: PageProps) {
   const user = props.data.user;
   const outbox = props.data.outbox.slice(0, 10); // I hate this
   return (

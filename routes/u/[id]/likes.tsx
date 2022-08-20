@@ -1,13 +1,13 @@
 /** @jsx h */
 import { h } from "preact";
-import { PageProps } from "$fresh/server.ts";
+import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../../../settings.ts";
 import { tw } from "@twind";
 import { ListItemTorrent } from "../../../components/TorrentListItem.tsx";
 import { ListItemList } from "../../../components/MetaListItem.tsx";
 import Header from "../../../islands/Header.tsx";
 
-export const handler = {
+export const handler: Handlers = {
   async GET(_, ctx) {
     const { id } = ctx.params;
     let res = {};
@@ -67,7 +67,7 @@ export const handler = {
   },
 };
 
-export default function Likes(props: any) {
+export default function Likes(props: PageProps) {
   const likes = props.data.likes;
   return (
     <div>

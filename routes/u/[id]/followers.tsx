@@ -1,12 +1,12 @@
 /** @jsx h */
 import { h } from "preact";
-import { PageProps } from "$fresh/server.ts";
+import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../../../settings.ts";
 import { tw } from "@twind";
 import { UserCard } from "../../../components/UserCard.tsx";
 import Header from "../../../islands/Header.tsx";
 
-export const handler = {
+export const handler: Handlers = {
   async GET(_, ctx) {
     let res = {};
     const { id } = ctx.params;
@@ -37,7 +37,7 @@ export const handler = {
   },
 };
 
-export default function Followers(props: any) {
+export default function Followers(props: PageProps) {
   const followers = props.data.followers;
   return (
     <div>

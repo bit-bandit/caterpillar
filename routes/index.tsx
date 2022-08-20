@@ -1,10 +1,11 @@
 /** @jsx h */
 import { h } from "preact";
 import { tw } from "@twind";
+import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../settings.ts";
 import SearchBar from "../islands/SearchBar.tsx";
 
-export const handler = {
+export const handler: Handlers = {
   async GET(_, ctx) {
     let res = await fetch(caterpillarSettings.apiURL);
     res = await res.json();
@@ -23,7 +24,7 @@ function fmtNum(i: number) {
   );
 }
 
-export default function Index(props: any) {
+export default function Index(props: PageProps) {
   return (
     <div class={tw`p-4 mx-auto max-w-screen-md`}>
       <div class={tw`my-6 text-center`}>

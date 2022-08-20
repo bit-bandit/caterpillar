@@ -1,15 +1,14 @@
 /** @jsx h */
 import { h } from "preact";
-import { PageProps } from "$fresh/server.ts";
+import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../../settings.ts";
-
 import { Comment, RenderReplies } from "../../components/Comment.tsx";
 import Header from "../../islands/Header.tsx";
 
 import { tw } from "@twind";
 
 // Handling
-export const handler = {
+export const handler: Handlers = {
   async GET(_, ctx) {
     let res = {};
     const { id } = ctx.params;

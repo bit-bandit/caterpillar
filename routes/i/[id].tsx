@@ -1,13 +1,13 @@
 /** @jsx h */
 import { h } from "preact";
-import { PageProps } from "$fresh/server.ts";
+import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../../settings.ts";
 import { tw } from "@twind";
 import { ListItemTorrent } from "../../components/TorrentListItem.tsx";
 import { ListItemList } from "../../components/MetaListItem.tsx";
 import Header from "../../islands/Header.tsx";
 
-export const handler = {
+export const handler: Handlers = {
   async GET(_, ctx) {
     const { id } = ctx.params;
 
@@ -17,14 +17,14 @@ export const handler = {
     );
 
     const r = await fetch(query.href);
-    let res = await r.json();
+    const res = await r.json();
 
     for (let i = 0; i < res.orderedItems.length; i++) {
       if (res.orderedItems[i].item) {
         res.orderedItems[i] = res.orderedItems[i].item;
       }
 
-      let r = await fetch(res.orderedItems[i]);
+      const r = await fetch(res.orderedItems[i]);
 
       res.orderedItems[i] = await r.json();
 
@@ -42,7 +42,7 @@ export const handler = {
   },
 };
 
-export default function Tag(props: any) {
+export default function Tag(props: PageProps) {
   return (
     <div>
       <Header />
