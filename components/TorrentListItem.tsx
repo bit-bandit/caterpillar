@@ -3,8 +3,9 @@ import { h } from "preact";
 import { PageProps } from "$fresh/server.ts";
 import { tw } from "@twind";
 
+// TODO: Add types to this.
 export function ListItemTorrent(props: any) {
-  let d = new Date(props.date);
+  const d = new Date(props.date);
   return (
     <div
       class={tw`max-w-screen-md max-h-26 m-4 flex rounded-2xl p-4 shadow-md`}

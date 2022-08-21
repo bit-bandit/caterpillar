@@ -27,8 +27,8 @@ export default function RegistrationForm() {
       body: JSON.stringify(inputs),
     });
 
-    if (res.status === 203 ) {
-      const a = new URL('/login/', window.location.href);
+    if (res.status === 203) {
+      const a = new URL("/login/", window.location.href);
       window.location.href = a.href;
     }
   };

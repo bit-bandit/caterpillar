@@ -1,11 +1,12 @@
 /** @jsx h */
 import { h } from "preact";
 import { tw } from "@twind";
+import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../../settings.ts";
 import SearchBar from "../../islands/SearchBar.tsx";
 import Header from "../../islands/Header.tsx";
 
-export default function UploadMain(props: any) {
+export default function UploadMain(props: PageProps) {
   return (
     <div>
       <Header />
