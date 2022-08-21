@@ -17,7 +17,7 @@ export default function LoginForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    let u = new URL("/login", caterpillarSettings.apiURL);
+    const u = new URL("/login", caterpillarSettings.apiURL);
 
     const res = await fetch(u.href, {
       method: "POST",

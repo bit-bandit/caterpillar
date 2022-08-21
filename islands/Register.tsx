@@ -17,12 +17,9 @@ export default function RegistrationForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    let u = new URL("/register", caterpillarSettings.apiURL);
+    const u = new URL("/register", caterpillarSettings.apiURL);
 
-    console.log(JSON.stringify(inputs));
-    console.log(u.href);
-
-    let res = await fetch(u.href, {
+    const res = await fetch(u.href, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,9 +27,10 @@ export default function RegistrationForm() {
       body: JSON.stringify(inputs),
     });
 
-    console.log(res);
-
-    console.log(res.status);
+    if (res.status === 203 ) {
+      const a = new URL('/login/', window.location.href);
+      window.location.href = a.href;
+    }
   };
 
   return (
