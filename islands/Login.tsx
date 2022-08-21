@@ -32,7 +32,7 @@ export default function LoginForm() {
       const c = await caches.open("parasite");
       await c.put("/login", res);
 
-      window.location.href = '/';
+      window.location.href = "/";
     }
   };
 

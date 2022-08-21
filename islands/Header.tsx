@@ -4,14 +4,15 @@ import { IS_BROWSER } from "$fresh/runtime.ts";
 import { tw } from "@twind";
 import { SmallSearchBar } from "./SearchBar.tsx";
 import { caterpillarSettings } from "../settings.ts";
+import UserBox from "./UserBox.tsx";
 
 export default function Header() {
   return (
     <div
-      class={tw`bg-white px-5 shadow-md mb-7 justify-between items-center flex`}
+      class={tw`bg-white px-5 shadow-md mb-7 justify-around items-center flex`}
     >
       <a href="/">
-        <div>
+        <div class={tw`hover:underline font-bold`}>
           <h1>{caterpillarSettings.siteName}</h1>
         </div>
       </a>
@@ -22,7 +23,7 @@ export default function Header() {
         <div class={tw`relative`}>
           <details>
             <summary
-              class={tw`list-none mr-16 text-3xl text-center font-bold hover:bg-gray-200 items-center w-9 rounded-full`}
+              class={tw`list-none mr-4 text-3xl text-center font-bold hover:bg-gray-200 items-center w-9 rounded-full`}
               title="Upload"
             >
               +
@@ -45,9 +46,7 @@ export default function Header() {
             </div>
           </details>
         </div>
-        <a href="/login">
-          <p>Login</p>
-        </a>
+        <UserBox />
       </div>
     </div>
   );
