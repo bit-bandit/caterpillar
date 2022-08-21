@@ -19,10 +19,7 @@ export default function LoginForm() {
 
     let u = new URL("/login", caterpillarSettings.apiURL);
 
-    console.log(JSON.stringify(inputs));
-    console.log(u.href);
-
-    let res = await fetch(u.href, {
+    const res = await fetch(u.href, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,11 +27,14 @@ export default function LoginForm() {
       body: JSON.stringify(inputs),
     });
 
-    console.log(res);
-
-    console.log(res.status);
+    // Ensures that no errors are written to the cache
+    if (res.status === 200) {
+      const c = await caches.open("parasite");
+      await c.put("/login", res);
+    }
   };
 
+  // TODO: Append a failed status to the DOM.
   return (
     <div class={tw`p-5 mx-auto max-w-screen-md text-center`}>
       <h1 class={tw`mb-8 text-4xl font-bold`}>Login</h1>
