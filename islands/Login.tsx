@@ -31,6 +31,8 @@ export default function LoginForm() {
     if (res.status === 200) {
       const c = await caches.open("parasite");
       await c.put("/login", res);
+
+      window.location.href = '/';
     }
   };
 
