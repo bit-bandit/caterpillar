@@ -21,7 +21,8 @@ import * as $$0 from "./islands/Header.tsx";
 import * as $$1 from "./islands/Login.tsx";
 import * as $$2 from "./islands/Register.tsx";
 import * as $$3 from "./islands/SearchBar.tsx";
-import * as $$4 from "./islands/UserBox.tsx";
+import * as $$4 from "./islands/UploadTorrent.tsx";
+import * as $$5 from "./islands/UserBox.tsx";
 
 const manifest = {
   routes: {
@@ -46,7 +47,8 @@ const manifest = {
     "./islands/Login.tsx": $$1,
     "./islands/Register.tsx": $$2,
     "./islands/SearchBar.tsx": $$3,
-    "./islands/UserBox.tsx": $$4,
+    "./islands/UploadTorrent.tsx": $$4,
+    "./islands/UserBox.tsx": $$5,
   },
   baseUrl: import.meta.url,
 };
