@@ -3,7 +3,6 @@ import { h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import { tw } from "@twind";
-import { SmallSearchBar } from "./SearchBar.tsx";
 import { caterpillarSettings } from "../settings.ts";
 import { SmallUserCard } from "../components/UserCard.tsx";
 

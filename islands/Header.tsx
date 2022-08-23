@@ -2,9 +2,9 @@
 import { h } from "preact";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import { tw } from "@twind";
-import { SmallSearchBar } from "./SearchBar.tsx";
 import { caterpillarSettings } from "../settings.ts";
 import UserBox from "./UserBox.tsx";
+import { SmallSearchBar } from "../components/SearchBar.tsx";
 
 export default function Header() {
   return (

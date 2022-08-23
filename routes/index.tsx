@@ -3,7 +3,7 @@ import { h } from "preact";
 import { tw } from "@twind";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../settings.ts";
-import SearchBar from "../islands/SearchBar.tsx";
+import { SearchBar } from "../components/SearchBar.tsx";
 
 export const handler: Handlers = {
   async GET(_, ctx) {
