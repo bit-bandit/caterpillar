@@ -20,8 +20,9 @@ import * as $14 from "./routes/upload/torrent.tsx";
 import * as $$0 from "./islands/Header.tsx";
 import * as $$1 from "./islands/Login.tsx";
 import * as $$2 from "./islands/Register.tsx";
-import * as $$3 from "./islands/UploadTorrent.tsx";
-import * as $$4 from "./islands/UserBox.tsx";
+import * as $$3 from "./islands/UploadList.tsx";
+import * as $$4 from "./islands/UploadTorrent.tsx";
+import * as $$5 from "./islands/UserBox.tsx";
 
 const manifest = {
   routes: {
@@ -45,8 +46,9 @@ const manifest = {
     "./islands/Header.tsx": $$0,
     "./islands/Login.tsx": $$1,
     "./islands/Register.tsx": $$2,
-    "./islands/UploadTorrent.tsx": $$3,
-    "./islands/UserBox.tsx": $$4,
+    "./islands/UploadList.tsx": $$3,
+    "./islands/UploadTorrent.tsx": $$4,
+    "./islands/UserBox.tsx": $$5,
   },
   baseUrl: import.meta.url,
 };

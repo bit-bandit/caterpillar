@@ -10,6 +10,10 @@ import Header from "../../islands/Header.tsx";
 
 import { tw } from "@twind";
 
+import * as ammonia from "https://deno.land/x/ammonia@0.3.1/mod.ts";
+
+await ammonia.init();
+
 // Handling
 export const handler: Handlers = {
   async GET(_, ctx) {
@@ -20,6 +24,7 @@ export const handler: Handlers = {
 
     // List object
     let req = await fetch(listAPI.href);
+
     res.list = await req.json();
 
     let likes = await fetch(`${res.list.id}/likes`);
@@ -161,7 +166,7 @@ export default function List(props: PageProps) {
         <div
           id="description"
           class={tw`m-4 p-6 shadow-md rounded-2xl`}
-          dangerouslySetInnerHTML={{ __html: list.summary }}
+          dangerouslySetInnerHTML={{ __html: ammonia.clean(list.summary) }}
         />
         <div class={tw`text-3xl font-bold leading-tight text-center`}>
           <h2>Items</h2>

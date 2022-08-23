@@ -29,7 +29,6 @@ export default function RegistrationForm() {
 
     if (res.status === 201) {
       const a = new URL("/login", window.location.href);
-      console.log(a);
       window.location.href = a.href;
     }
   };

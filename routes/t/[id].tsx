@@ -7,6 +7,10 @@ import Header from "../../islands/Header.tsx";
 
 import { tw } from "@twind";
 
+import * as ammonia from "https://deno.land/x/ammonia@0.3.1/mod.ts";
+
+await ammonia.init();
+
 // Handling
 export const handler: Handlers = {
   async GET(_, ctx) {
@@ -126,7 +130,7 @@ export default function Torrent(props: PageProps) {
         <div
           id="description"
           class={tw`p-6 shadow-md rounded-2xl`}
-          dangerouslySetInnerHTML={{ __html: torrent.content }}
+          dangerouslySetInnerHTML={{ __html: ammonia.clean(torrent.content) }}
         />
         <br />
         <h1

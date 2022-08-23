@@ -2,6 +2,9 @@
 import { h } from "preact";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import { tw } from "@twind";
+import * as ammonia from "https://deno.land/x/ammonia@0.3.1/mod.ts";
+
+await ammonia.init();
 
 /* API:
 <Comment
@@ -28,7 +31,7 @@ export function Comment(props: any) {
       <div class={tw`flex-none`}>
         <div
           class={tw`max-w-4xl flex-wrap py-1 px-5 text-base`}
-          dangerouslySetInnerHTML={{ __html: props.commentBody }}
+          dangerouslySetInnerHTML={{ __html: ammonia.clean(props.commentBody) }}
         />
         <div class={tw`flex px-3 text-sm`}>
           <div class={tw`px-2 font-bold`}>{props.username}</div>

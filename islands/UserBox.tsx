@@ -22,7 +22,7 @@ export default function UserBox() {
     }
 
     const checkURL = new URL("/u", caterpillarSettings.apiURL);
-    console.log(`Bearer ${token}`);
+
     res = await fetch(checkURL.href, {
       method: "GET",
       headers: {
