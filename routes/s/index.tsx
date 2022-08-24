@@ -26,13 +26,25 @@ export const handler = {
         res.orderedItems[i] = res.orderedItems[i].item;
       }
 
-      const likes = await fetch(`${res.orderedItems[i].id}/likes`);
+      const likes = await fetch(`${res.orderedItems[i].id}/likes`, {
+        headers: {
+          "Accept": "application/activity+json",
+        },
+      });
       res.orderedItems[i].likes = (await likes.json()).totalItems;
 
-      const dislikes = await fetch(`${res.orderedItems[i].id}/dislikes`);
+      const dislikes = await fetch(`${res.orderedItems[i].id}/dislikes`, {
+        headers: {
+          "Accept": "application/activity+json",
+        },
+      });
       res.orderedItems[i].dislikes = (await dislikes.json()).totalItems;
 
-      const actor = await fetch(res.orderedItems[i].attributedTo);
+      const actor = await fetch(res.orderedItems[i].attributedTo, {
+        headers: {
+          "Accept": "application/activity+json",
+        },
+      });
       res.orderedItems[i].actor = await actor.json();
     }
 

@@ -59,7 +59,7 @@ export default function UploadList(props: any) {
           size="60px"
           name="name"
           value={inputs.name || ""}
-          placeholder="Title of torrent"
+          placeholder="Title of list"
           onChange={handleChange}
           class={tw`bg-gray-100 my-2 mx-2 rounded-md p-2`}
         />

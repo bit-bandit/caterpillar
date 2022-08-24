@@ -16,7 +16,11 @@ export const handler: Handlers = {
       caterpillarSettings.apiURL,
     );
 
-    const r = await fetch(query.href);
+    const r = await fetch(query.href, {
+      headers: {
+        "Accept": "application/activity+json",
+      },
+    });
     const res = await r.json();
 
     for (let i = 0; i < res.orderedItems.length; i++) {
@@ -24,17 +28,33 @@ export const handler: Handlers = {
         res.orderedItems[i] = res.orderedItems[i].item;
       }
 
-      const r = await fetch(res.orderedItems[i]);
+      const r = await fetch(res.orderedItems[i], {
+        headers: {
+          "Accept": "application/activity+json",
+        },
+      });
 
       res.orderedItems[i] = await r.json();
 
-      const likes = await fetch(`${res.orderedItems[i].id}/likes`);
+      const likes = await fetch(`${res.orderedItems[i].id}/likes`, {
+        headers: {
+          "Accept": "application/activity+json",
+        },
+      });
       res.orderedItems[i].likes = (await likes.json()).totalItems;
 
-      const dislikes = await fetch(`${res.orderedItems[i].id}/dislikes`);
+      const dislikes = await fetch(`${res.orderedItems[i].id}/dislikes`, {
+        headers: {
+          "Accept": "application/activity+json",
+        },
+      });
       res.orderedItems[i].dislikes = (await dislikes.json()).totalItems;
 
-      const actor = await fetch(res.orderedItems[i].attributedTo);
+      const actor = await fetch(res.orderedItems[i].attributedTo, {
+        headers: {
+          "Accept": "application/activity+json",
+        },
+      });
       res.orderedItems[i].actor = await actor.json();
     }
 
