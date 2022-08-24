@@ -8,9 +8,9 @@ import { SearchBar } from "../components/SearchBar.tsx";
 export const handler: Handlers = {
   async GET(_, ctx) {
     let res = await fetch(caterpillarSettings.apiURL, {
-    	headers: {
-	  "Accept": "application/activity+json",
-	}
+      headers: {
+        "Accept": "application/activity+json",
+      },
     });
     res = await res.json();
     return ctx.render(res);
