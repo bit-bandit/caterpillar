@@ -13,10 +13,18 @@ export const handler = {
     const { id } = ctx.params;
 
     const userAPI = new URL(`/u/${id}`, caterpillarSettings.apiURL);
-    let req = await fetch(userAPI.href);
+    let req = await fetch(userAPI.href, {
+    	headers: {
+	  "Accept": "application/activity+json",
+	}
+    });
     req = await req.json();
 
-    req = await fetch(req.outbox);
+    req = await fetch(req.outbox, {
+    	headers: {
+	  "Accept": "application/activity+json",
+	}
+    });
     req = await req.json();
 
     for (let i in req.orderedItems) {
@@ -26,12 +34,25 @@ export const handler = {
     req.orderedItems = req.orderedItems.filter((x) => !x.inReplyTo);
 
     for (let i = 0; i < req.orderedItems.length; i++) {
-      const actorData = await fetch(req.orderedItems[i].attributedTo);
+      console.log(req.orderedItems[i]);
+      const actorData = await fetch(req.orderedItems[i].attributedTo, {
+    	headers: {
+	  "Accept": "application/activity+json",
+	}
+    });
       req.orderedItems[i].actor = await actorData.json();
 
-      const likes = await (await fetch(`${req.orderedItems[i].id}/likes`))
+      const likes = await (await fetch(`${req.orderedItems[i].id}/likes`, {
+    	headers: {
+	  "Accept": "application/activity+json",
+	}
+    }))
         .json();
-      const dislikes = await (await fetch(`${req.orderedItems[i].id}/dislikes`))
+      const dislikes = await (await fetch(`${req.orderedItems[i].id}/dislikes`, {
+    	headers: {
+	  "Accept": "application/activity+json",
+	}
+    }))
         .json();
 
       req.orderedItems[i].likes = likes.totalItems;
@@ -39,11 +60,24 @@ export const handler = {
 
       if (req.orderedItems[i].type === "OrderedCollection") {
         for (let url of req.orderedItems[i].orderedItems) {
-          let subObj = await fetch(url);
-          subObj = await subObj.json();
+	    console.log(url);
+	    let subObj = await fetch(url, {
+    	headers: {
+	  "Accept": "application/activity+json",
+	}
+    });
+    subObj = await subObj.json();
 
-          const likes = await (await fetch(`${url}/likes`)).json();
-          const dislikes = await (await fetch(`${url}/dislikes`)).json();
+    const likes = await (await fetch(`${url}/likes`, {
+    	headers: {
+	  "Accept": "application/activity+json",
+	}
+    })).json();
+          const dislikes = await (await fetch(`${url}/dislikes`, {
+    	headers: {
+	  "Accept": "application/activity+json",
+	}
+    })).json();
 
           let u = new URL(url);
 
