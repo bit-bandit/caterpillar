@@ -131,8 +131,24 @@ export default function Torrent(props: PageProps) {
         <div
           id="description"
           class={tw`p-6 shadow-md rounded-2xl`}
-          dangerouslySetInnerHTML={{ __html: ammonia.clean(torrent.content) }}
-        />
+        >
+          <div
+            dangerouslySetInnerHTML={{ __html: ammonia.clean(torrent.content) }}
+          />
+          <div class={tw`m-1 mt-3 border-t-2 flex`}>
+            <p class={tw`m-4 font-bold`}>Tags:</p>
+            {torrent.tag.map((x) => {
+              return (
+                <a
+                  class={tw`mr-2 my-3 rounded-md bg-white px-2 py-1 shadow-md hover:bg-gray-100 hover:underline hover:shadow-lg`}
+                  href={(new URL(x)).pathname}
+                >
+                  {(new URL(x)).pathname.split("/")[2]}
+                </a>
+              );
+            })}
+          </div>
+        </div>
         <br />
         <h1
           class={tw`text-4xl font-bold leading-tight snap-center text-center`}

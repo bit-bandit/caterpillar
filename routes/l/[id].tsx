@@ -250,9 +250,25 @@ export default function List(props: PageProps) {
         </div>
         <div
           id="description"
-          class={tw`m-4 p-6 shadow-md rounded-2xl`}
-          dangerouslySetInnerHTML={{ __html: ammonia.clean(list.summary) }}
-        />
+          class={tw`p-6 shadow-md rounded-2xl my-3`}
+        >
+          <div
+            dangerouslySetInnerHTML={{ __html: ammonia.clean(list.summary) }}
+          />
+          <div class={tw`m-1 mt-3 border-t-2 flex`}>
+            <p class={tw`m-4 font-bold`}>Tags:</p>
+            {list.tag.map((x) => {
+              return (
+                <a
+                  class={tw`mr-2 my-3 rounded-md bg-white px-2 py-1 shadow-md hover:bg-gray-100 hover:underline hover:shadow-lg`}
+                  href={(new URL(x)).pathname}
+                >
+                  {(new URL(x)).pathname.split("/")[2]}
+                </a>
+              );
+            })}
+          </div>
+        </div>
         <div class={tw`text-3xl font-bold leading-tight text-center`}>
           <h2>Items</h2>
         </div>
