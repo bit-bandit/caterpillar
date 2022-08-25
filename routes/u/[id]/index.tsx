@@ -136,6 +136,7 @@ function UserBox(props: any) {
 export default function User(props: PageProps) {
   const user = props.data.user;
   const outbox = props.data.outbox.slice(0, 10); // I hate this
+
   return (
     <div>
       <Header />

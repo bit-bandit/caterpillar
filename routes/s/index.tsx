@@ -46,6 +46,45 @@ export const handler = {
         },
       });
       res.orderedItems[i].actor = await actor.json();
+
+      if (res.orderedItems[i].orderedItems) {
+        for (let url of res.orderedItems[i].orderedItems) {
+          let subObj = await fetch(url, {
+            headers: {
+              "Accept": "application/activity+json",
+            },
+          });
+          subObj = await subObj.json();
+
+          const likes = await (await fetch(`${url}/likes`, {
+            headers: {
+              "Accept": "application/activity+json",
+            },
+          })).json();
+          const dislikes = await (await fetch(`${url}/dislikes`, {
+            headers: {
+              "Accept": "application/activity+json",
+            },
+          })).json();
+
+          let u = new URL(url);
+
+          const index = res.orderedItems[i].orderedItems.indexOf(url);
+
+          res.orderedItems[i].orderedItems[index] = {
+            "type": subObj.type,
+            "name": subObj.name,
+            "likes": likes.totalItems,
+            "dislikes": dislikes.totalItems,
+            "url": u.pathname,
+          };
+
+          if (subObj.totalItems) {
+            res.orderedItems[i].orderedItems[index].totalItems =
+              subObj.totalItems;
+          }
+        }
+      }
     }
 
     return ctx.render(res);

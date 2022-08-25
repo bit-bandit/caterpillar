@@ -89,6 +89,11 @@ export const handler = {
             "dislikes": dislikes.totalItems,
             "url": u.pathname,
           };
+
+          if (subObj.totalItems) {
+            req.orderedItems[i].orderedItems[index].totalItems =
+              subObj.totalItems;
+          }
         }
       }
     }
@@ -120,7 +125,6 @@ function UserBox(props: any) {
 
 export default function Outbox(props: any) {
   const outbox = props.data.outbox;
-
   return (
     <div>
       <Header />
