@@ -18,12 +18,13 @@ import * as $12 from "./routes/u/[id]/outbox.tsx";
 import * as $13 from "./routes/upload/index.tsx";
 import * as $14 from "./routes/upload/list.tsx";
 import * as $15 from "./routes/upload/torrent.tsx";
-import * as $$0 from "./islands/Header.tsx";
-import * as $$1 from "./islands/Login.tsx";
-import * as $$2 from "./islands/Register.tsx";
-import * as $$3 from "./islands/UploadList.tsx";
-import * as $$4 from "./islands/UploadTorrent.tsx";
-import * as $$5 from "./islands/UserBox.tsx";
+import * as $$0 from "./islands/CommentBox.tsx";
+import * as $$1 from "./islands/Header.tsx";
+import * as $$2 from "./islands/Login.tsx";
+import * as $$3 from "./islands/Register.tsx";
+import * as $$4 from "./islands/UploadList.tsx";
+import * as $$5 from "./islands/UploadTorrent.tsx";
+import * as $$6 from "./islands/UserBox.tsx";
 
 const manifest = {
   routes: {
@@ -45,12 +46,13 @@ const manifest = {
     "./routes/upload/torrent.tsx": $15,
   },
   islands: {
-    "./islands/Header.tsx": $$0,
-    "./islands/Login.tsx": $$1,
-    "./islands/Register.tsx": $$2,
-    "./islands/UploadList.tsx": $$3,
-    "./islands/UploadTorrent.tsx": $$4,
-    "./islands/UserBox.tsx": $$5,
+    "./islands/CommentBox.tsx": $$0,
+    "./islands/Header.tsx": $$1,
+    "./islands/Login.tsx": $$2,
+    "./islands/Register.tsx": $$3,
+    "./islands/UploadList.tsx": $$4,
+    "./islands/UploadTorrent.tsx": $$5,
+    "./islands/UserBox.tsx": $$6,
   },
   baseUrl: import.meta.url,
 };

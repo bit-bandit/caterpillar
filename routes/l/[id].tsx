@@ -7,6 +7,7 @@ import { ListItemTorrent } from "../../components/TorrentListItem.tsx";
 import { ListItemList } from "../../components/MetaListItem.tsx";
 import { Comment, RenderReplies } from "../../components/Comment.tsx";
 import Header from "../../islands/Header.tsx";
+import CommentBox from "../../islands/CommentBox.tsx";
 
 import { tw } from "@twind";
 
@@ -293,7 +294,7 @@ export default function List(props: PageProps) {
         >
           Replies
         </h1>
-
+        <CommentBox />
         <div>
           {list.replies.orderedItems.map((x) => {
             return (

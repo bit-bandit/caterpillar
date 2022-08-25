@@ -91,8 +91,7 @@ export default function UploadTorrent(props: any) {
           onChange={handleChange}
           placeholder="Add information about the torrent."
           class={tw`bg-gray-100 my-2 mx-2 rounded-md p-2`}
-        >
-        </textarea>
+        />
         <br />
         <input
           type="submit"

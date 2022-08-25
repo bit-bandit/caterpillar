@@ -4,6 +4,7 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../../settings.ts";
 import { Comment, RenderReplies } from "../../components/Comment.tsx";
 import Header from "../../islands/Header.tsx";
+import CommentBox from "../../islands/CommentBox.tsx";
 
 import { tw } from "@twind";
 
@@ -138,7 +139,7 @@ export default function Torrent(props: PageProps) {
         >
           Replies
         </h1>
-
+        <CommentBox />
         <div>
           {torrent.replies.orderedItems.map((x) => {
             return (
