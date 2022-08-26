@@ -5,6 +5,9 @@ import { caterpillarSettings } from "../../settings.ts";
 import { Comment, RenderReplies } from "../../components/Comment.tsx";
 import Header from "../../islands/Header.tsx";
 import CommentBox from "../../islands/CommentBox.tsx";
+import Likes from "../../islands/Likes.tsx";
+import Dislikes from "../../islands/Dislikes.tsx";
+import Undo from "../../islands/Undo.tsx";
 
 import { tw } from "@twind";
 
@@ -120,10 +123,12 @@ export default function Torrent(props: PageProps) {
           >
             <div class={tw`flex`}>
               <p class={tw`mx-2`}>Score</p>
-              <div class={tw`flex`}>
-                <p class={tw`text-green-700`}>+{torrent.likes}</p>
+              <div class={tw`flex item-center`}>
+                <Likes total={torrent.likes} />
                 <p>/</p>
-                <p class={tw`text-red-700`}>-{torrent.dislikes}</p>
+                <Dislikes total={torrent.dislikes} />
+                <p class={tw`mx-1`} />
+                <Undo />
               </div>
             </div>
           </div>
