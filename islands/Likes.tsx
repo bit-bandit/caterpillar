@@ -7,7 +7,7 @@ import { caterpillarSettings } from "../settings.ts";
 
 export default function Likes(props: any) {
   const handleVote = async () => {
-    const objURL = props.url ??
+    const objURL = props.href ??
       (new URL(
         new URL(window.location.href).pathname,
         caterpillarSettings.apiURL,

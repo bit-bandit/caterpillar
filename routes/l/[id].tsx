@@ -8,6 +8,9 @@ import { ListItemList } from "../../components/MetaListItem.tsx";
 import { Comment, RenderReplies } from "../../components/Comment.tsx";
 import Header from "../../islands/Header.tsx";
 import CommentBox from "../../islands/CommentBox.tsx";
+import Likes from "../../islands/Likes.tsx";
+import Dislikes from "../../islands/Dislikes.tsx";
+import Undo from "../../islands/Undo.tsx";
 
 import { tw } from "@twind";
 
@@ -238,12 +241,14 @@ export default function List(props: PageProps) {
           <div
             class={tw`px-6 py-3 rounded-2xl shadow-md text-center hover:bg-gray-100 hover:shadow-lg flex justify-center`}
           >
-            <div class={tw`flex`}>
+             <div class={tw`flex`}>
               <p class={tw`mx-2`}>Score</p>
-              <div class={tw`flex`}>
-                <p class={tw`text-green-700`}>+{list.likes}</p>
+              <div class={tw`flex item-center`}>
+                <Likes total={list.likes} />
                 <p>/</p>
-                <p class={tw`text-red-700`}>-{list.dislikes}</p>
+                <Dislikes total={list.dislikes} />
+                <p class={tw`mx-1`} />
+                <Undo />
               </div>
             </div>
           </div>
@@ -316,6 +321,7 @@ export default function List(props: PageProps) {
             return (
               <div>
                 <Comment
+		  id={x.id}
                   username={x.attributedTo.name}
                   avatarURL={x.attributedTo.icon[0]}
                   date={x.published}
@@ -323,7 +329,7 @@ export default function List(props: PageProps) {
                   likes={x.likes}
                   dislikes={x.dislikes}
                 />
-                <RenderReplies items={x.replies} />
+                <RenderReplies href={x.id} items={x.replies} />
               </div>
             );
           })}

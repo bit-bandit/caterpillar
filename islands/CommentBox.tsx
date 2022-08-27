@@ -17,10 +17,16 @@ export default function CommentBox(props: any) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     inputs.type = "Create";
-    inputs.inReplyTo = (new URL(
-      (new URL(window.location.href)).pathname,
-      caterpillarSettings.apiURL,
-    )).href;
+
+    if (!props.href) {
+       inputs.inReplyTo = (new URL(
+         (new URL(window.location.href)).pathname,
+       caterpillarSettings.apiURL,
+      )).href;
+    } else {
+      // Doing this in case some asshole tries to fuck w/ incoming data.
+      inputs.inReplyTo = (new URL(props.href)).href
+    }
 
     let token = await caches.open("parasite");
     token = await token.match("/login");

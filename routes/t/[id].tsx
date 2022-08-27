@@ -166,6 +166,7 @@ export default function Torrent(props: PageProps) {
             return (
               <div>
                 <Comment
+		  id={x.id}
                   username={x.attributedTo.name}
                   avatarURL={x.attributedTo.icon[0]}
                   date={x.published}
@@ -173,7 +174,7 @@ export default function Torrent(props: PageProps) {
                   likes={x.likes}
                   dislikes={x.dislikes}
                 />
-                <RenderReplies items={x.replies} />
+                <RenderReplies href={x.id} items={x.replies} />
               </div>
             );
           })}

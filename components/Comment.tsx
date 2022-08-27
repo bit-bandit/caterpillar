@@ -2,6 +2,10 @@
 import { h } from "preact";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import { tw } from "@twind";
+import CommentBox from "../islands/CommentBox.tsx";
+import Likes from "../islands/Likes.tsx";
+import Dislikes from "../islands/Dislikes.tsx";
+import Undo from "../islands/Undo.tsx";
 import * as ammonia from "https://deno.land/x/ammonia@0.3.1/mod.ts";
 
 await ammonia.init();
@@ -38,10 +42,12 @@ export function Comment(props: any) {
           <p>-</p>
           <div class={tw`px-2 italic text-slate-500`}>{d.toLocaleString()}</div>
           <p>-</p>
-          <div class={tw`mx-2 flex`}>
-            <div class={tw`text-green-700`}>+{props.likes}</div>
+          <div class={tw`mx-2 flex items-center`}>
+            <Likes total={props.likes} href={props.id}/>
             <div>/</div>
-            <div class={tw`text-red-700`}>-{props.dislikes}</div>
+            <Dislikes total={props.dislikes} href={props.id}/>
+	    <p class={tw`mx-1`} />
+	    <Undo href={props.id}/>
           </div>
         </div>
       </div>
@@ -55,9 +61,11 @@ export function RenderReplies(props: any) {
     <div class={tw`px-9 mx-7`}>
       <details>
         <summary>View Replies ({props.items.length})</summary>
+	<CommentBox href={props.href}/>
         {props.items.map((x) => {
           return (
             <Comment
+	      id={x.id}
               username={x.attributedTo.name}
               avatarURL={x.attributedTo.icon[0]}
               date={x.published}

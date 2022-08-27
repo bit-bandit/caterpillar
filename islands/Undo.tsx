@@ -7,13 +7,11 @@ import { caterpillarSettings } from "../settings.ts";
 
 export default function Undo(props: any) {
   const handleVote = async () => {
-    const objURL = props.url ??
+    const objURL = props.href ??
       (new URL(
         new URL(window.location.href).pathname,
         caterpillarSettings.apiURL,
       )).href;
-
-    console.log(objURL);
 
     let token = await caches.open("parasite");
     token = await token.match("/login");
@@ -34,8 +32,6 @@ export default function Undo(props: any) {
       },
     );
 
-    console.log(r);
-
     if (r.status === 201) {
       window.location.reload();
     } else {
@@ -45,7 +41,7 @@ export default function Undo(props: any) {
 
   return (
     <div>
-      <button class={tw`w-3`} onClick={handleVote}>
+      <button class={tw`w-2.5`} onClick={handleVote}>
         <img src="/undo.svg" />
       </button>
     </div>
