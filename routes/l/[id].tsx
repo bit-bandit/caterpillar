@@ -227,7 +227,7 @@ export default function List(props: PageProps) {
         <div class={tw`text-5xl font-bold leading-tight text-center`}>
           <h1>{list.name}</h1>
         </div>
-        <div class={tw`grid grid-cols-2 gap-12 content-center px-28 m-3`}>
+        <div class={tw`m-3 flex content-center gap-12 px-28`}>
           <div
             class={tw`justify-center px-6 py-3 rounded-2xl shadow-md text-center flex gap-6 hover:bg-gray-100 hover:shadow-lg`}
           >
