@@ -162,11 +162,11 @@ export default function Torrent(props: PageProps) {
         </h1>
         <CommentBox />
         <div>
-          {torrent.replies.orderedItems.map((x) => {
+          {torrent.replies.orderedItems.reverse().map((x) => {
             return (
               <div>
                 <Comment
-		  id={x.id}
+                  id={x.id}
                   username={x.attributedTo.name}
                   avatarURL={x.attributedTo.icon[0]}
                   date={x.published}

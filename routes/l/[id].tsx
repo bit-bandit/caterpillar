@@ -241,7 +241,7 @@ export default function List(props: PageProps) {
           <div
             class={tw`px-6 py-3 rounded-2xl shadow-md text-center hover:bg-gray-100 hover:shadow-lg flex justify-center`}
           >
-             <div class={tw`flex`}>
+            <div class={tw`flex`}>
               <p class={tw`mx-2`}>Score</p>
               <div class={tw`flex item-center`}>
                 <Likes total={list.likes} />
@@ -321,7 +321,7 @@ export default function List(props: PageProps) {
             return (
               <div>
                 <Comment
-		  id={x.id}
+                  id={x.id}
                   username={x.attributedTo.name}
                   avatarURL={x.attributedTo.icon[0]}
                   date={x.published}

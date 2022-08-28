@@ -19,13 +19,13 @@ export default function CommentBox(props: any) {
     inputs.type = "Create";
 
     if (!props.href) {
-       inputs.inReplyTo = (new URL(
-         (new URL(window.location.href)).pathname,
-       caterpillarSettings.apiURL,
+      inputs.inReplyTo = (new URL(
+        (new URL(window.location.href)).pathname,
+        caterpillarSettings.apiURL,
       )).href;
     } else {
       // Doing this in case some asshole tries to fuck w/ incoming data.
-      inputs.inReplyTo = (new URL(props.href)).href
+      inputs.inReplyTo = (new URL(props.href)).href;
     }
 
     let token = await caches.open("parasite");
@@ -51,19 +51,16 @@ export default function CommentBox(props: any) {
   return (
     <div class={tw`text-center`}>
       <form onSubmit={handleSubmit}>
-        <textarea
-          name="content"
-          rows="3"
-          cols="63"
+        <input
           value={inputs.content || ""}
           onChange={handleChange}
+          name="content"
           placeholder="Reply"
-          class={tw`bg-gray-100 my-2 mx-2 rounded-md p-2`}
+          class={tw`my-2 mx-2 rounded-md bg-gray-100 p-2 w-96`}
         />
-        <br />
         <input
           type="submit"
-          class={tw`rounded-md bg-white p-2 shadow-md hover:bg-gray-100`}
+          class={`rounded-md bg-white p-2 shadow-md hover:bg-gray-100`}
         />
       </form>
     </div>

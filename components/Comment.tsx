@@ -43,11 +43,11 @@ export function Comment(props: any) {
           <div class={tw`px-2 italic text-slate-500`}>{d.toLocaleString()}</div>
           <p>-</p>
           <div class={tw`mx-2 flex items-center`}>
-            <Likes total={props.likes} href={props.id}/>
+            <Likes total={props.likes} href={props.id} />
             <div>/</div>
-            <Dislikes total={props.dislikes} href={props.id}/>
-	    <p class={tw`mx-1`} />
-	    <Undo href={props.id}/>
+            <Dislikes total={props.dislikes} href={props.id} />
+            <p class={tw`mx-1`} />
+            <Undo href={props.id} />
           </div>
         </div>
       </div>
@@ -61,11 +61,10 @@ export function RenderReplies(props: any) {
     <div class={tw`px-9 mx-7`}>
       <details>
         <summary>View Replies ({props.items.length})</summary>
-	<CommentBox href={props.href}/>
         {props.items.map((x) => {
           return (
             <Comment
-	      id={x.id}
+              id={x.id}
               username={x.attributedTo.name}
               avatarURL={x.attributedTo.icon[0]}
               date={x.published}
@@ -75,6 +74,7 @@ export function RenderReplies(props: any) {
             />
           );
         })}
+        <CommentBox href={props.href} />
       </details>
     </div>
   );
