@@ -41,7 +41,7 @@ export default function AdminMain(props: any) {
       <div class={tw`flex max-w-xl`}>
         <AdminRoutes />
         <div class={tw`rounded-md shadow-md bg-white p-2`}>
-          <p>You're an admin bud!</p>
+          <p>What do I put here?</p>
         </div>
       </div>
     );
@@ -58,7 +58,7 @@ export default function AdminMain(props: any) {
   if (i.undefined) {
     return (
       <div>
-        <p>Wait for me</p>
+        <div class="p-5 w-5 rounded-full bg-gray-100" />
       </div>
     );
   }
