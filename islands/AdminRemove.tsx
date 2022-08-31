@@ -6,11 +6,11 @@ import { tw } from "@twind";
 import { caterpillarSettings } from "../settings.ts";
 
 import AdminRoutes from "../components/AdminRoutes.tsx";
-import Federated from "./FederatedList.tsx";
 
-export default function AdminFederation() {
+// Here be dragons.
+
+export default function AdminRemove(props: any) {
   let [i, setI] = useState({ "undefined": true });
-  let [siteInfo, setSiteInfo] = useState({});
 
   useEffect(async () => {
     let token = await caches.open("parasite");
@@ -39,6 +39,25 @@ export default function AdminFederation() {
   }, []);
 
   if (i.msg && !i.err) {
+    let aURL = new URL("/a/roles", caterpillarSettings.apiURL);
+
+    let [res, setRes] = useState({});
+    useEffect(async () => {
+      let token = await caches.open("parasite");
+      token = await token.match("/login");
+
+      token = await token.text();
+
+      let a = await fetch(aURL.href, {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Accept": "application/json",
+        },
+      });
+      setRes(await a.json());
+    }, []);
+
     const [inputs, setInputs] = useState({});
 
     const handleChange = (event) => {
@@ -49,31 +68,31 @@ export default function AdminFederation() {
 
     const handleSubmit = async (event) => {
       event.preventDefault();
-      console.log(inputs);
+
+      const u = new URL("/a/delete", caterpillarSettings.apiURL);
 
       let token = await caches.open("parasite");
       token = await token.match("/login");
+
       token = await token.text();
 
-      console.log(token);
+      console.log(inputs);
 
-      let r = await fetch(
-        (new URL("/a/federate", caterpillarSettings.apiURL)).href,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
-          },
-          body: JSON.stringify(inputs),
+      let res = await fetch(u.href, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
         },
-      );
+        body: JSON.stringify(inputs),
+      });
 
-      r = await r.json();
+      res = await res.json();
 
-      if (r.err) {
-        alert(r.msg);
+      if (res.err) {
+        alert(`Error: ${res.msg}`);
       } else {
+        alert(res.msg);
         window.location.reload();
       }
     };
@@ -82,10 +101,10 @@ export default function AdminFederation() {
       <div class={tw`flex max-w-xl`}>
         <AdminRoutes />
         <div class={tw`rounded-md shadow-md bg-white p-2`}>
-          <h1 class={tw`mb-8 text-4xl font-bold`}>Federation options</h1>
+          <h1 class={tw`text-2xl m-2 font-bold`}>Delete Item on Server</h1>
           <form onSubmit={handleSubmit}>
             <label>
-              ID: <br />
+              URL: <br />
               <input
                 type="text"
                 name="id"
@@ -95,40 +114,11 @@ export default function AdminFederation() {
               />
             </label>
             <br />
-            <label>
-              Option: <br />
-              <select
-                name="type"
-                value={inputs.type}
-                onChange={handleChange}
-                class={tw`w-64 m-2 rounded-md p-2`}
-              >
-                <option value="Pool">Pool</option>
-                <option value="Unpool">Unpool</option>
-                <option value="Block">Block</option>
-                <option value="Unblock">Unblock</option>
-              </select>
-            </label>
-            <br />
-            <label>
-              Range: <br />
-              <select
-                name="range"
-                value={inputs.range}
-                onChange={handleChange}
-                class={tw`w-64 m-2 rounded-md p-2`}
-              >
-                <option value="Instance">Instance</option>
-                <option value="User">User</option>
-              </select>
-            </label>
-            <br />
             <input
               type="submit"
               class={tw`bg-white p-2 shadow-md rounded-md hover:bg-gray-100`}
             />
           </form>
-          <Federated />
         </div>
       </div>
     );
