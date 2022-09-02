@@ -1,6 +1,5 @@
 /** @jsx h */
 import { h } from "preact";
-import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../settings.ts";
 import { useEffect, useState } from "preact/hooks";
 import { tw } from "@twind";
