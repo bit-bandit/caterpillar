@@ -31,6 +31,7 @@ function fmtNum(i: number) {
 export default function Index(props: PageProps) {
   return (
     <div class={tw`p-4 mx-auto max-w-screen-md`}>
+      <img src="/logo.svg" class={tw`mx-auto object-center object-none`} />
       <div class={tw`my-6 text-center`}>
         <h1 class={tw`text-4xl font-bold`}>{props.data.name}</h1>
       </div>
