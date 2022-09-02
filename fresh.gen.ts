@@ -19,9 +19,10 @@ import * as $13 from "./routes/u/[id]/following.tsx";
 import * as $14 from "./routes/u/[id]/index.tsx";
 import * as $15 from "./routes/u/[id]/likes.tsx";
 import * as $16 from "./routes/u/[id]/outbox.tsx";
-import * as $17 from "./routes/upload/index.tsx";
-import * as $18 from "./routes/upload/list.tsx";
-import * as $19 from "./routes/upload/torrent.tsx";
+import * as $17 from "./routes/update/t/[id].tsx";
+import * as $18 from "./routes/upload/index.tsx";
+import * as $19 from "./routes/upload/list.tsx";
+import * as $20 from "./routes/upload/torrent.tsx";
 import * as $$0 from "./islands/AdminFederation.tsx";
 import * as $$1 from "./islands/AdminMain.tsx";
 import * as $$2 from "./islands/AdminRemove.tsx";
@@ -34,9 +35,10 @@ import * as $$8 from "./islands/Likes.tsx";
 import * as $$9 from "./islands/Login.tsx";
 import * as $$10 from "./islands/Register.tsx";
 import * as $$11 from "./islands/Undo.tsx";
-import * as $$12 from "./islands/UploadList.tsx";
-import * as $$13 from "./islands/UploadTorrent.tsx";
-import * as $$14 from "./islands/UserBox.tsx";
+import * as $$12 from "./islands/UpdateTorrent.tsx";
+import * as $$13 from "./islands/UploadList.tsx";
+import * as $$14 from "./islands/UploadTorrent.tsx";
+import * as $$15 from "./islands/UserBox.tsx";
 
 const manifest = {
   routes: {
@@ -57,9 +59,10 @@ const manifest = {
     "./routes/u/[id]/index.tsx": $14,
     "./routes/u/[id]/likes.tsx": $15,
     "./routes/u/[id]/outbox.tsx": $16,
-    "./routes/upload/index.tsx": $17,
-    "./routes/upload/list.tsx": $18,
-    "./routes/upload/torrent.tsx": $19,
+    "./routes/update/t/[id].tsx": $17,
+    "./routes/upload/index.tsx": $18,
+    "./routes/upload/list.tsx": $19,
+    "./routes/upload/torrent.tsx": $20,
   },
   islands: {
     "./islands/AdminFederation.tsx": $$0,
@@ -74,9 +77,10 @@ const manifest = {
     "./islands/Login.tsx": $$9,
     "./islands/Register.tsx": $$10,
     "./islands/Undo.tsx": $$11,
-    "./islands/UploadList.tsx": $$12,
-    "./islands/UploadTorrent.tsx": $$13,
-    "./islands/UserBox.tsx": $$14,
+    "./islands/UpdateTorrent.tsx": $$12,
+    "./islands/UploadList.tsx": $$13,
+    "./islands/UploadTorrent.tsx": $$14,
+    "./islands/UserBox.tsx": $$15,
   },
   baseUrl: import.meta.url,
 };

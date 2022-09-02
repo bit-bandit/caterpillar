@@ -30,6 +30,11 @@ export default function CommentBox(props: any) {
 
     let token = await caches.open("parasite");
     token = await token.match("/login");
+
+    if (token === undefined) {
+      window.location.href = "/login";
+    }
+
     token = await token.text();
 
     const API = new URL("/x/comment", caterpillarSettings.apiURL);
