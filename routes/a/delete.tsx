@@ -13,6 +13,7 @@ export default function Index(props: PageProps) {
     <div>
       <div class={tw`mx-auto max-w-screen-xl`}>
         <AdminRemove />
+        <a href="/" class={tw`hover:underline text-blue-800 mx-5`}>🡐 Back</a>
       </div>
     </div>
   );
