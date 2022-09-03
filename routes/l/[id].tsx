@@ -92,6 +92,10 @@ export const handler: Handlers = {
             "dislikes": dislikes.totalItems,
             "url": u.pathname,
           };
+          // Quick check for lists.
+          if (subObj.totalItems) {
+            fetched.orderedItems[index].totalItems = subObj.totalItems;
+          }
         }
       }
 
