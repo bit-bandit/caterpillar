@@ -20,19 +20,19 @@ export function SmallUserCard(props: any) {
             {props.obj.name}
           </summary>
           <div class="absolute left-2 w-30 bg-white py-3 text-center shadow-lg">
-            <a href={props.obj.id}>
+            <a href={new URL(props.obj.id).pathname}>
               <div
                 class={tw`text flex items-center px-4 py-1 hover:bg-gray-200`}
               >
                 Profile
               </div>
             </a>
-            <a href={props.obj.following}>
+            <a href={new URL(props.obj.following).pathname}>
               <div class="text flex items-center px-4 py-1 hover:bg-gray-200">
                 Following
               </div>
             </a>
-            <a href={props.obj.liked}>
+            <a href={new URL(props.obj.liked).pathname}>
               <div class="text flex items-center px-4 py-1 hover:bg-gray-200">
                 Likes
               </div>

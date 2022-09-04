@@ -20,7 +20,7 @@ export default function UpdateList(props: any) {
 
     token = await token.text();
 
-    let listURL = new URL(
+    const listURL = new URL(
       window.location.href.split("update")[1],
       caterpillarSettings.apiURL,
     );

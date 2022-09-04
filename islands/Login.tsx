@@ -33,6 +33,13 @@ export default function LoginForm() {
       await c.put("/login", res);
 
       window.location.href = "/";
+    } else {
+      const c = await res.json();
+      if (c.msg === "Not permitted to login") {
+        window.location.href = "https://www.youtube.com/watch?v=FXPKJUE86d0";
+      } else {
+        alert(c.msg);
+      }
     }
   };
 
