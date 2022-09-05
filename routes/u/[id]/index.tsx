@@ -158,12 +158,15 @@ export default function User(props: PageProps) {
               <div>
                 <h1 class={tw`mx-40 text-2xl py-1 font-bold`}>{user.name}</h1>
                 <h2 class={tw`mx-40 text-gray-500`}>
-                  {`${user.name}@${props.url.host}`}
+                  {`${props.params.id}@${props.url.host}`}
                 </h2>
               </div>
             </div>
           </div>
-          <div class={tw`my-8`}>
+	    <div class={tw`mx-48 max-w-xl break-words`}>
+	    <p>{user.summary}</p>
+	  </div>
+          <div class={tw`mx-3`}>
             <UserBox name="Likes" href={`${props.url.pathname}/likes`} />
             <UserBox
               name="Following"
