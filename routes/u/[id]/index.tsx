@@ -163,9 +163,9 @@ export default function User(props: PageProps) {
               </div>
             </div>
           </div>
-	    <div class={tw`mx-48 max-w-xl break-words`}>
-	    <p>{user.summary}</p>
-	  </div>
+          <div class={tw`mx-48 max-w-xl break-words`}>
+            <p>{user.summary}</p>
+          </div>
           <div class={tw`mx-3`}>
             <UserBox name="Likes" href={`${props.url.pathname}/likes`} />
             <UserBox
