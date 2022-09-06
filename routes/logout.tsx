@@ -3,10 +3,9 @@
 import { Fragment, h } from "preact";
 import { tw } from "@twind";
 import { Head } from "$fresh/runtime.ts";
-import { Handlers, PageProps } from "$fresh/server.ts";
-import { caterpillarSettings } from "../../../settings.ts";
-import UpdateList from "../../../islands/UpdateList.tsx";
-import Header from "../../../islands/Header.tsx";
+import { PageProps } from "$fresh/server.ts";
+import { caterpillarSettings } from "../settings.ts";
+import Logout from "../islands/Logout.tsx";
 
 export const handler: Handlers = {
   async GET(_, ctx) {
@@ -20,16 +19,15 @@ export const handler: Handlers = {
   },
 };
 
-// <Header />
-export default function Index(props: PageProps) {
+export default function Login(props: PageProps) {
   return (
     <>
       <Head>
-        <title>Update List | {props.data.name}</title>
+        <title>Logout | {props.data.name}</title>
       </Head>
-      <div>
-        <div class={tw`p-5 mx-auto max-w-screen-md text-center`}>
-          <UpdateList />
+      <div class={tw`p-4 mx-auto max-w-screen-md`}>
+        <div class={tw`my-6 text-center`}>
+          <Logout />
         </div>
       </div>
     </>

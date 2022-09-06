@@ -32,6 +32,22 @@ export default function LoginForm() {
       const c = await caches.open("parasite");
       await c.put("/login", res);
 
+      const checkURL = new URL(
+        `/u/${inputs.username}`,
+        caterpillarSettings.apiURL,
+      );
+
+      const r = await fetch(checkURL.href, {
+        method: "GET",
+        headers: {
+          "Accept": "application/json",
+        },
+      });
+
+      if (r.status === 200) {
+        await c.put("/u", r);
+      }
+
       window.location.href = "/";
     } else {
       const c = await res.json();
@@ -43,7 +59,6 @@ export default function LoginForm() {
     }
   };
 
-  // TODO: Append a failed status to the DOM.
   return (
     <div class={tw`p-5 mx-auto max-w-screen-md text-center`}>
       <h1 class={tw`mb-8 text-4xl font-bold`}>Login</h1>

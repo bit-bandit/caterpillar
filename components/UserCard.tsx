@@ -37,6 +37,11 @@ export function SmallUserCard(props: any) {
                 Likes
               </div>
             </a>
+            <a href="/logout">
+              <div class="text flex items-center px-4 py-1 hover:bg-gray-200">
+                Logout
+              </div>
+            </a>
           </div>
         </details>
       </div>

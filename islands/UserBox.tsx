@@ -13,29 +13,16 @@ export default function UserBox() {
     let token = "";
 
     const c = await caches.open("parasite");
-    let res = await c.match("/login");
+    const login = await c.match("/login");
+    let user = await c.match("/u");
 
-    if (res !== undefined) {
-      token = await res.text();
-    } else {
-      return setInfo(info);
+    if (login === undefined && user === undefined) {
+      return;
     }
 
-    const checkURL = new URL("/u", caterpillarSettings.apiURL);
+    user = await user.json();
 
-    res = await fetch(checkURL.href, {
-      method: "GET",
-      headers: {
-        "Authorization": `Bearer ${token}`,
-        "Accept": "application/json",
-      },
-    });
-
-    res = await res.json();
-
-    if (!res.err) {
-      setInfo(res);
-    }
+    setInfo(user);
   }, []);
 
   if (!info.err) {

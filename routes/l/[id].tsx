@@ -1,5 +1,7 @@
 /** @jsx h */
-import { h } from "preact";
+/** @jsxFrag Fragment */
+import { Fragment, h } from "preact";
+import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../../settings.ts";
 
@@ -216,6 +218,17 @@ export const handler: Handlers = {
     }
 
     res.list.replies = req;
+
+    let home = await fetch(caterpillarSettings.apiURL, {
+      headers: {
+        "Accept": "application/activity+json",
+      },
+    });
+
+    home = await home.json();
+
+    res.home = home;
+
     return ctx.render(res);
   },
 };
@@ -225,67 +238,87 @@ export default function List(props: PageProps) {
   const submitter = props.data.user;
 
   return (
-    <div>
-      <Header />
-      <div class={tw`p-4 mx-auto max-w-screen-md`}>
-        <div class={tw`text-5xl font-bold leading-tight text-center`}>
-          <h1>{list.name}</h1>
-        </div>
-        <div class={tw`m-3 flex justify-center gap-12`}>
-          <div
-            class={tw`justify-center px-6 py-3 rounded-2xl shadow-md text-center flex gap-6 hover:bg-gray-100 hover:shadow-lg`}
-          >
-            <div class={tw`w-6 h-6 rounded-2xl`}>
-              <img class={tw`rounded-full`} src={submitter.icon[0]} />
-            </div>
-            <div class={tw`font-bold`}>
-              <a href={new URL(list.attributedTo).pathname}>{submitter.name}</a>
-            </div>
+    <>
+      <Head>
+        <title>{list.name} | {props.data.home.name}</title>
+      </Head>
+      <div>
+        <Header />
+        <div class={tw`p-4 mx-auto max-w-screen-md`}>
+          <div class={tw`text-5xl font-bold leading-tight text-center`}>
+            <h1>{list.name}</h1>
           </div>
-          <div
-            class={tw`px-6 py-3 rounded-2xl shadow-md text-center hover:bg-gray-100 hover:shadow-lg flex justify-center`}
-          >
-            <div class={tw`flex`}>
-              <p class={tw`mx-2`}>Score</p>
-              <div class={tw`flex item-center`}>
-                <Likes total={list.likes} />
-                <p>/</p>
-                <Dislikes total={list.dislikes} />
-                <p class={tw`mx-1`} />
-                <Undo />
+          <div class={tw`m-3 flex justify-center gap-12`}>
+            <div
+              class={tw`justify-center px-6 py-3 rounded-2xl shadow-md text-center flex gap-6 hover:bg-gray-100 hover:shadow-lg`}
+            >
+              <div class={tw`w-6 h-6 rounded-2xl`}>
+                <img class={tw`rounded-full`} src={submitter.icon[0]} />
+              </div>
+              <div class={tw`font-bold`}>
+                <a href={new URL(list.attributedTo).pathname}>
+                  {submitter.name}
+                </a>
+              </div>
+            </div>
+            <div
+              class={tw`px-6 py-3 rounded-2xl shadow-md text-center hover:bg-gray-100 hover:shadow-lg flex justify-center`}
+            >
+              <div class={tw`flex`}>
+                <p class={tw`mx-2`}>Score</p>
+                <div class={tw`flex item-center`}>
+                  <Likes total={list.likes} />
+                  <p>/</p>
+                  <Dislikes total={list.dislikes} />
+                  <p class={tw`mx-1`} />
+                  <Undo />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div
-          id="description"
-          class={tw`p-6 shadow-md rounded-2xl my-3`}
-        >
           <div
-            dangerouslySetInnerHTML={{ __html: ammonia.clean(list.summary) }}
-          />
-          <div class={tw`m-1 mt-3 border-t-2 flex`}>
-            <p class={tw`m-4 font-bold`}>Tags:</p>
-            {list.tag.map((x) => {
-              return (
-                <a
-                  class={tw`mr-2 my-3 rounded-md bg-white px-2 py-1 shadow-md hover:bg-gray-100 hover:underline hover:shadow-lg`}
-                  href={(new URL(x)).pathname}
-                >
-                  {(new URL(x)).pathname.split("/")[2]}
-                </a>
-              );
-            })}
+            id="description"
+            class={tw`p-6 shadow-md rounded-2xl my-3`}
+          >
+            <div
+              dangerouslySetInnerHTML={{ __html: ammonia.clean(list.summary) }}
+            />
+            <div class={tw`m-1 mt-3 border-t-2 flex`}>
+              <p class={tw`m-4 font-bold`}>Tags:</p>
+              {list.tag.map((x) => {
+                return (
+                  <a
+                    class={tw`mr-2 my-3 rounded-md bg-white px-2 py-1 shadow-md hover:bg-gray-100 hover:underline hover:shadow-lg`}
+                    href={(new URL(x)).pathname}
+                  >
+                    {(new URL(x)).pathname.split("/")[2]}
+                  </a>
+                );
+              })}
+            </div>
           </div>
-        </div>
-        <div class={tw`text-3xl font-bold leading-tight text-center`}>
-          <h2>Items</h2>
-        </div>
-        <div class="m-auto">
-          {list.orderedItems.map((x) => {
-            if (x.type === "OrderedCollection") {
+          <div class={tw`text-3xl font-bold leading-tight text-center`}>
+            <h2>Items</h2>
+          </div>
+          <div class="m-auto">
+            {list.orderedItems.map((x) => {
+              if (x.type === "OrderedCollection") {
+                return (
+                  <ListItemList
+                    href={(new URL(x.id)).pathname}
+                    name={x.name}
+                    uploaderHref={new URL(x.actor.id).pathname}
+                    uploader={x.actor.name}
+                    icon={x.actor.icon[0]}
+                    date={list.published}
+                    likes={x.likes.orderedItems.length}
+                    dislikes={x.dislikes.orderedItems.length}
+                    subitems={x.orderedItems}
+                  />
+                );
+              }
               return (
-                <ListItemList
+                <ListItemTorrent
                   href={(new URL(x.id)).pathname}
                   name={x.name}
                   uploaderHref={new URL(x.actor.id).pathname}
@@ -294,51 +327,38 @@ export default function List(props: PageProps) {
                   date={list.published}
                   likes={x.likes.orderedItems.length}
                   dislikes={x.dislikes.orderedItems.length}
-                  subitems={x.orderedItems}
+                  magnet={x.attachment.href}
                 />
               );
-            }
-            return (
-              <ListItemTorrent
-                href={(new URL(x.id)).pathname}
-                name={x.name}
-                uploaderHref={new URL(x.actor.id).pathname}
-                uploader={x.actor.name}
-                icon={x.actor.icon[0]}
-                date={list.published}
-                likes={x.likes.orderedItems.length}
-                dislikes={x.dislikes.orderedItems.length}
-                magnet={x.attachment.href}
-              />
-            );
-          })}
-        </div>
-        <br />
-        <h1
-          class={tw`text-4xl font-bold leading-tight snap-center text-center`}
-        >
-          Replies
-        </h1>
-        <CommentBox />
-        <div>
-          {list.replies.orderedItems.map((x) => {
-            return (
-              <div>
-                <Comment
-                  id={x.id}
-                  username={x.attributedTo.name}
-                  avatarURL={x.attributedTo.icon[0]}
-                  date={x.published}
-                  commentBody={x.content}
-                  likes={x.likes}
-                  dislikes={x.dislikes}
-                />
-                <RenderReplies href={x.id} items={x.replies} />
-              </div>
-            );
-          })}
+            })}
+          </div>
+          <br />
+          <h1
+            class={tw`text-4xl font-bold leading-tight snap-center text-center`}
+          >
+            Replies
+          </h1>
+          <CommentBox />
+          <div>
+            {list.replies.orderedItems.map((x) => {
+              return (
+                <div>
+                  <Comment
+                    id={x.id}
+                    username={x.attributedTo.name}
+                    avatarURL={x.attributedTo.icon[0]}
+                    date={x.published}
+                    commentBody={x.content}
+                    likes={x.likes}
+                    dislikes={x.dislikes}
+                  />
+                  <RenderReplies href={x.id} items={x.replies} />
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

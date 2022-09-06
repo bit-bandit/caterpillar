@@ -11,20 +11,21 @@ import * as $5 from "./routes/i/[id].tsx";
 import * as $6 from "./routes/index.tsx";
 import * as $7 from "./routes/l/[id].tsx";
 import * as $8 from "./routes/login.tsx";
-import * as $9 from "./routes/register.tsx";
-import * as $10 from "./routes/s/index.tsx";
-import * as $11 from "./routes/t/[id].tsx";
-import * as $12 from "./routes/u/[id]/followers.tsx";
-import * as $13 from "./routes/u/[id]/following.tsx";
-import * as $14 from "./routes/u/[id]/index.tsx";
-import * as $15 from "./routes/u/[id]/likes.tsx";
-import * as $16 from "./routes/u/[id]/outbox.tsx";
-import * as $17 from "./routes/update/l/[id].tsx";
-import * as $18 from "./routes/update/t/[id].tsx";
-import * as $19 from "./routes/update/u/[id].tsx";
-import * as $20 from "./routes/upload/index.tsx";
-import * as $21 from "./routes/upload/list.tsx";
-import * as $22 from "./routes/upload/torrent.tsx";
+import * as $9 from "./routes/logout.tsx";
+import * as $10 from "./routes/register.tsx";
+import * as $11 from "./routes/s/index.tsx";
+import * as $12 from "./routes/t/[id].tsx";
+import * as $13 from "./routes/u/[id]/followers.tsx";
+import * as $14 from "./routes/u/[id]/following.tsx";
+import * as $15 from "./routes/u/[id]/index.tsx";
+import * as $16 from "./routes/u/[id]/likes.tsx";
+import * as $17 from "./routes/u/[id]/outbox.tsx";
+import * as $18 from "./routes/update/l/[id].tsx";
+import * as $19 from "./routes/update/t/[id].tsx";
+import * as $20 from "./routes/update/u/[id].tsx";
+import * as $21 from "./routes/upload/index.tsx";
+import * as $22 from "./routes/upload/list.tsx";
+import * as $23 from "./routes/upload/torrent.tsx";
 import * as $$0 from "./islands/AdminFederation.tsx";
 import * as $$1 from "./islands/AdminMain.tsx";
 import * as $$2 from "./islands/AdminRemove.tsx";
@@ -32,17 +33,19 @@ import * as $$3 from "./islands/AdminRoles.tsx";
 import * as $$4 from "./islands/CommentBox.tsx";
 import * as $$5 from "./islands/Dislikes.tsx";
 import * as $$6 from "./islands/FederatedList.tsx";
-import * as $$7 from "./islands/Header.tsx";
-import * as $$8 from "./islands/Likes.tsx";
-import * as $$9 from "./islands/Login.tsx";
-import * as $$10 from "./islands/Register.tsx";
-import * as $$11 from "./islands/Undo.tsx";
-import * as $$12 from "./islands/UpdateList.tsx";
-import * as $$13 from "./islands/UpdateProfile.tsx";
-import * as $$14 from "./islands/UpdateTorrent.tsx";
-import * as $$15 from "./islands/UploadList.tsx";
-import * as $$16 from "./islands/UploadTorrent.tsx";
-import * as $$17 from "./islands/UserBox.tsx";
+import * as $$7 from "./islands/Following.tsx";
+import * as $$8 from "./islands/Header.tsx";
+import * as $$9 from "./islands/Likes.tsx";
+import * as $$10 from "./islands/Login.tsx";
+import * as $$11 from "./islands/Logout.tsx";
+import * as $$12 from "./islands/Register.tsx";
+import * as $$13 from "./islands/Undo.tsx";
+import * as $$14 from "./islands/UpdateList.tsx";
+import * as $$15 from "./islands/UpdateProfile.tsx";
+import * as $$16 from "./islands/UpdateTorrent.tsx";
+import * as $$17 from "./islands/UploadList.tsx";
+import * as $$18 from "./islands/UploadTorrent.tsx";
+import * as $$19 from "./islands/UserBox.tsx";
 
 const manifest = {
   routes: {
@@ -55,20 +58,21 @@ const manifest = {
     "./routes/index.tsx": $6,
     "./routes/l/[id].tsx": $7,
     "./routes/login.tsx": $8,
-    "./routes/register.tsx": $9,
-    "./routes/s/index.tsx": $10,
-    "./routes/t/[id].tsx": $11,
-    "./routes/u/[id]/followers.tsx": $12,
-    "./routes/u/[id]/following.tsx": $13,
-    "./routes/u/[id]/index.tsx": $14,
-    "./routes/u/[id]/likes.tsx": $15,
-    "./routes/u/[id]/outbox.tsx": $16,
-    "./routes/update/l/[id].tsx": $17,
-    "./routes/update/t/[id].tsx": $18,
-    "./routes/update/u/[id].tsx": $19,
-    "./routes/upload/index.tsx": $20,
-    "./routes/upload/list.tsx": $21,
-    "./routes/upload/torrent.tsx": $22,
+    "./routes/logout.tsx": $9,
+    "./routes/register.tsx": $10,
+    "./routes/s/index.tsx": $11,
+    "./routes/t/[id].tsx": $12,
+    "./routes/u/[id]/followers.tsx": $13,
+    "./routes/u/[id]/following.tsx": $14,
+    "./routes/u/[id]/index.tsx": $15,
+    "./routes/u/[id]/likes.tsx": $16,
+    "./routes/u/[id]/outbox.tsx": $17,
+    "./routes/update/l/[id].tsx": $18,
+    "./routes/update/t/[id].tsx": $19,
+    "./routes/update/u/[id].tsx": $20,
+    "./routes/upload/index.tsx": $21,
+    "./routes/upload/list.tsx": $22,
+    "./routes/upload/torrent.tsx": $23,
   },
   islands: {
     "./islands/AdminFederation.tsx": $$0,
@@ -78,17 +82,19 @@ const manifest = {
     "./islands/CommentBox.tsx": $$4,
     "./islands/Dislikes.tsx": $$5,
     "./islands/FederatedList.tsx": $$6,
-    "./islands/Header.tsx": $$7,
-    "./islands/Likes.tsx": $$8,
-    "./islands/Login.tsx": $$9,
-    "./islands/Register.tsx": $$10,
-    "./islands/Undo.tsx": $$11,
-    "./islands/UpdateList.tsx": $$12,
-    "./islands/UpdateProfile.tsx": $$13,
-    "./islands/UpdateTorrent.tsx": $$14,
-    "./islands/UploadList.tsx": $$15,
-    "./islands/UploadTorrent.tsx": $$16,
-    "./islands/UserBox.tsx": $$17,
+    "./islands/Following.tsx": $$7,
+    "./islands/Header.tsx": $$8,
+    "./islands/Likes.tsx": $$9,
+    "./islands/Login.tsx": $$10,
+    "./islands/Logout.tsx": $$11,
+    "./islands/Register.tsx": $$12,
+    "./islands/Undo.tsx": $$13,
+    "./islands/UpdateList.tsx": $$14,
+    "./islands/UpdateProfile.tsx": $$15,
+    "./islands/UpdateTorrent.tsx": $$16,
+    "./islands/UploadList.tsx": $$17,
+    "./islands/UploadTorrent.tsx": $$18,
+    "./islands/UserBox.tsx": $$19,
   },
   baseUrl: import.meta.url,
 };

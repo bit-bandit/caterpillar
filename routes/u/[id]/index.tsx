@@ -6,6 +6,7 @@ import { tw } from "@twind";
 import { ListItemTorrent } from "../../../components/TorrentListItem.tsx";
 import { ListItemList } from "../../../components/MetaListItem.tsx";
 import Header from "../../../islands/Header.tsx";
+import FollowButton from "../../../islands/Following.tsx";
 
 export const handler: Handlers = {
   async GET(_, ctx) {
@@ -137,11 +138,13 @@ export default function User(props: PageProps) {
   const user = props.data.user;
   const outbox = props.data.outbox.slice(0, 10); // I hate this
 
+  let username = new URL(user.id).pathname.split("/")[2];
+
   return (
     <div>
       <Header />
       <div class={tw`mx-auto max-w-screen-md`}>
-        <div class={tw`shadow-md p-9 rounded-2xl m-11 max-w-screen-md`}>
+        <div class={tw`shadow-md p-9 rounded-2xl m-11`}>
           <div class={tw`relative`}>
             <img
               class={tw`rounded-2xl my-3 mx-auto object-fill min-w-full`}
@@ -158,9 +161,12 @@ export default function User(props: PageProps) {
               <div>
                 <h1 class={tw`mx-40 text-2xl py-1 font-bold`}>{user.name}</h1>
                 <h2 class={tw`mx-40 text-gray-500`}>
-                  {`${props.params.id}@${props.url.host}`}
+                  {`${username}@${new URL(user.id).host}`}
                 </h2>
               </div>
+            </div>
+            <div class={tw`-mt-10 absolute right-4`}>
+              <FollowButton />
             </div>
           </div>
           <div class={tw`mx-48 max-w-xl break-words`}>
