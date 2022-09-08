@@ -159,7 +159,7 @@ export default function UpdateProfile() {
         <br />
         <input
           type="submit"
-          class="rounded-md bg-white p-2 shadow-md hover:bg-gray-100"
+          class="rounded-md bg-white p-2 rounded-2xl shadow-md hover:bg-gray-100"
         />
       </form>
     </div>
