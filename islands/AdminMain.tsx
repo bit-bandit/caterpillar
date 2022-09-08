@@ -1,8 +1,5 @@
-/** @jsx h */
-import { h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import { tw } from "@twind";
 import { caterpillarSettings } from "../settings.ts";
 
 import AdminRoutes from "../components/AdminRoutes.tsx";
@@ -38,12 +35,12 @@ export default function AdminMain(props: any) {
 
   if (i.msg && !i.err) {
     return (
-      <div class={tw`flex max-w-2xl`}>
+      <div class="flex max-w-2xl">
         <AdminRoutes />
-        <div class={tw`rounded-md shadow-md bg-white p-3`}>
+        <div class="rounded-md shadow-md bg-white p-3">
           <p>Welcome to the admin dashboard. From here you can:</p>
           <div>
-            <ul class={tw`list-disc pl-5`}>
+            <ul class="list-disc pl-5">
               <li>Assign Roles to users on this instance.</li>
               <li>Control which federated instances are pooled, or blocked.</li>
               <li>Remove torrents, lists, and comments.</li>

@@ -1,7 +1,4 @@
-/** @jsx h */
-import { h } from "preact";
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import { tw } from "@twind";
 import CommentBox from "../islands/CommentBox.tsx";
 import Likes from "../islands/Likes.tsx";
 import Dislikes from "../islands/Dislikes.tsx";
@@ -26,27 +23,25 @@ export function Comment(props: any) {
   const d = new Date(props.date);
 
   return (
-    <div
-      class={tw`m-4 flex max-w-3xl items-center rounded-2xl py-4 px-5 shadow-md`}
-    >
-      <div class={tw`w-16`}>
-        <img class={tw`rounded-full shadow-md`} src={props.avatarURL} />
+    <div class="m-4 flex max-w-3xl items-center rounded-2xl py-4 px-5 shadow-md">
+      <div class="w-16">
+        <img class="rounded-full shadow-md" src={props.avatarURL} />
       </div>
-      <div class={tw`flex-none`}>
+      <div class="flex-none">
         <div
-          class={tw`max-w-4xl flex-wrap py-1 px-5 text-base`}
+          class="max-w-4xl flex-wrap py-1 px-5 text-base"
           dangerouslySetInnerHTML={{ __html: ammonia.clean(props.commentBody) }}
         />
-        <div class={tw`flex px-3 text-sm`}>
-          <div class={tw`px-2 font-bold`}>{props.username}</div>
+        <div class="flex px-3 text-sm">
+          <div class="px-2 font-bold">{props.username}</div>
           <p>-</p>
-          <div class={tw`px-2 italic text-slate-500`}>{d.toLocaleString()}</div>
+          <div class="px-2 italic text-slate-500">{d.toLocaleString()}</div>
           <p>-</p>
-          <div class={tw`mx-2 flex items-center`}>
+          <div class="mx-2 flex items-center">
             <Likes total={props.likes} href={props.id} />
             <div>/</div>
             <Dislikes total={props.dislikes} href={props.id} />
-            <p class={tw`mx-1`} />
+            <p class="mx-1" />
             <Undo href={props.id} />
           </div>
         </div>
@@ -58,7 +53,7 @@ export function Comment(props: any) {
 // Requires an array of objects that share the same syntax as Comment
 export function RenderReplies(props: any) {
   return (
-    <div class={tw`px-9 mx-7`}>
+    <div class="px-9 mx-7">
       <details>
         <summary>View Replies ({props.items.length})</summary>
         {props.items.map((x) => {

@@ -1,8 +1,5 @@
-/** @jsx h */
-import { h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import { tw } from "@twind";
 import { caterpillarSettings } from "../settings.ts";
 
 export default function FollowButton() {
@@ -113,7 +110,7 @@ export default function FollowButton() {
   if (isFollowing) {
     return (
       <button
-        class={tw`hover:bg-gray-100 p-3 rounded-2xl shadow-md`}
+        class="hover:bg-gray-100 p-3 rounded-2xl shadow-md"
         onClick={undoFollow}
       >
         Unfollow
@@ -122,7 +119,7 @@ export default function FollowButton() {
   }
   return (
     <button
-      class={tw`hover:bg-gray-100 p-3 rounded-2xl shadow-md`}
+      class="hover:bg-gray-100 p-3 rounded-2xl shadow-md"
       onClick={followSubmit}
     >
       Follow

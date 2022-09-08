@@ -1,6 +1,3 @@
-/** @jsx h */
-/** @jsxFrag Fragment */
-import { Fragment, h } from "preact";
 import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../../settings.ts";
@@ -10,9 +7,6 @@ import CommentBox from "../../islands/CommentBox.tsx";
 import Likes from "../../islands/Likes.tsx";
 import Dislikes from "../../islands/Dislikes.tsx";
 import Undo from "../../islands/Undo.tsx";
-
-import { tw } from "@twind";
-
 import * as ammonia from "https://deno.land/x/ammonia@0.3.1/mod.ts";
 
 await ammonia.init();
@@ -110,40 +104,34 @@ export default function Torrent(props: PageProps) {
       </Head>
       <div>
         <Header />
-        <div class={tw`mx-auto max-w-screen-md`}>
-          <div class={tw`text-5xl font-bold leading-tight text-center`}>
+        <div class="mx-auto max-w-screen-md">
+          <div class="text-5xl font-bold leading-tight text-center">
             <h1>{torrent.name}</h1>
           </div>
-          <div class={tw`m-3 flex content-center gap-12 px-28`}>
+          <div class="m-3 flex content-center gap-12 px-28">
             <a href={torrent.attributedTo}>
-              <div
-                class={tw`px-6 py-3 rounded-2xl shadow-md text-center flex gap-6 hover:bg-gray-100 hover:shadow-lg`}
-              >
-                <div class={tw`w-6 h-6 rounded-full`}>
-                  <img class={tw`rounded-full`} src={submitter.icon[0]} />
+              <div class="px-6 py-3 rounded-2xl shadow-md text-center flex gap-6 hover:bg-gray-100 hover:shadow-lg">
+                <div class="w-6 h-6 rounded-full">
+                  <img class="rounded-full" src={submitter.icon[0]} />
                 </div>
-                <div class={tw`font-bold`}>
+                <div class="font-bold">
                   {submitter.name}
                 </div>
               </div>
             </a>
             <a href={torrent.attachment.href}>
-              <div
-                class={tw`px-6 py-3 rounded-2xl shadow-md text-center hover:bg-gray-100 hover:shadow-lg`}
-              >
+              <div class="px-6 py-3 rounded-2xl shadow-md text-center hover:bg-gray-100 hover:shadow-lg">
                 Magnet
               </div>
             </a>
-            <div
-              class={tw`px-6 py-3 rounded-2xl shadow-md text-center hover:bg-gray-100 hover:shadow-lg`}
-            >
-              <div class={tw`flex`}>
-                <p class={tw`mx-2`}>Score</p>
-                <div class={tw`flex item-center`}>
+            <div class="px-6 py-3 rounded-2xl shadow-md text-center hover:bg-gray-100 hover:shadow-lg">
+              <div class="flex">
+                <p class="mx-2">Score</p>
+                <div class="flex item-center">
                   <Likes total={torrent.likes} />
                   <p>/</p>
                   <Dislikes total={torrent.dislikes} />
-                  <p class={tw`mx-1`} />
+                  <p class="mx-1" />
                   <Undo />
                 </div>
               </div>
@@ -151,19 +139,19 @@ export default function Torrent(props: PageProps) {
           </div>
           <div
             id="description"
-            class={tw`p-6 shadow-md rounded-2xl`}
+            class="p-6 shadow-md rounded-2xl"
           >
             <div
               dangerouslySetInnerHTML={{
                 __html: ammonia.clean(torrent.content),
               }}
             />
-            <div class={tw`m-1 mt-3 border-t-2 flex`}>
-              <p class={tw`m-4 font-bold`}>Tags:</p>
+            <div class="m-1 mt-3 border-t-2 flex">
+              <p class="m-4 font-bold">Tags:</p>
               {torrent.tag.map((x) => {
                 return (
                   <a
-                    class={tw`mr-2 my-3 rounded-md bg-white px-2 py-1 shadow-md hover:bg-gray-100 hover:underline hover:shadow-lg`}
+                    class="mr-2 my-3 rounded-md bg-white px-2 py-1 shadow-md hover:bg-gray-100 hover:underline hover:shadow-lg"
                     href={(new URL(x)).pathname}
                   >
                     {(new URL(x)).pathname.split("/")[2]}
@@ -173,9 +161,7 @@ export default function Torrent(props: PageProps) {
             </div>
           </div>
           <br />
-          <h1
-            class={tw`text-4xl font-bold leading-tight snap-center text-center`}
-          >
+          <h1 class="text-4xl font-bold leading-tight snap-center text-center">
             Replies
           </h1>
           <CommentBox />

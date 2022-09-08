@@ -1,8 +1,5 @@
-/** @jsx h */
-import { h } from "preact";
 import { useState } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import { tw } from "@twind";
 import { caterpillarSettings } from "../settings.ts";
 
 export default function LoginForm() {
@@ -60,8 +57,8 @@ export default function LoginForm() {
   };
 
   return (
-    <div class={tw`p-5 mx-auto max-w-screen-md text-center`}>
-      <h1 class={tw`mb-8 text-4xl font-bold`}>Login</h1>
+    <div class="p-5 mx-auto max-w-screen-md text-center">
+      <h1 class="mb-8 text-4xl font-bold">Login</h1>
       <form onSubmit={handleSubmit}>
         <label>
           Username: <br />
@@ -70,7 +67,7 @@ export default function LoginForm() {
             name="username"
             value={inputs.username || ""}
             onChange={handleChange}
-            class={tw`bg-gray-100 my-2 mx-2 rounded-md p-2`}
+            class="bg-gray-100 my-2 mx-2 rounded-md p-2"
           />
         </label>
         <br />
@@ -81,19 +78,19 @@ export default function LoginForm() {
             name="password"
             value={inputs.password || ""}
             onChange={handleChange}
-            class={tw`bg-gray-100 my-2 mx-2 rounded-md p-2`}
+            class="bg-gray-100 my-2 mx-2 rounded-md p-2"
           />
         </label>
         <br />
         <input
           type="submit"
-          class={tw`bg-white p-2 shadow-md rounded-md hover:bg-gray-100`}
+          class="bg-white p-2 shadow-md rounded-md hover:bg-gray-100"
         />
       </form>
       <br />
       <p>
         Don't have an account?{" "}
-        <a href="/register" class={tw`underline -bold`}>Register.</a>
+        <a href="/register" class="underline -bold">Register.</a>
       </p>
     </div>
   );

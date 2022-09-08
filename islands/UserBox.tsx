@@ -1,8 +1,5 @@
-/** @jsx h */
-import { h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import { tw } from "@twind";
 import { caterpillarSettings } from "../settings.ts";
 import { SmallUserCard } from "../components/UserCard.tsx";
 
@@ -30,7 +27,7 @@ export default function UserBox() {
   } else {
     return (
       <a href="/login">
-        <h3 class={tw`hover:underline`}>Login</h3>
+        <h3 class="hover:underline">Login</h3>
       </a>
     );
   }

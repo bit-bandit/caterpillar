@@ -1,8 +1,6 @@
-/** @jsx h */
-import { createRef, h } from "preact";
+import { createRef } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import { tw } from "@twind";
 import { caterpillarSettings } from "../settings.ts";
 
 export default function UpdateProfile() {
@@ -128,7 +126,7 @@ export default function UpdateProfile() {
           value={inputs.name || ""}
           placeholder="User name"
           onChange={handleChange}
-          class={tw`bg-gray-100 my-2 mx-2 rounded-md p-2`}
+          class="bg-gray-100 my-2 mx-2 rounded-md p-2"
         />
         <br />
         <input
@@ -138,7 +136,7 @@ export default function UpdateProfile() {
           value={inputs.summary || ""}
           placeholder="User summary"
           onChange={handleChange}
-          class={tw`bg-gray-100 my-2 mx-2 rounded-md p-2`}
+          class="bg-gray-100 my-2 mx-2 rounded-md p-2"
         />
         <br />
         <label>Icon file:</label>
@@ -146,7 +144,7 @@ export default function UpdateProfile() {
           type="file"
           name="icon"
           ref={icon}
-          class={tw`bg-gray-100 my-2 mx-2 rounded-md p-2`}
+          class="bg-gray-100 my-2 mx-2 rounded-md p-2"
           accept="image/png, image/jpeg, image/jpg"
         />
         <br />
@@ -155,13 +153,13 @@ export default function UpdateProfile() {
           type="file"
           name="banner"
           ref={banner}
-          class={tw`bg-gray-100 my-2 mx-2 rounded-md p-2`}
+          class="bg-gray-100 my-2 mx-2 rounded-md p-2"
           accept="image/png, image/jpeg, image/jpg"
         />
         <br />
         <input
           type="submit"
-          class={tw`rounded-md bg-white p-2 shadow-md hover:bg-gray-100`}
+          class="rounded-md bg-white p-2 shadow-md hover:bg-gray-100"
         />
       </form>
     </div>

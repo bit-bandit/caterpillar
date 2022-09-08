@@ -1,8 +1,5 @@
-/** @jsx h */
-import { h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import { tw } from "@twind";
 import { caterpillarSettings } from "../settings.ts";
 
 import AdminRoutes from "../components/AdminRoutes.tsx";
@@ -79,10 +76,10 @@ export default function AdminFederation() {
     };
 
     return (
-      <div class={tw`flex max-w-xl`}>
+      <div class="flex max-w-xl">
         <AdminRoutes />
-        <div class={tw`rounded-md shadow-md bg-white p-2`}>
-          <h1 class={tw`mb-8 text-4xl font-bold`}>Federation options</h1>
+        <div class="rounded-md shadow-md bg-white p-2">
+          <h1 class="mb-8 text-4xl font-bold">Federation options</h1>
           <form onSubmit={handleSubmit}>
             <label>
               ID: <br />
@@ -91,7 +88,7 @@ export default function AdminFederation() {
                 name="id"
                 value={inputs.id || ""}
                 onChange={handleChange}
-                class={tw`bg-gray-100 my-2 mx-2 rounded-md p-2`}
+                class="bg-gray-100 my-2 mx-2 rounded-md p-2"
               />
             </label>
             <br />
@@ -101,7 +98,7 @@ export default function AdminFederation() {
                 name="type"
                 value={inputs.type}
                 onChange={handleChange}
-                class={tw`w-64 m-2 rounded-md p-2`}
+                class="w-64 m-2 rounded-md p-2"
               >
                 <option value="Pool">Pool</option>
                 <option value="Unpool">Unpool</option>
@@ -116,7 +113,7 @@ export default function AdminFederation() {
                 name="range"
                 value={inputs.range}
                 onChange={handleChange}
-                class={tw`w-64 m-2 rounded-md p-2`}
+                class="w-64 m-2 rounded-md p-2"
               >
                 <option value="Instance">Instance</option>
                 <option value="User">User</option>
@@ -125,7 +122,7 @@ export default function AdminFederation() {
             <br />
             <input
               type="submit"
-              class={tw`bg-white p-2 shadow-md rounded-md hover:bg-gray-100`}
+              class="bg-white p-2 shadow-md rounded-md hover:bg-gray-100"
             />
           </form>
           <Federated />

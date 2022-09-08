@@ -1,6 +1,3 @@
-/** @jsx h */
-import { h } from "preact";
-import { tw } from "@twind";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../../settings.ts";
 import AdminRoles from "../../islands/AdminRoles.tsx";
@@ -11,9 +8,9 @@ import Header from "../../islands/Header.tsx";
 export default function Index(props: PageProps) {
   return (
     <div>
-      <div class={tw`mx-auto max-w-screen-xl`}>
+      <div class="mx-auto max-w-screen-xl">
         <AdminRoles />
-        <a href="/" class={tw`hover:underline text-blue-800 mx-5`}>🡐 Back</a>
+        <a href="/" class="hover:underline text-blue-800 mx-5">🡐 Back</a>
       </div>
     </div>
   );

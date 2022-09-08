@@ -1,8 +1,5 @@
-/** @jsx h */
-import { h } from "preact";
 import { useState } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import { tw } from "@twind";
 import { caterpillarSettings } from "../settings.ts";
 
 export default function Likes(props: any) {
@@ -43,7 +40,7 @@ export default function Likes(props: any) {
 
   return (
     <div>
-      <button class={tw`text-green-700`} onClick={handleVote}>
+      <button class="text-green-700" onClick={handleVote}>
         +{props.total}
       </button>
     </div>

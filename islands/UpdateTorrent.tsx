@@ -1,8 +1,5 @@
-/** @jsx h */
-import { h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import { tw } from "@twind";
 import { caterpillarSettings } from "../settings.ts";
 
 export default function UpdateTorrent(props: any) {
@@ -113,7 +110,7 @@ export default function UpdateTorrent(props: any) {
             value={inputs.name || ""}
             placeholder="Title of torrent"
             onChange={handleChange}
-            class={tw`bg-gray-100 my-2 mx-2 rounded-md p-2`}
+            class="bg-gray-100 my-2 mx-2 rounded-md p-2"
           />
           <br />
           <input
@@ -123,7 +120,7 @@ export default function UpdateTorrent(props: any) {
             value={inputs.href || ""}
             placeholder="Torrent magnet link"
             onChange={handleChange}
-            class={tw`bg-gray-100 my-2 mx-2 rounded-md p-2`}
+            class="bg-gray-100 my-2 mx-2 rounded-md p-2"
           />
           <br />
           <input
@@ -133,7 +130,7 @@ export default function UpdateTorrent(props: any) {
             value={inputs.tags || ""}
             placeholder="Torrent tags (Seperate by commas - IE 'tag1,tag2,tag3')"
             onChange={handleChange}
-            class={tw`bg-gray-100 my-2 mx-2 rounded-md p-2`}
+            class="bg-gray-100 my-2 mx-2 rounded-md p-2"
           />
           <br />
           <textarea
@@ -143,12 +140,12 @@ export default function UpdateTorrent(props: any) {
             value={inputs.content || ""}
             onChange={handleChange}
             placeholder="Add information about the torrent."
-            class={tw`bg-gray-100 my-2 mx-2 rounded-md p-2`}
+            class="bg-gray-100 my-2 mx-2 rounded-md p-2"
           />
           <br />
           <input
             type="submit"
-            class={tw`rounded-md bg-white p-2 shadow-md hover:bg-gray-100`}
+            class="rounded-md bg-white p-2 shadow-md hover:bg-gray-100"
           />
         </form>
       </div>

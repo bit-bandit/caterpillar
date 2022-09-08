@@ -1,9 +1,6 @@
-/** @jsx h */
-import { h } from "preact";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../settings.ts";
 import { useEffect, useState } from "preact/hooks";
-import { tw } from "@twind";
 
 export default function CommentBox(props: any) {
   let [inputs, setInputs] = useState({});
@@ -54,14 +51,14 @@ export default function CommentBox(props: any) {
   };
 
   return (
-    <div class={tw`text-center`}>
+    <div class="text-center">
       <form onSubmit={handleSubmit}>
         <input
           value={inputs.content || ""}
           onChange={handleChange}
           name="content"
           placeholder="Reply"
-          class={tw`my-2 mx-2 rounded-md bg-gray-100 p-2 w-96`}
+          class="my-2 mx-2 rounded-md bg-gray-100 p-2 w-96"
         />
         <input
           type="submit"

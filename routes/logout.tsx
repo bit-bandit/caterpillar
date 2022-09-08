@@ -1,7 +1,3 @@
-/** @jsx h */
-/** @jsxFrag Fragment */
-import { Fragment, h } from "preact";
-import { tw } from "@twind";
 import { Head } from "$fresh/runtime.ts";
 import { PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../settings.ts";
@@ -25,8 +21,8 @@ export default function Login(props: PageProps) {
       <Head>
         <title>Logout | {props.data.name}</title>
       </Head>
-      <div class={tw`p-4 mx-auto max-w-screen-md`}>
-        <div class={tw`my-6 text-center`}>
+      <div class="p-4 mx-auto max-w-screen-md">
+        <div class="my-6 text-center">
           <Logout />
         </div>
       </div>

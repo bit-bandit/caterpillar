@@ -1,8 +1,5 @@
-/** @jsx h */
-import { h } from "preact";
 import { caterpillarSettings } from "../settings.ts";
 import { useEffect, useState } from "preact/hooks";
-import { tw } from "@twind";
 
 export default function UploadList(props: any) {
   let [inputs, setInputs] = useState({});
@@ -60,7 +57,7 @@ export default function UploadList(props: any) {
           value={inputs.name || ""}
           placeholder="Title of list"
           onChange={handleChange}
-          class={tw`bg-gray-100 my-2 mx-2 rounded-md p-2`}
+          class="bg-gray-100 my-2 mx-2 rounded-md p-2"
         />
         <br />
         <input
@@ -70,7 +67,7 @@ export default function UploadList(props: any) {
           value={inputs.tags || ""}
           placeholder="List tags (Seperate by commas - IE 'tag1,tag2,tag3')"
           onChange={handleChange}
-          class={tw`bg-gray-100 my-2 mx-2 rounded-md p-2`}
+          class="bg-gray-100 my-2 mx-2 rounded-md p-2"
         />
         <br />
         <textarea
@@ -80,7 +77,7 @@ export default function UploadList(props: any) {
           value={inputs.summary || ""}
           onChange={handleChange}
           placeholder="Add information about the list."
-          class={tw`bg-gray-100 my-2 mx-2 rounded-md p-2`}
+          class="bg-gray-100 my-2 mx-2 rounded-md p-2"
         />
         <textarea
           name="orderedItems"
@@ -89,12 +86,12 @@ export default function UploadList(props: any) {
           value={inputs.orderedItems || ""}
           onChange={handleChange}
           placeholder="URLs of items you want to include in the list."
-          class={tw`bg-gray-100 my-2 mx-2 rounded-md p-2`}
+          class="bg-gray-100 my-2 mx-2 rounded-md p-2"
         />
         <br />
         <input
           type="submit"
-          class={tw`rounded-md bg-white p-2 shadow-md hover:bg-gray-100`}
+          class="rounded-md bg-white p-2 shadow-md hover:bg-gray-100"
         />
       </form>
     </div>

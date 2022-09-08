@@ -1,8 +1,5 @@
-/** @jsx h */
-import { h } from "preact";
 import { useState } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import { tw } from "@twind";
 import { caterpillarSettings } from "../settings.ts";
 
 export default function Undo(props: any) {
@@ -41,7 +38,7 @@ export default function Undo(props: any) {
 
   return (
     <div>
-      <button class={tw`w-2.5`} onClick={handleVote}>
+      <button class="w-2.5" onClick={handleVote}>
         <img src="/undo.svg" />
       </button>
     </div>

@@ -1,8 +1,5 @@
-/** @jsx h */
-import { h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import { tw } from "@twind";
 import { caterpillarSettings } from "../settings.ts";
 
 import AdminRoutes from "../components/AdminRoutes.tsx";
@@ -98,10 +95,10 @@ export default function AdminRemove(props: any) {
     };
 
     return (
-      <div class={tw`flex max-w-xl`}>
+      <div class="flex max-w-xl">
         <AdminRoutes />
-        <div class={tw`rounded-md shadow-md bg-white p-2`}>
-          <h1 class={tw`text-2xl m-2 font-bold`}>Delete Item on Server</h1>
+        <div class="rounded-md shadow-md bg-white p-2">
+          <h1 class="text-2xl m-2 font-bold">Delete Item on Server</h1>
           <form onSubmit={handleSubmit}>
             <label>
               URL: <br />
@@ -110,13 +107,13 @@ export default function AdminRemove(props: any) {
                 name="id"
                 value={inputs.id || ""}
                 onChange={handleChange}
-                class={tw`bg-gray-100 my-2 mx-2 rounded-md p-2`}
+                class="bg-gray-100 my-2 mx-2 rounded-md p-2"
               />
             </label>
             <br />
             <input
               type="submit"
-              class={tw`bg-white p-2 shadow-md rounded-md hover:bg-gray-100`}
+              class="bg-white p-2 shadow-md rounded-md hover:bg-gray-100"
             />
           </form>
         </div>

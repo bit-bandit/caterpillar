@@ -1,10 +1,6 @@
-/** @jsx h */
-/** @jsxFrag Fragment */
-import { Fragment, h } from "preact";
 import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../../../settings.ts";
-import { tw } from "@twind";
 import { UserCard } from "../../../components/UserCard.tsx";
 import Header from "../../../islands/Header.tsx";
 
@@ -59,11 +55,11 @@ export default function Followers(props: PageProps) {
       </Head>
       <div>
         <Header />
-        <div class={tw`mx-auto max-w-screen-md`}>
-          <div class={tw`text-5xl font-bold leading-tight text-center`}>
+        <div class="mx-auto max-w-screen-md">
+          <div class="text-5xl font-bold leading-tight text-center">
             <h1>Followers of {props.params.id}</h1>
           </div>
-          <div class={tw`shadow-md p-9 rounded-3xl m-11 max-w-screen-md`}>
+          <div class="shadow-md p-9 rounded-3xl m-11 max-w-screen-md">
             {followers.map((x) => {
               return (
                 <UserCard

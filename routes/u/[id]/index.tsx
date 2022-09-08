@@ -1,9 +1,5 @@
-/** @jsx h */
-/** @jsxFrag Fragment */
-import { Fragment, h } from "preact";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../../../settings.ts";
-import { tw } from "@twind";
 import { Head } from "$fresh/runtime.ts";
 import { ListItemTorrent } from "../../../components/TorrentListItem.tsx";
 import { ListItemList } from "../../../components/MetaListItem.tsx";
@@ -128,14 +124,12 @@ export const handler: Handlers = {
 function UserBox(props: any) {
   return (
     <div>
-      <div
-        class={tw`flex max-w-xl max-h-16 p-3 shadow-md items-center place-content-between rounded-2xl my-4 mx-auto hover:bg-gray-100 hover:shadow-lg`}
-      >
-        <p class={tw`text-xl hover:underline`}>
+      <div class="flex max-w-xl max-h-16 p-3 shadow-md items-center place-content-between rounded-2xl my-4 mx-auto hover:bg-gray-100 hover:shadow-lg">
+        <p class="text-xl hover:underline">
           <a href={props.href}>{props.name}</a>
         </p>
         <svg
-          class={tw`w-3 fill-gray-400 object-right`}
+          class="w-3 fill-gray-400 object-right"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 320 512"
         >
@@ -159,37 +153,37 @@ export default function User(props: PageProps) {
       </Head>
       <div>
         <Header />
-        <div class={tw`mx-auto max-w-screen-md`}>
-          <div class={tw`shadow-md p-9 rounded-2xl m-11`}>
-            <div class={tw`relative`}>
+        <div class="mx-auto max-w-screen-md">
+          <div class="shadow-md p-9 rounded-2xl m-11">
+            <div class="relative">
               <img
-                class={tw`rounded-2xl my-3 mx-auto object-fill min-w-full`}
+                class="rounded-2xl my-3 mx-auto object-fill min-w-full"
                 src={user.image}
               />
-              <div class={tw`flex`}>
-                <div class={tw`p-4`}>
+              <div class="flex">
+                <div class="p-4">
                   <img
-                    class={tw`absolute -bottom-6 w-40 rounded-full shadow-md`}
+                    class="absolute -bottom-6 w-40 rounded-full shadow-md"
                     src={user.icon[0]}
                   />
                 </div>
                 <br />
                 <div>
-                  <h1 class={tw`mx-40 text-2xl py-1 font-bold`}>{user.name}</h1>
-                  <h2 class={tw`mx-40 text-gray-500`}>
+                  <h1 class="mx-40 text-2xl py-1 font-bold">{user.name}</h1>
+                  <h2 class="mx-40 text-gray-500">
                     {`${username}@${new URL(user.id).host}`}
                   </h2>
                 </div>
               </div>
-              <div class={tw`-mt-10 absolute right-4`}>
+              <div class="-mt-10 absolute right-4">
                 <FollowButton />
               </div>
             </div>
-            <div class={tw`mx-48 max-w-xl break-words`}>
+            <div class="mx-48 max-w-xl break-words">
               <p>{user.summary}</p>
             </div>
             <br />
-            <div class={tw`mx-3`}>
+            <div class="mx-3">
               <UserBox name="Likes" href={`${props.url.pathname}/likes`} />
               <UserBox
                 name="Following"
@@ -197,7 +191,7 @@ export default function User(props: PageProps) {
               />
             </div>
           </div>
-          <h1 class={tw`font-bold text-3xl text-center`}>Recent Uploads</h1>
+          <h1 class="font-bold text-3xl text-center">Recent Uploads</h1>
           <div>
             {outbox.map((x) => {
               if (x.type === "OrderedCollection") {
@@ -229,17 +223,15 @@ export default function User(props: PageProps) {
                 />
               );
             })}
-            <div
-              class={tw`flex max-h-16 p-3 shadow-md items-center place-content-between rounded-2xl my-9 mx-auto hover:bg-gray-100 hover:shadow-lg max-w-lg
-	  `}
-            >
-              <p class={tw`text-xl hover:underline`}>
+            <div class="flex max-h-16 p-3 shadow-md items-center place-content-between rounded-2xl my-9 mx-auto hover:bg-gray-100 hover:shadow-lg max-w-lg
+                                                	  ">
+              <p class="text-xl hover:underline">
                 <a href={`${props.url.pathname}/outbox`}>
                   All posts by {user.name} ({props.data.outbox.length})
                 </a>
               </p>
               <svg
-                class={tw`w-3 fill-gray-400 object-right`}
+                class="w-3 fill-gray-400 object-right"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 320 512"
               >

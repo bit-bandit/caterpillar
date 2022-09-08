@@ -1,8 +1,5 @@
-/** @jsx h */
-import { h } from "preact";
 import { useEffect } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import { tw } from "@twind";
 import { caterpillarSettings } from "../settings.ts";
 
 export default function Logout() {
@@ -14,7 +11,7 @@ export default function Logout() {
   });
 
   return (
-    <div class={tw`p-5 mx-auto max-w-screen-md text-center`}>
+    <div class="p-5 mx-auto max-w-screen-md text-center">
       Logging you out...
     </div>
   );

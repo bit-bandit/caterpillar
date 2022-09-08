@@ -1,8 +1,5 @@
-/** @jsx h */
-import { h } from "preact";
 import { useEffect, useState } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
-import { tw } from "@twind";
 import { caterpillarSettings } from "../settings.ts";
 
 import AdminRoutes from "../components/AdminRoutes.tsx";
@@ -95,10 +92,10 @@ export default function AdminRoles(props: any) {
     };
 
     return (
-      <div class={tw`flex max-w-xl`}>
+      <div class="flex max-w-xl">
         <AdminRoutes />
-        <div class={tw`rounded-md shadow-md bg-white p-2`}>
-          <h1 class={tw`text-2xl m-2 font-bold`}>Reassign roles</h1>
+        <div class="rounded-md shadow-md bg-white p-2">
+          <h1 class="text-2xl m-2 font-bold">Reassign roles</h1>
           <form onSubmit={handleSubmit}>
             <label>
               Username: <br />
@@ -107,7 +104,7 @@ export default function AdminRoles(props: any) {
                 name="id"
                 value={inputs.id || ""}
                 onChange={handleChange}
-                class={tw`bg-gray-100 my-2 mx-2 rounded-md p-2`}
+                class="bg-gray-100 my-2 mx-2 rounded-md p-2"
               />
             </label>
             <br />
@@ -118,18 +115,18 @@ export default function AdminRoles(props: any) {
                 name="role"
                 value={inputs.role || ""}
                 onChange={handleChange}
-                class={tw`bg-gray-100 my-2 mx-2 rounded-md p-2`}
+                class="bg-gray-100 my-2 mx-2 rounded-md p-2"
               />
             </label>
             <br />
             <input
               type="submit"
-              class={tw`bg-white p-2 shadow-md rounded-md hover:bg-gray-100`}
+              class="bg-white p-2 shadow-md rounded-md hover:bg-gray-100"
             />
           </form>
           <br />
-          <h1 class={tw`text-2xl m-2 font-bold`}>Available roles</h1>
-          <pre class={tw`p-2 m-2 bg-gray-100`}>
+          <h1 class="text-2xl m-2 font-bold">Available roles</h1>
+          <pre class="p-2 m-2 bg-gray-100">
 	  {JSON.stringify(res, null, "  ")}
           </pre>
         </div>

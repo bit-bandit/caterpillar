@@ -1,10 +1,6 @@
-/** @jsx h */
-/** @jsxFrag Fragment */
-import { Fragment, h } from "preact";
 import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../../settings.ts";
-import { tw } from "@twind";
 import { ListItemTorrent } from "../../components/TorrentListItem.tsx";
 import { ListItemList } from "../../components/MetaListItem.tsx";
 import Header from "../../islands/Header.tsx";
@@ -82,11 +78,11 @@ export default function Tag(props: PageProps) {
       </Head>
       <div>
         <Header />
-        <div class={tw`mx-auto max-w-screen-md`}>
-          <div class={tw`text-3xl font-bold leading-tight text-center m-6`}>
+        <div class="mx-auto max-w-screen-md">
+          <div class="text-3xl font-bold leading-tight text-center m-6">
             <h1>Posts tagged with '{props.params.id}'</h1>
           </div>
-          <div class={tw`shadow-md p-5 rounded-2xl m-0 max-w-screen-md`}>
+          <div class="shadow-md p-5 rounded-2xl m-0 max-w-screen-md">
             {props.data.orderedItems.map((x) => {
               if (x.type === "OrderedCollection") {
                 return (

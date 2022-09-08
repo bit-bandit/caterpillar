@@ -1,10 +1,6 @@
-/** @jsx h */
-/** @jsxFrag Fragment */
-import { Fragment, h } from "preact";
 import { Head } from "$fresh/runtime.ts";
 import { PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../../../settings.ts";
-import { tw } from "@twind";
 import { ListItemTorrent } from "../../../components/TorrentListItem.tsx";
 import { ListItemList } from "../../../components/MetaListItem.tsx";
 import Header from "../../../islands/Header.tsx";
@@ -118,14 +114,12 @@ export const handler = {
 
 function UserBox(props: any) {
   return (
-    <div
-      class={tw`flex max-w-xl max-h-16 p-3 shadow-md items-center place-content-between rounded-2xl my-4 mx-auto hover:bg-gray-100 hover:shadow-lg`}
-    >
-      <p class={tw`text-xl hover:underline`}>
+    <div class="flex max-w-xl max-h-16 p-3 shadow-md items-center place-content-between rounded-2xl my-4 mx-auto hover:bg-gray-100 hover:shadow-lg">
+      <p class="text-xl hover:underline">
         <a href={props.href}>{props.name}</a>
       </p>
       <svg
-        class={tw`w-3 fill-gray-400 object-right`}
+        class="w-3 fill-gray-400 object-right"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 320 512"
       >
@@ -145,11 +139,11 @@ export default function Outbox(props: any) {
       </Head>
       <div>
         <Header />
-        <div class={tw`mx-auto max-w-screen-md`}>
-          <div class={tw`text-5xl font-bold leading-tight text-center`}>
+        <div class="mx-auto max-w-screen-md">
+          <div class="text-5xl font-bold leading-tight text-center">
             <h1>Posts by {props.params.id}</h1>
           </div>
-          <div class={tw`shadow-md p-9 rounded-2xl m-11 max-w-screen-md`}>
+          <div class="shadow-md p-9 rounded-2xl m-11 max-w-screen-md">
             {outbox.map((x) => {
               if (x.type === "OrderedCollection") {
                 return (

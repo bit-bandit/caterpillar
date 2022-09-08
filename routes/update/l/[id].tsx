@@ -1,7 +1,3 @@
-/** @jsx h */
-/** @jsxFrag Fragment */
-import { Fragment, h } from "preact";
-import { tw } from "@twind";
 import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../../../settings.ts";
@@ -28,7 +24,7 @@ export default function Index(props: PageProps) {
         <title>Update List | {props.data.name}</title>
       </Head>
       <div>
-        <div class={tw`p-5 mx-auto max-w-screen-md text-center`}>
+        <div class="p-5 mx-auto max-w-screen-md text-center">
           <UpdateList />
         </div>
       </div>

@@ -1,6 +1,3 @@
-/** @jsx h */
-/** @jsxFrag Fragment */
-import { Fragment, h } from "preact";
 import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../../settings.ts";
@@ -13,9 +10,6 @@ import CommentBox from "../../islands/CommentBox.tsx";
 import Likes from "../../islands/Likes.tsx";
 import Dislikes from "../../islands/Dislikes.tsx";
 import Undo from "../../islands/Undo.tsx";
-
-import { tw } from "@twind";
-
 import * as ammonia from "https://deno.land/x/ammonia@0.3.1/mod.ts";
 
 await ammonia.init();
@@ -244,33 +238,29 @@ export default function List(props: PageProps) {
       </Head>
       <div>
         <Header />
-        <div class={tw`p-4 mx-auto max-w-screen-md`}>
-          <div class={tw`text-5xl font-bold leading-tight text-center`}>
+        <div class="p-4 mx-auto max-w-screen-md">
+          <div class="text-5xl font-bold leading-tight text-center">
             <h1>{list.name}</h1>
           </div>
-          <div class={tw`m-3 flex justify-center gap-12`}>
-            <div
-              class={tw`justify-center px-6 py-3 rounded-2xl shadow-md text-center flex gap-6 hover:bg-gray-100 hover:shadow-lg`}
-            >
-              <div class={tw`w-6 h-6 rounded-2xl`}>
-                <img class={tw`rounded-full`} src={submitter.icon[0]} />
+          <div class="m-3 flex justify-center gap-12">
+            <div class="justify-center px-6 py-3 rounded-2xl shadow-md text-center flex gap-6 hover:bg-gray-100 hover:shadow-lg">
+              <div class="w-6 h-6 rounded-2xl">
+                <img class="rounded-full" src={submitter.icon[0]} />
               </div>
-              <div class={tw`font-bold`}>
+              <div class="font-bold">
                 <a href={new URL(list.attributedTo).pathname}>
                   {submitter.name}
                 </a>
               </div>
             </div>
-            <div
-              class={tw`px-6 py-3 rounded-2xl shadow-md text-center hover:bg-gray-100 hover:shadow-lg flex justify-center`}
-            >
-              <div class={tw`flex`}>
-                <p class={tw`mx-2`}>Score</p>
-                <div class={tw`flex item-center`}>
+            <div class="px-6 py-3 rounded-2xl shadow-md text-center hover:bg-gray-100 hover:shadow-lg flex justify-center">
+              <div class="flex">
+                <p class="mx-2">Score</p>
+                <div class="flex item-center">
                   <Likes total={list.likes} />
                   <p>/</p>
                   <Dislikes total={list.dislikes} />
-                  <p class={tw`mx-1`} />
+                  <p class="mx-1" />
                   <Undo />
                 </div>
               </div>
@@ -278,17 +268,17 @@ export default function List(props: PageProps) {
           </div>
           <div
             id="description"
-            class={tw`p-6 shadow-md rounded-2xl my-3`}
+            class="p-6 shadow-md rounded-2xl my-3"
           >
             <div
               dangerouslySetInnerHTML={{ __html: ammonia.clean(list.summary) }}
             />
-            <div class={tw`m-1 mt-3 border-t-2 flex`}>
-              <p class={tw`m-4 font-bold`}>Tags:</p>
+            <div class="m-1 mt-3 border-t-2 flex">
+              <p class="m-4 font-bold">Tags:</p>
               {list.tag.map((x) => {
                 return (
                   <a
-                    class={tw`mr-2 my-3 rounded-md bg-white px-2 py-1 shadow-md hover:bg-gray-100 hover:underline hover:shadow-lg`}
+                    class="mr-2 my-3 rounded-md bg-white px-2 py-1 shadow-md hover:bg-gray-100 hover:underline hover:shadow-lg"
                     href={(new URL(x)).pathname}
                   >
                     {(new URL(x)).pathname.split("/")[2]}
@@ -297,7 +287,7 @@ export default function List(props: PageProps) {
               })}
             </div>
           </div>
-          <div class={tw`text-3xl font-bold leading-tight text-center`}>
+          <div class="text-3xl font-bold leading-tight text-center">
             <h2>Items</h2>
           </div>
           <div class="m-auto">
@@ -333,9 +323,7 @@ export default function List(props: PageProps) {
             })}
           </div>
           <br />
-          <h1
-            class={tw`text-4xl font-bold leading-tight snap-center text-center`}
-          >
+          <h1 class="text-4xl font-bold leading-tight snap-center text-center">
             Replies
           </h1>
           <CommentBox />
