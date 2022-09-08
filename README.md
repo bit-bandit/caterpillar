@@ -30,11 +30,8 @@ Caterpillar:
 > `/u/[id]/` - Get user profile
 >
 > - `followers` - Accounts that follow user
->
 > - `following` - Accounts user is following
->
 > - `likes` - User likes
->
 > - `outbox` - Posts by user
 
 > `/login` - Login to an account
@@ -44,9 +41,7 @@ Caterpillar:
 > `/a/` - Admin routes
 >
 > - `delete` - Delete posts
->
 > - `federate` - Pool/Block instances
->
 > - `roles` - Modify user roles
 
 For uploading, updating, and some other methods, things get a little different:
@@ -54,13 +49,11 @@ For uploading, updating, and some other methods, things get a little different:
 > `upload/`
 >
 > - `torrent` - Upload Torrent
->
 > - `list` - Upload list
 
 > `update/`
 >
 > - `t/[id]` - Update torrent
->
 > - `l/[id]` - Update list
 
 > `/logout` - Clear data of currently logged in user

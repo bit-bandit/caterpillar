@@ -1,5 +1,7 @@
 /** @jsx h */
-import { h } from "preact";
+/** @jsxFrag Fragment */
+import { Fragment, h } from "preact";
+import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../../settings.ts";
 import { tw } from "@twind";
@@ -58,51 +60,66 @@ export const handler: Handlers = {
       res.orderedItems[i].actor = await actor.json();
     }
 
+    let home = await fetch(caterpillarSettings.apiURL, {
+      headers: {
+        "Accept": "application/activity+json",
+      },
+    });
+
+    home = await home.json();
+
+    res.home = home;
+
     return ctx.render(res);
   },
 };
 
 export default function Tag(props: PageProps) {
   return (
-    <div>
-      <Header />
-      <div class={tw`mx-auto max-w-screen-md`}>
-        <div class={tw`text-3xl font-bold leading-tight text-center m-6`}>
-          <h1>Posts tagged with '{props.params.id}'</h1>
-        </div>
-        <div class={tw`shadow-md p-5 rounded-2xl m-0 max-w-screen-md`}>
-          {props.data.orderedItems.map((x) => {
-            if (x.type === "OrderedCollection") {
+    <>
+      <Head>
+        <title>Tagged {props.params.id} | {props.data.home.name}</title>
+      </Head>
+      <div>
+        <Header />
+        <div class={tw`mx-auto max-w-screen-md`}>
+          <div class={tw`text-3xl font-bold leading-tight text-center m-6`}>
+            <h1>Posts tagged with '{props.params.id}'</h1>
+          </div>
+          <div class={tw`shadow-md p-5 rounded-2xl m-0 max-w-screen-md`}>
+            {props.data.orderedItems.map((x) => {
+              if (x.type === "OrderedCollection") {
+                return (
+                  <ListItemList
+                    href={(new URL(x.id)).pathname}
+                    name={x.name}
+                    uploaderHref={new URL(x.actor.id).pathname}
+                    uploader={x.actor.name}
+                    icon={x.actor.icon[0]}
+                    date={x.published}
+                    likes={x.likes}
+                    dislikes={x.dislikes}
+                    subitems={x.orderedItems}
+                  />
+                );
+              }
               return (
-                <ListItemList
+                <ListItemTorrent
                   href={(new URL(x.id)).pathname}
                   name={x.name}
-                  uploaderHref={new URL(x.actor.id).pathname}
+                  uploaderHref={new URL(x.attributedTo).pathname}
                   uploader={x.actor.name}
                   icon={x.actor.icon[0]}
                   date={x.published}
                   likes={x.likes}
                   dislikes={x.dislikes}
-                  subitems={x.orderedItems}
+                  magnet={x.attachment.href}
                 />
               );
-            }
-            return (
-              <ListItemTorrent
-                href={(new URL(x.id)).pathname}
-                name={x.name}
-                uploaderHref={new URL(x.attributedTo).pathname}
-                uploader={x.actor.name}
-                icon={x.actor.icon[0]}
-                date={x.published}
-                likes={x.likes}
-                dislikes={x.dislikes}
-                magnet={x.attachment.href}
-              />
-            );
-          })}
+            })}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

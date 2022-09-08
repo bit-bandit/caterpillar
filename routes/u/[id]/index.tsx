@@ -1,8 +1,10 @@
 /** @jsx h */
-import { h } from "preact";
+/** @jsxFrag Fragment */
+import { Fragment, h } from "preact";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../../../settings.ts";
 import { tw } from "@twind";
+import { Head } from "$fresh/runtime.ts";
 import { ListItemTorrent } from "../../../components/TorrentListItem.tsx";
 import { ListItemList } from "../../../components/MetaListItem.tsx";
 import Header from "../../../islands/Header.tsx";
@@ -109,6 +111,16 @@ export const handler: Handlers = {
 
     res.outbox = req.orderedItems.reverse();
 
+    let home = await fetch(caterpillarSettings.apiURL, {
+      headers: {
+        "Accept": "application/activity+json",
+      },
+    });
+
+    home = await home.json();
+
+    res.home = home;
+
     return ctx.render(res);
   },
 };
@@ -141,51 +153,70 @@ export default function User(props: PageProps) {
   let username = new URL(user.id).pathname.split("/")[2];
 
   return (
-    <div>
-      <Header />
-      <div class={tw`mx-auto max-w-screen-md`}>
-        <div class={tw`shadow-md p-9 rounded-2xl m-11`}>
-          <div class={tw`relative`}>
-            <img
-              class={tw`rounded-2xl my-3 mx-auto object-fill min-w-full`}
-              src={user.image}
-            />
-            <div class={tw`flex`}>
-              <div class={tw`p-4`}>
-                <img
-                  class={tw`absolute -bottom-6 w-40 rounded-full shadow-md`}
-                  src={user.icon[0]}
-                />
+    <>
+      <Head>
+        <title>{user.name} | {props.data.home.name}</title>
+      </Head>
+      <div>
+        <Header />
+        <div class={tw`mx-auto max-w-screen-md`}>
+          <div class={tw`shadow-md p-9 rounded-2xl m-11`}>
+            <div class={tw`relative`}>
+              <img
+                class={tw`rounded-2xl my-3 mx-auto object-fill min-w-full`}
+                src={user.image}
+              />
+              <div class={tw`flex`}>
+                <div class={tw`p-4`}>
+                  <img
+                    class={tw`absolute -bottom-6 w-40 rounded-full shadow-md`}
+                    src={user.icon[0]}
+                  />
+                </div>
+                <br />
+                <div>
+                  <h1 class={tw`mx-40 text-2xl py-1 font-bold`}>{user.name}</h1>
+                  <h2 class={tw`mx-40 text-gray-500`}>
+                    {`${username}@${new URL(user.id).host}`}
+                  </h2>
+                </div>
               </div>
-              <br />
-              <div>
-                <h1 class={tw`mx-40 text-2xl py-1 font-bold`}>{user.name}</h1>
-                <h2 class={tw`mx-40 text-gray-500`}>
-                  {`${username}@${new URL(user.id).host}`}
-                </h2>
+              <div class={tw`-mt-10 absolute right-4`}>
+                <FollowButton />
               </div>
             </div>
-            <div class={tw`-mt-10 absolute right-4`}>
-              <FollowButton />
+            <div class={tw`mx-48 max-w-xl break-words`}>
+              <p>{user.summary}</p>
+            </div>
+            <br />
+            <div class={tw`mx-3`}>
+              <UserBox name="Likes" href={`${props.url.pathname}/likes`} />
+              <UserBox
+                name="Following"
+                href={`${props.url.pathname}/following`}
+              />
             </div>
           </div>
-          <div class={tw`mx-48 max-w-xl break-words`}>
-            <p>{user.summary}</p>
-          </div>
-          <div class={tw`mx-3`}>
-            <UserBox name="Likes" href={`${props.url.pathname}/likes`} />
-            <UserBox
-              name="Following"
-              href={`${props.url.pathname}/following`}
-            />
-          </div>
-        </div>
-        <h1 class={tw`font-bold text-3xl text-center`}>Recent Uploads</h1>
-        <div>
-          {outbox.map((x) => {
-            if (x.type === "OrderedCollection") {
+          <h1 class={tw`font-bold text-3xl text-center`}>Recent Uploads</h1>
+          <div>
+            {outbox.map((x) => {
+              if (x.type === "OrderedCollection") {
+                return (
+                  <ListItemList
+                    href={new URL(x.id).pathname}
+                    name={x.name}
+                    uploaderHref={new URL(x.actor.id).pathname}
+                    uploader={x.actor.name}
+                    icon={x.actor.icon[0]}
+                    date={x.published}
+                    likes={x.likes}
+                    dislikes={x.dislikes}
+                    subitems={x.orderedItems}
+                  />
+                );
+              }
               return (
-                <ListItemList
+                <ListItemTorrent
                   href={new URL(x.id).pathname}
                   name={x.name}
                   uploaderHref={new URL(x.actor.id).pathname}
@@ -194,44 +225,31 @@ export default function User(props: PageProps) {
                   date={x.published}
                   likes={x.likes}
                   dislikes={x.dislikes}
-                  subitems={x.orderedItems}
+                  magnet={x.attachment.href}
                 />
               );
-            }
-            return (
-              <ListItemTorrent
-                href={new URL(x.id).pathname}
-                name={x.name}
-                uploaderHref={new URL(x.actor.id).pathname}
-                uploader={x.actor.name}
-                icon={x.actor.icon[0]}
-                date={x.published}
-                likes={x.likes}
-                dislikes={x.dislikes}
-                magnet={x.attachment.href}
-              />
-            );
-          })}
-          <div
-            class={tw`flex max-h-16 p-3 shadow-md items-center place-content-between rounded-2xl my-9 mx-auto hover:bg-gray-100 hover:shadow-lg max-w-lg
+            })}
+            <div
+              class={tw`flex max-h-16 p-3 shadow-md items-center place-content-between rounded-2xl my-9 mx-auto hover:bg-gray-100 hover:shadow-lg max-w-lg
 	  `}
-          >
-            <p class={tw`text-xl hover:underline`}>
-              <a href={`${props.url.pathname}/outbox`}>
-                All posts by {user.name} ({props.data.outbox.length})
-              </a>
-            </p>
-            <svg
-              class={tw`w-3 fill-gray-400 object-right`}
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 320 512"
             >
-              <path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z">
-              </path>
-            </svg>
+              <p class={tw`text-xl hover:underline`}>
+                <a href={`${props.url.pathname}/outbox`}>
+                  All posts by {user.name} ({props.data.outbox.length})
+                </a>
+              </p>
+              <svg
+                class={tw`w-3 fill-gray-400 object-right`}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 320 512"
+              >
+                <path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z">
+                </path>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

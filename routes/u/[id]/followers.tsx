@@ -1,5 +1,7 @@
 /** @jsx h */
-import { h } from "preact";
+/** @jsxFrag Fragment */
+import { Fragment, h } from "preact";
+import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../../../settings.ts";
 import { tw } from "@twind";
@@ -33,6 +35,17 @@ export const handler: Handlers = {
     }
 
     res.followers = req.orderedItems;
+
+    let home = await fetch(caterpillarSettings.apiURL, {
+      headers: {
+        "Accept": "application/activity+json",
+      },
+    });
+
+    home = await home.json();
+
+    res.home = home;
+
     return ctx.render(res);
   },
 };
@@ -40,26 +53,31 @@ export const handler: Handlers = {
 export default function Followers(props: PageProps) {
   const followers = props.data.followers;
   return (
-    <div>
-      <Header />
-      <div class={tw`mx-auto max-w-screen-md`}>
-        <div class={tw`text-5xl font-bold leading-tight text-center`}>
-          <h1>Followers of {props.params.id}</h1>
-        </div>
-        <div class={tw`shadow-md p-9 rounded-3xl m-11 max-w-screen-md`}>
-          {followers.map((x) => {
-            return (
-              <UserCard
-                id={x.id}
-                followers={x.followers}
-                href={new URL(x.id).pathname}
-                icon={x.icon[0]}
-                name={x.name}
-              />
-            );
-          })}
+    <>
+      <Head>
+        <title>Followers of {props.params.id} | {props.data.home.name}</title>
+      </Head>
+      <div>
+        <Header />
+        <div class={tw`mx-auto max-w-screen-md`}>
+          <div class={tw`text-5xl font-bold leading-tight text-center`}>
+            <h1>Followers of {props.params.id}</h1>
+          </div>
+          <div class={tw`shadow-md p-9 rounded-3xl m-11 max-w-screen-md`}>
+            {followers.map((x) => {
+              return (
+                <UserCard
+                  id={x.id}
+                  followers={x.followers}
+                  href={new URL(x.id).pathname}
+                  icon={x.icon[0]}
+                  name={x.name}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

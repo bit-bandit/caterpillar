@@ -1,8 +1,8 @@
 /** @jsx h */
 /** @jsxFrag Fragment */
 import { Fragment, h } from "preact";
-import { tw } from "@twind";
 import { Head } from "$fresh/runtime.ts";
+import { tw } from "@twind";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../settings.ts";
 import { SearchBar } from "../components/SearchBar.tsx";
