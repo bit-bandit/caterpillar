@@ -5,6 +5,18 @@ import { Comment, RenderReplies } from "../../components/Comment.tsx";
 import Header from "../../islands/Header.tsx";
 import UploadTorrent from "../../islands/UploadTorrent.tsx";
 
+export const handler: Handlers = {
+  async GET(_, ctx) {
+    let res = await fetch(caterpillarSettings.apiURL, {
+      headers: {
+        "Accept": "application/activity+json",
+      },
+    });
+    res = await res.json();
+    return ctx.render(res);
+  },
+};
+
 export default function Torrent(props: PageProps) {
   return (
     <>

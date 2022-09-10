@@ -4,6 +4,7 @@ import { caterpillarSettings } from "../../settings.ts";
 import { Comment, RenderReplies } from "../../components/Comment.tsx";
 import Header from "../../islands/Header.tsx";
 import UploadList from "../../islands/UploadList.tsx";
+
 export const handler: Handlers = {
   async GET(_, ctx) {
     let res = await fetch(caterpillarSettings.apiURL, {

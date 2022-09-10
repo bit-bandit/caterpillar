@@ -13,7 +13,8 @@ export function SearchBar() {
         <button type="submit">
           <img
             class="w-12 rounded-full bg-white p-3 text-gray-500 shadow-md hover:bg-gray-100 hover:shadow-lg"
-            src="/search.svg" />
+            src="/search.svg"
+          />
         </button>
       </form>
     </div>
@@ -31,9 +32,10 @@ export function SmallSearchBar() {
           placeholder="Search"
         />
         <button type="submit">
-                    <img
+          <img
             class="w-9 rounded-full bg-white p-2 text-gray-500 shadow-md hover:bg-gray-100 hover:shadow-lg"
-            src="/search.svg" />
+            src="/search.svg"
+          />
         </button>
       </form>
     </div>
