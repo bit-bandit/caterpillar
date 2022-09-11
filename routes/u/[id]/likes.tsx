@@ -8,7 +8,7 @@ import Header from "../../../islands/Header.tsx";
 export const handler: Handlers = {
   async GET(_, ctx) {
     const { id } = ctx.params;
-    let res = {};
+    const res = {};
     let userAPI = new URL(`/u/${id}`, caterpillarSettings.apiURL);
 
     let req = await fetch(userAPI.href);
@@ -20,7 +20,7 @@ export const handler: Handlers = {
     res.likes = await req.json();
 
     // TODO: Add an `accept` header to make sure we're not getting any JSON.
-    for (let url in res.likes.orderedItems) {
+    for (const url in res.likes.orderedItems) {
       let fetched = await fetch(res.likes.orderedItems[url]);
       fetched = await fetched.json();
 
@@ -34,7 +34,7 @@ export const handler: Handlers = {
         f = await fetch(`${res.likes.orderedItems[url]}/dislikes`);
         fetched.dislikes = (await f.json()).totalItems;
         if (fetched.type === "OrderedCollection") {
-          for (let url in fetched.orderedItems) {
+          for (const url in fetched.orderedItems) {
             let subObj = await fetch(fetched.orderedItems[url]);
             subObj = await subObj.json();
 
@@ -44,7 +44,7 @@ export const handler: Handlers = {
               await (await fetch(`${fetched.orderedItems[url]}/dislikes`))
                 .json();
 
-            let u = new URL(fetched.orderedItems[url]);
+            const u = new URL(fetched.orderedItems[url]);
 
             fetched.orderedItems[url] = {
               "type": subObj.type,

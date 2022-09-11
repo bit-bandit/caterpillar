@@ -7,7 +7,7 @@ import Header from "../../../islands/Header.tsx";
 
 export const handler = {
   async GET(_, ctx) {
-    let res = {};
+    const res = {};
     const { id } = ctx.params;
 
     const userAPI = new URL(`/u/${id}`, caterpillarSettings.apiURL);
@@ -25,7 +25,7 @@ export const handler = {
     });
     req = await req.json();
 
-    for (let i in req.orderedItems) {
+    for (const i in req.orderedItems) {
       req.orderedItems[i] = req.orderedItems[i].object;
     }
 
@@ -57,7 +57,7 @@ export const handler = {
       req.orderedItems[i].dislikes = dislikes.totalItems;
 
       if (req.orderedItems[i].type === "OrderedCollection") {
-        for (let url of req.orderedItems[i].orderedItems) {
+        for (const url of req.orderedItems[i].orderedItems) {
           let subObj = await fetch(url, {
             headers: {
               "Accept": "application/activity+json",
@@ -76,7 +76,7 @@ export const handler = {
             },
           })).json();
 
-          let u = new URL(url);
+          const u = new URL(url);
 
           const index = req.orderedItems[i].orderedItems.indexOf(url);
 
@@ -129,7 +129,7 @@ function UserBox(props: any) {
   );
 }
 
-export default function Outbox(props: any) {
+export default function Outbox(props: PageProps) {
   const outbox = props.data.outbox;
 
   return (

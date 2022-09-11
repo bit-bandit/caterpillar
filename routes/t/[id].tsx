@@ -14,7 +14,7 @@ await ammonia.init();
 // Handling
 export const handler: Handlers = {
   async GET(_, ctx) {
-    let res = {};
+    const res = {};
     const { id } = ctx.params;
 
     const torrentAPI = new URL(`/t/${id}`, caterpillarSettings.apiURL);
@@ -42,7 +42,7 @@ export const handler: Handlers = {
       let f = await fetch(req.orderedItems[comment]);
       f = await f.json();
 
-      let actor = await fetch(f.attributedTo);
+      const actor = await fetch(f.attributedTo);
       f.attributedTo = await actor.json();
 
       let likes = await fetch(`${f.id}/likes`);
@@ -60,7 +60,7 @@ export const handler: Handlers = {
         let r = await fetch(replies.orderedItems[reply]);
         r = await r.json();
 
-        let replyActor = await fetch(r.attributedTo);
+        const replyActor = await fetch(r.attributedTo);
         r.attributedTo = await replyActor.json();
 
         let replyLikes = await fetch(`${r.id}/likes`);

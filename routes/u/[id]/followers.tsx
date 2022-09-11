@@ -6,7 +6,7 @@ import Header from "../../../islands/Header.tsx";
 
 export const handler: Handlers = {
   async GET(_, ctx) {
-    let res = {};
+    const res = {};
     const { id } = ctx.params;
 
     const userAPI = new URL(`/u/${id}`, caterpillarSettings.apiURL);

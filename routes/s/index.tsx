@@ -14,7 +14,7 @@ export const handler = {
     );
 
     const r = await fetch(query.href);
-    let res = await r.json();
+    const res = await r.json();
 
     for (let i = 0; i < res.orderedItems.length; i++) {
       // There's a bug in the API server where the behavior of either returning
@@ -46,7 +46,7 @@ export const handler = {
       res.orderedItems[i].actor = await actor.json();
 
       if (res.orderedItems[i].orderedItems) {
-        for (let url of res.orderedItems[i].orderedItems) {
+        for (const url of res.orderedItems[i].orderedItems) {
           let subObj = await fetch(url, {
             headers: {
               "Accept": "application/activity+json",
@@ -65,7 +65,7 @@ export const handler = {
             },
           })).json();
 
-          let u = new URL(url);
+          const u = new URL(url);
 
           const index = res.orderedItems[i].orderedItems.indexOf(url);
 
@@ -99,7 +99,7 @@ export const handler = {
   },
 };
 
-export default function Search(props: any) {
+export default function Search(props: PageProps) {
   return (
     <>
       <Head>

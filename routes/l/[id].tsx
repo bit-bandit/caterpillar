@@ -17,7 +17,7 @@ await ammonia.init();
 // Handling
 export const handler: Handlers = {
   async GET(_, ctx) {
-    let res = {};
+    const res = {};
     const { id } = ctx.params;
 
     const listAPI = new URL(`/l/${id}`, caterpillarSettings.apiURL);
@@ -56,7 +56,7 @@ export const handler: Handlers = {
       fetched = await fetched.json();
 
       if (fetched.orderedItems) {
-        for (let url of fetched.orderedItems) {
+        for (const url of fetched.orderedItems) {
           let subObj = await fetch(url, {
             headers: {
               "Accept": "application/activity+json",
@@ -77,7 +77,7 @@ export const handler: Handlers = {
             },
           })).json();
 
-          let u = new URL(url);
+          const u = new URL(url);
 
           const index = fetched.orderedItems.indexOf(url);
 
@@ -144,7 +144,7 @@ export const handler: Handlers = {
       });
       f = await f.json();
 
-      let actor = await fetch(f.attributedTo, {
+      const actor = await fetch(f.attributedTo, {
         headers: {
           "Accept": "application/activity+json",
         },
@@ -182,7 +182,7 @@ export const handler: Handlers = {
         });
         r = await r.json();
 
-        let replyActor = await fetch(r.attributedTo, {
+        const replyActor = await fetch(r.attributedTo, {
           headers: {
             "Accept": "application/activity+json",
           },

@@ -11,14 +11,13 @@ export function SmallUserCard(props: any) {
           >
             <img
               src={props.obj.icon[0]}
-              class="w-8 rounded-full shadow-md mr-2"
+              class="w-8 rounded-full shadow-md"
             />
-            {props.obj.name}
           </summary>
-          <div class="absolute left-2 w-30 bg-white py-3 text-center shadow-lg">
+          <div class="absolute  w-30 bg-white py-3 text-center shadow-lg">
             <a href={new URL(props.obj.id).pathname}>
-              <div class="text flex items-center px-4 py-1 hover:bg-gray-200">
-                Profile
+              <div class="font-bold text flex items-center px-4 py-1 hover:bg-gray-200">
+                {props.obj.name}
               </div>
             </a>
             <a href={new URL(props.obj.following).pathname}>
