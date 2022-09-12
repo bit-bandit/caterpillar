@@ -110,7 +110,7 @@ export default function Torrent(props: PageProps) {
           </div>
           <div class="m-3 flex content-center gap-12 px-28">
             <a href={torrent.attributedTo}>
-              <div class="px-6 py-3 rounded-2xl shadow-md text-center flex gap-6 hover:bg-gray-100 hover:shadow-lg">
+              <div class="px-6 py-3 rounded-2xl shadow-md text-center flex gap-6 bg-white hover:bg-gray-100 hover:shadow-lg">
                 <div class="w-6 h-6 rounded-full">
                   <img class="rounded-full" src={submitter.icon[0]} />
                 </div>
@@ -120,11 +120,11 @@ export default function Torrent(props: PageProps) {
               </div>
             </a>
             <a href={torrent.attachment.href}>
-              <div class="px-6 py-3 rounded-2xl shadow-md text-center hover:bg-gray-100 hover:shadow-lg">
+              <div class="px-6 py-3 rounded-2xl shadow-md text-center bg-white hover:bg-gray-100 hover:shadow-lg">
                 Magnet
               </div>
             </a>
-            <div class="px-6 py-3 rounded-2xl shadow-md text-center hover:bg-gray-100 hover:shadow-lg">
+            <div class="px-6 py-3 rounded-2xl shadow-md text-center bg-white hover:bg-gray-100 hover:shadow-lg">
               <div class="flex">
                 <p class="mx-2">Score</p>
                 <div class="flex item-center">
@@ -139,14 +139,14 @@ export default function Torrent(props: PageProps) {
           </div>
           <div
             id="description"
-            class="p-6 shadow-md rounded-2xl"
+            class="p-6 shadow-md rounded-2xl bg-white"
           >
             <div
               dangerouslySetInnerHTML={{
                 __html: ammonia.clean(torrent.content),
               }}
             />
-            <div class="m-1 mt-3 border-t-2 flex">
+            <div class="m-1 mt-3 border-t-2 flex flex-wrap">
               <p class="m-4 font-bold">Tags:</p>
               {torrent.tag.map((x) => {
                 return (

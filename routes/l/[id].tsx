@@ -268,12 +268,12 @@ export default function List(props: PageProps) {
           </div>
           <div
             id="description"
-            class="p-6 shadow-md rounded-2xl my-3"
+            class="p-6 shadow-md rounded-2xl my-3 bg-white"
           >
             <div
               dangerouslySetInnerHTML={{ __html: ammonia.clean(list.summary) }}
             />
-            <div class="m-1 mt-3 border-t-2 flex">
+            <div class="m-1 mt-3 border-t-2 flex flex-wrap">
               <p class="m-4 font-bold">Tags:</p>
               {list.tag.map((x) => {
                 return (
