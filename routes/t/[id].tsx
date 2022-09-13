@@ -171,6 +171,7 @@ export default function Torrent(props: PageProps) {
                 <div>
                   <Comment
                     id={x.id}
+                    actor={x.attributedTo.id}
                     username={x.attributedTo.name}
                     avatarURL={x.attributedTo.icon[0]}
                     date={x.published}

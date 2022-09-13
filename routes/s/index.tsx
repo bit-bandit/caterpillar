@@ -111,7 +111,7 @@ export default function Search(props: PageProps) {
           <div class="text-3xl font-bold leading-tight text-center m-6">
             <h1>Search results</h1>
           </div>
-          <div class="shadow-md p-5 rounded-2xl m-0 max-w-screen-md">
+          <div class="bg-white shadow-md p-5 rounded-2xl m-0 max-w-screen-md">
             {props.data.orderedItems.map((x) => {
               if (x.type === "OrderedCollection") {
                 return (

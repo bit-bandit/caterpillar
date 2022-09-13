@@ -143,7 +143,7 @@ export default function Outbox(props: PageProps) {
           <div class="text-5xl font-bold leading-tight text-center">
             <h1>Posts by {props.params.id}</h1>
           </div>
-          <div class="shadow-md p-9 rounded-2xl m-11 max-w-screen-md">
+          <div class="bg-white shadow-md p-9 rounded-2xl m-11 max-w-screen-md">
             {outbox.map((x) => {
               if (x.type === "OrderedCollection") {
                 return (

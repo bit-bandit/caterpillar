@@ -4,7 +4,7 @@ import { Subcomp } from "./Subcomponent.tsx";
 export function ListItemList(props: any) {
   let d = new Date(props.date);
   return (
-    <div class="max-h-26 m-4 flex rounded-3xl p-4 shadow-md">
+    <div class="max-h-26 m-4 flex rounded-3xl p-4 shadow-md bg-white">
       <div class="w-24 h-24 p-5 rounded-full bg-gray-200">
         <img class="w-24" src="/list.svg" />
       </div>

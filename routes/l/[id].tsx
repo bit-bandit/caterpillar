@@ -243,7 +243,7 @@ export default function List(props: PageProps) {
             <h1>{list.name}</h1>
           </div>
           <div class="m-3 flex justify-center gap-12">
-            <div class="justify-center px-6 py-3 rounded-2xl shadow-md text-center flex gap-6 hover:bg-gray-100 hover:shadow-lg">
+            <div class="justify-center px-6 py-3 rounded-2xl shadow-md text-center flex gap-6 bg-white hover:bg-gray-100 hover:shadow-lg">
               <div class="w-6 h-6 rounded-2xl">
                 <img class="rounded-full" src={submitter.icon[0]} />
               </div>
@@ -253,7 +253,7 @@ export default function List(props: PageProps) {
                 </a>
               </div>
             </div>
-            <div class="px-6 py-3 rounded-2xl shadow-md text-center hover:bg-gray-100 hover:shadow-lg flex justify-center">
+            <div class="px-6 py-3 rounded-2xl shadow-md text-center bg-white hover:bg-gray-100 hover:shadow-lg flex justify-center">
               <div class="flex">
                 <p class="mx-2">Score</p>
                 <div class="flex item-center">
@@ -333,6 +333,7 @@ export default function List(props: PageProps) {
                 <div>
                   <Comment
                     id={x.id}
+                    actor={x.attributedTo.id}
                     username={x.attributedTo.name}
                     avatarURL={x.attributedTo.icon[0]}
                     date={x.published}

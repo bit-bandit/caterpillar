@@ -10,6 +10,7 @@ await ammonia.init();
 /* API:
 <Comment
   username={actor.name}
+  actor={actor.id}
   avatarURL={actor.icon[0]}
   date={object.published}
   commentBody={object.content}
@@ -23,9 +24,11 @@ export function Comment(props: any) {
   const d = new Date(props.date);
 
   return (
-    <div class="m-4 flex max-w-3xl items-center rounded-2xl py-4 px-5 shadow-md">
+    <div class="m-4 flex max-w-3xl items-center rounded-2xl py-4 px-5 shadow-md bg-white">
       <div class="w-16">
-        <img class="rounded-full shadow-md" src={props.avatarURL} />
+        <a href={props.actor}>
+          <img class="rounded-full shadow-md" src={props.avatarURL} />
+        </a>
       </div>
       <div class="flex-none">
         <div
@@ -33,7 +36,9 @@ export function Comment(props: any) {
           dangerouslySetInnerHTML={{ __html: ammonia.clean(props.commentBody) }}
         />
         <div class="flex px-3 text-sm">
-          <div class="px-2 font-bold">{props.username}</div>
+          <a href={props.actor}>
+            <div class="px-2 font-bold">{props.username}</div>
+          </a>
           <p>-</p>
           <div class="px-2 italic text-slate-500">{d.toLocaleString()}</div>
           <p>-</p>
@@ -60,6 +65,7 @@ export function RenderReplies(props: any) {
           return (
             <Comment
               id={x.id}
+              actor={x.attributedTo.id}
               username={x.attributedTo.name}
               avatarURL={x.attributedTo.icon[0]}
               date={x.published}

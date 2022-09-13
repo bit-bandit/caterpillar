@@ -110,7 +110,7 @@ export default function FollowButton() {
   if (isFollowing) {
     return (
       <button
-        class="hover:bg-gray-100 p-3 rounded-2xl shadow-md"
+        class="hover:bg-gray-100 p-3 rounded-2xl shadow-md bg-white"
         onClick={undoFollow}
       >
         Unfollow
@@ -119,7 +119,7 @@ export default function FollowButton() {
   }
   return (
     <button
-      class="hover:bg-gray-100 p-3 rounded-2xl shadow-md"
+      class="hover:bg-gray-100 p-3 rounded-2xl shadow-md bg-white"
       onClick={followSubmit}
     >
       Follow

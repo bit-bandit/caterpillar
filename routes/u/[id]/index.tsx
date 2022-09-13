@@ -124,7 +124,7 @@ export const handler: Handlers = {
 function UserBox(props: any) {
   return (
     <div>
-      <div class="flex max-w-xl max-h-16 p-3 shadow-md items-center place-content-between rounded-2xl my-4 mx-auto hover:bg-gray-100 hover:shadow-lg">
+      <div class="flex max-w-xl max-h-16 p-3 shadow-md items-center place-content-between rounded-2xl my-4 mx-auto bg-white hover:bg-gray-100 hover:shadow-lg">
         <p class="text-xl hover:underline">
           <a href={props.href}>{props.name}</a>
         </p>
@@ -154,7 +154,7 @@ export default function User(props: PageProps) {
       <div>
         <Header />
         <div class="mx-auto max-w-screen-md">
-          <div class="shadow-md p-9 rounded-2xl m-11">
+          <div class="mx-auto max-w-screen-md shadow-md p-9 rounded-2xl m-11 bg-white">
             <div class="relative">
               <img
                 class="rounded-2xl my-3 mx-auto object-fill min-w-full"
@@ -223,8 +223,7 @@ export default function User(props: PageProps) {
                 />
               );
             })}
-            <div class="flex max-h-16 p-3 shadow-md items-center place-content-between rounded-2xl my-9 mx-auto hover:bg-gray-100 hover:shadow-lg max-w-lg
-                                                	  ">
+            <div class="flex max-h-16 p-3 shadow-md items-center place-content-between rounded-2xl my-9 mx-auto bg-white hover:bg-gray-100 hover:shadow-lg max-w-lg">
               <p class="text-xl hover:underline">
                 <a href={`${props.url.pathname}/outbox`}>
                   All posts by {user.name} ({props.data.outbox.length})
