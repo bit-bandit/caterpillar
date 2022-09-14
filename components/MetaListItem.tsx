@@ -2,7 +2,7 @@ import { PageProps } from "$fresh/server.ts";
 import { Subcomp } from "./Subcomponent.tsx";
 
 export function ListItemList(props: any) {
-  let d = new Date(props.date);
+  const d = new Date(props.date);
   return (
     <div class="max-h-26 m-4 flex rounded-3xl p-4 shadow-md bg-white">
       <div class="w-24 h-24 p-5 rounded-full bg-gray-200">

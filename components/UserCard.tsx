@@ -50,7 +50,7 @@ export function UserCard(props: any) {
     followStr = "Follower";
   }
 
-  let formatedFollowers = Intl.NumberFormat("en-US", {
+  const formatedFollowers = Intl.NumberFormat("en-US", {
     notation: "compact",
     maximumFractionDigits: 1,
   }).format(props.followers);
