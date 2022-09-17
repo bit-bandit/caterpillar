@@ -5,8 +5,6 @@ import { caterpillarSettings } from "../settings.ts";
 // and Pleroma do: If the right headers are provided, we'll
 // forward to request over to the API server, and return the
 // response from that.
-// This is mainly just for GET requests, at the moment.
-// Hopefully POST will be taken care of, eventually...
 
 export async function handler(
   req: Request,
@@ -25,14 +23,17 @@ export async function handler(
 
     let res: Response;
 
-    if (req.method === "GET") {
-      res = await fetch(u.href);
-    } else {
-      return new Response(JSON.stringify({
-        "err": true,
-        "msg": "Method not allowed.",
-      }));
+    let params = {
+      method: req.method,
+      headers: req.headers,
+    };
+
+    if (req.method !== "GET") {
+      params.body = await req.body.text();
     }
+
+    res = await fetch(u.href, params);
+
     return res;
   }
 
