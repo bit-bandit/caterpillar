@@ -56,7 +56,7 @@ export function UserCard(props: any) {
   }).format(props.followers);
 
   const u = new URL(props.id);
-  const formattedUsername = `${u.pathname.split("/")[2]}@${u.host}`;
+  const formattedUsername = `@${u.pathname.split("/")[2]}@${u.host}`;
 
   return (
     <div class="p-5 m-4 shadow-md flex items-center max-w-lg rounded-2xl bg-white justify-between m-auto">

@@ -22,6 +22,7 @@ await ammonia.init();
 
 export function Comment(props: any) {
   const d = new Date(props.date);
+  const username = new URL(props.actor).pathname.split("/")[2];
 
   return (
     <div class="m-4 flex max-w-3xl items-center rounded-2xl py-4 px-5 shadow-md bg-white">
@@ -37,12 +38,17 @@ export function Comment(props: any) {
         />
         <div class="flex px-3 text-sm">
           <a href={props.actor}>
-            <div class="px-2 font-bold">{props.username}</div>
+            <div class="flex">
+              <div class="pl-2 font-bold">{props.username}</div>
+              <p class="text-xs place-self-center px-1 text-gray-600">
+                {`@${username}@${new URL(props.actor).host}`}
+              </p>
+            </div>
           </a>
           <p>-</p>
-          <div class="px-2 italic text-slate-500">{d.toLocaleString()}</div>
+          <div class="px-1 italic text-slate-500">{d.toLocaleString()}</div>
           <p>-</p>
-          <div class="mx-2 flex items-center">
+          <div class="mx-1 flex items-center">
             <Likes total={props.likes} href={props.id} />
             <div>/</div>
             <Dislikes total={props.dislikes} href={props.id} />

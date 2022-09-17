@@ -4,7 +4,7 @@ import { caterpillarSettings } from "../settings.ts";
 import { SmallUserCard } from "../components/UserCard.tsx";
 
 export default function UserBox() {
-  let [info, setInfo] = useState({ "err": "true", "msg": "No token found" });
+  let [info, setInfo] = useState({});
 
   useEffect(async () => {
     let token = "";
@@ -14,6 +14,7 @@ export default function UserBox() {
     let user = await c.match("/u");
 
     if (login === undefined && user === undefined) {
+      setInfo({ err: true, msg: "Token/User not found" });
       return;
     }
 
@@ -22,13 +23,18 @@ export default function UserBox() {
     setInfo(user);
   }, []);
 
-  if (!info.err) {
+  if (!info.err && info.icon && info.name) {
     return <SmallUserCard obj={info} />;
-  } else {
+  } else if (info.err && info.msg) {
     return (
       <a href="/login">
         <h3 class="hover:underline">Login</h3>
       </a>
+    );
+  } else if (info.msg === undefined) {
+    return (
+      <div class="w-8 bg-gray-100 rounded-full">
+      </div>
     );
   }
 }

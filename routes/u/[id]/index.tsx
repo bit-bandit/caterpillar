@@ -171,7 +171,7 @@ export default function User(props: PageProps) {
                 <div>
                   <h1 class="mx-40 text-2xl py-1 font-bold">{user.name}</h1>
                   <h2 class="mx-40 text-gray-500">
-                    {`${username}@${new URL(user.id).host}`}
+                    {`@${username}@${new URL(user.id).host}`}
                   </h2>
                 </div>
               </div>
