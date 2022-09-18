@@ -7,6 +7,7 @@ import CommentBox from "../../islands/CommentBox.tsx";
 import Likes from "../../islands/Likes.tsx";
 import Dislikes from "../../islands/Dislikes.tsx";
 import Undo from "../../islands/Undo.tsx";
+import IsEditable from "../../islands/IsEditable.tsx";
 import * as ammonia from "https://deno.land/x/ammonia@0.3.1/mod.ts";
 
 await ammonia.init();
@@ -105,8 +106,9 @@ export default function Torrent(props: PageProps) {
       <div>
         <Header />
         <div class="mx-auto max-w-screen-md">
-          <div class="text-5xl font-bold leading-tight text-center">
+          <div class="text-5xl font-bold leading-tight flex justify-center items-center">
             <h1>{torrent.name}</h1>
+            <IsEditable uid={torrent.attributedTo} />
           </div>
           <div class="m-3 flex content-center gap-12 px-28">
             <a href={torrent.attributedTo}>
@@ -114,7 +116,7 @@ export default function Torrent(props: PageProps) {
                 <div class="w-6 h-6 rounded-full">
                   <img class="rounded-full" src={submitter.icon[0]} />
                 </div>
-                <div class="font-bold">
+                <div class="font-bold truncate">
                   {submitter.name}
                 </div>
               </div>

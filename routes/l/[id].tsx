@@ -10,6 +10,7 @@ import CommentBox from "../../islands/CommentBox.tsx";
 import Likes from "../../islands/Likes.tsx";
 import Dislikes from "../../islands/Dislikes.tsx";
 import Undo from "../../islands/Undo.tsx";
+import IsEditable from "../../islands/IsEditable.tsx";
 import * as ammonia from "https://deno.land/x/ammonia@0.3.1/mod.ts";
 
 await ammonia.init();
@@ -239,8 +240,9 @@ export default function List(props: PageProps) {
       <div>
         <Header />
         <div class="p-4 mx-auto max-w-screen-md">
-          <div class="text-5xl font-bold leading-tight text-center">
+          <div class="text-5xl font-bold leading-tight flex justify-center items-center">
             <h1>{list.name}</h1>
+            <IsEditable uid={list.attributedTo} />
           </div>
           <div class="m-3 flex justify-center gap-12">
             <div class="justify-center px-6 py-3 rounded-2xl shadow-md text-center flex gap-6 bg-white hover:bg-gray-100 hover:shadow-lg">

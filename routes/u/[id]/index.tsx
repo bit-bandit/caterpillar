@@ -5,6 +5,7 @@ import { ListItemTorrent } from "../../../components/TorrentListItem.tsx";
 import { ListItemList } from "../../../components/MetaListItem.tsx";
 import Header from "../../../islands/Header.tsx";
 import FollowButton from "../../../islands/Following.tsx";
+import IsEditable from "../../../islands/IsEditable.tsx";
 
 export const handler: Handlers = {
   async GET(_, ctx) {
@@ -175,7 +176,8 @@ export default function User(props: PageProps) {
                   </h2>
                 </div>
               </div>
-              <div class="-mt-10 absolute right-4">
+              <div class="-mt-10 absolute right-4 flex items-center">
+                <IsEditable uid={user.id} />
                 <FollowButton />
               </div>
             </div>
