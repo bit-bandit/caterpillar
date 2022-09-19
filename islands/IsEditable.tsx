@@ -22,7 +22,11 @@ export default function isEditable(props: any) {
     console.log("aa");
     return (
       <div>
-        <button class="w-6 flex mx-3" onclick={onUpdate}>
+        <button
+          class="w-10 flex mx-3 p-2 hover:bg-gray-200 rounded-full"
+          onclick={onUpdate}
+          title="Update"
+        >
           <img src="/pencil.svg" />
         </button>
       </div>

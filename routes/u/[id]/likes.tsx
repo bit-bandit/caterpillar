@@ -3,6 +3,7 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../../../settings.ts";
 import { ListItemTorrent } from "../../../components/TorrentListItem.tsx";
 import { ListItemList } from "../../../components/MetaListItem.tsx";
+import Footer from "../../../components/Footer.tsx";
 import Header from "../../../islands/Header.tsx";
 
 export const handler: Handlers = {
@@ -83,9 +84,9 @@ export default function Likes(props: PageProps) {
       <Head>
         <title>Liked by {props.params.id} | {props.data.home.name}</title>
       </Head>
-      <div>
+      <div class="flex flex-col min-h-screen">
         <Header />
-        <div class="mx-auto max-w-screen-md">
+        <div class="flex-1 mx-auto max-w-screen-md">
           <div class="text-5xl font-bold leading-tight text-center">
             <h1>Liked by {props.params.id}</h1>
           </div>
@@ -122,6 +123,8 @@ export default function Likes(props: PageProps) {
             })}
           </div>
         </div>
+        <br />
+        <Footer />
       </div>
     </>
   );

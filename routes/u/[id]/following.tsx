@@ -2,6 +2,7 @@ import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../../../settings.ts";
 import { UserCard } from "../../../components/UserCard.tsx";
+import Footer from "../../../components/Footer.tsx";
 import Header from "../../../islands/Header.tsx";
 
 export const handler: Handlers = {
@@ -53,9 +54,9 @@ export default function Following(props: PageProps) {
       <Head>
         <title>Followed by {props.params.id} | {props.data.home.name}</title>
       </Head>
-      <div>
+      <div class="flex flex-col min-h-screen">
         <Header />
-        <div class="mx-auto max-w-screen-md">
+        <div class="flex-1 mx-auto max-w-screen-md">
           <div class="text-5xl font-bold leading-tight text-center">
             <h1>Followed by {props.params.id}</h1>
           </div>
@@ -73,6 +74,8 @@ export default function Following(props: PageProps) {
             })}
           </div>
         </div>
+        <br />
+        <Footer />
       </div>
     </>
   );

@@ -4,6 +4,7 @@ import { Head } from "$fresh/runtime.ts";
 import { ListItemTorrent } from "../../../components/TorrentListItem.tsx";
 import { ListItemList } from "../../../components/MetaListItem.tsx";
 import Header from "../../../islands/Header.tsx";
+import Footer from "../../../components/Footer.tsx";
 import FollowButton from "../../../islands/Following.tsx";
 import IsEditable from "../../../islands/IsEditable.tsx";
 
@@ -152,9 +153,9 @@ export default function User(props: PageProps) {
       <Head>
         <title>{user.name} | {props.data.home.name}</title>
       </Head>
-      <div>
+      <div class="flex flex-col min-h-screen">
         <Header />
-        <div class="mx-auto max-w-screen-md">
+        <div class="flex-1 mx-auto max-w-screen-md">
           <div class="mx-auto max-w-screen-md shadow-md p-9 rounded-2xl m-11 bg-white">
             <div class="relative">
               <img
@@ -242,6 +243,8 @@ export default function User(props: PageProps) {
             </div>
           </div>
         </div>
+        <br />
+        <Footer />
       </div>
     </>
   );

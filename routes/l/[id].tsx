@@ -5,6 +5,7 @@ import { caterpillarSettings } from "../../settings.ts";
 import { ListItemTorrent } from "../../components/TorrentListItem.tsx";
 import { ListItemList } from "../../components/MetaListItem.tsx";
 import { Comment, RenderReplies } from "../../components/Comment.tsx";
+import Footer from "../../components/Footer.tsx";
 import Header from "../../islands/Header.tsx";
 import CommentBox from "../../islands/CommentBox.tsx";
 import Likes from "../../islands/Likes.tsx";
@@ -237,9 +238,9 @@ export default function List(props: PageProps) {
       <Head>
         <title>{list.name} | {props.data.home.name}</title>
       </Head>
-      <div>
+      <div class="flex flex-col min-h-screen">
         <Header />
-        <div class="p-4 mx-auto max-w-screen-md">
+        <div class="flex-1 mx-auto max-w-screen-md">
           <div class="text-5xl font-bold leading-tight flex justify-center items-center">
             <h1>{list.name}</h1>
             <IsEditable uid={list.attributedTo} />
@@ -349,6 +350,8 @@ export default function List(props: PageProps) {
             })}
           </div>
         </div>
+        <br />
+        <Footer />
       </div>
     </>
   );

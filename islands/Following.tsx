@@ -112,6 +112,7 @@ export default function FollowButton() {
       <button
         class="hover:bg-gray-100 p-3 rounded-2xl shadow-md bg-white"
         onClick={undoFollow}
+        title="Unfollow user"
       >
         Unfollow
       </button>
@@ -121,6 +122,7 @@ export default function FollowButton() {
     <button
       class="hover:bg-gray-100 p-3 rounded-2xl shadow-md bg-white"
       onClick={followSubmit}
+      title="Follow user"
     >
       Follow
     </button>

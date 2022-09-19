@@ -40,7 +40,7 @@ export default function Likes(props: any) {
 
   return (
     <div>
-      <button class="text-green-700" onClick={handleVote}>
+      <button class="text-green-700" onClick={handleVote} title="Like">
         +{props.total}
       </button>
     </div>

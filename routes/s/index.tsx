@@ -3,6 +3,7 @@ import { Head } from "$fresh/runtime.ts";
 import { caterpillarSettings } from "../../settings.ts";
 import { ListItemTorrent } from "../../components/TorrentListItem.tsx";
 import { ListItemList } from "../../components/MetaListItem.tsx";
+import Footer from "../../components/Footer.tsx";
 import Header from "../../islands/Header.tsx";
 
 export const handler = {
@@ -105,9 +106,9 @@ export default function Search(props: PageProps) {
       <Head>
         <title>{props.data.summary} | {props.data.homeInfo.name}</title>
       </Head>
-      <div>
+      <div class="flex flex-col min-h-screen">
         <Header />
-        <div class="mx-auto max-w-screen-md">
+        <div class="flex-1 mx-auto max-w-screen-md">
           <div class="text-3xl font-bold leading-tight text-center m-6">
             <h1>Search results</h1>
           </div>
@@ -144,6 +145,8 @@ export default function Search(props: PageProps) {
             })}
           </div>
         </div>
+        <br />
+        <Footer />
       </div>
     </>
   );

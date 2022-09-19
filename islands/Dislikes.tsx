@@ -40,7 +40,7 @@ export default function Dislikes(props: any) {
 
   return (
     <div>
-      <button class="text-red-700" onClick={handleVote}>
+      <button class="text-red-700" onClick={handleVote} title="Dislike">
         -{props.total}
       </button>
     </div>
