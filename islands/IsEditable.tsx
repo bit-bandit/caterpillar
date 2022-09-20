@@ -11,7 +11,7 @@ export default function isEditable(props: any) {
 
   useEffect(async () => {
     const c = await caches.open("parasite");
-    let user = await c.match("/u");
+    const user = await c.match("/u");
 
     if (user) {
       setUsr(await user.json());

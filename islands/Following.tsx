@@ -40,9 +40,8 @@ export default function FollowButton() {
     let user = await c.match("/u");
     user = await user.json();
 
-    let actorURL =
+    const actorURL =
       new URL(window.location.pathname, caterpillarSettings.apiURL).href;
-    console.log(actorURL);
 
     if (actorURL === user.id) {
       return alert("You can't follow yourself");

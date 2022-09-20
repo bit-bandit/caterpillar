@@ -23,7 +23,7 @@ export async function handler(
 
     let res: Response;
 
-    let params = {
+    const params = {
       method: req.method,
       headers: req.headers,
     };

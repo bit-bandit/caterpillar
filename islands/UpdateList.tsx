@@ -110,6 +110,14 @@ export default function UpdateList(props: any) {
     );
   }
 
+  if (typeof isUser === "string") {
+    return (
+      <div>
+        <div class="p-5 w-5 rounded-full bg-gray-100" />
+      </div>
+    );
+  }
+
   if (isUser) {
     return (
       <div>

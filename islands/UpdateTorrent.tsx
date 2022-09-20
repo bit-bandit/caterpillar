@@ -99,6 +99,14 @@ export default function UpdateTorrent(props: any) {
     }
   };
 
+  if (typeof isUser === "string") {
+    return (
+      <div>
+        <div class="p-5 w-5 rounded-full bg-gray-100" />
+      </div>
+    );
+  }
+
   if (isUser) {
     return (
       <div>
@@ -157,10 +165,4 @@ export default function UpdateTorrent(props: any) {
       </div>
     );
   }
-
-  return (
-    <div>
-      <div class="p-5 w-5 rounded-full bg-gray-100" />
-    </div>
-  );
 }

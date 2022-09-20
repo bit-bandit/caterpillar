@@ -47,6 +47,7 @@ export default function UploadList(props: any) {
       window.location.href = (new URL(r)).pathname;
     }
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>

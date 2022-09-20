@@ -345,10 +345,12 @@ export default function List(props: PageProps) {
                     dislikes={x.dislikes}
                   />
                   <RenderReplies href={x.id} items={x.replies} />
+                  <br />
                 </div>
               );
             })}
           </div>
+          <br />
         </div>
         <br />
         <Footer />

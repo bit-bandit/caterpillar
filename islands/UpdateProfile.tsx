@@ -18,7 +18,7 @@ export default function UpdateProfile() {
 
     token = await token.text();
 
-    let userURL = new URL(
+    const userURL = new URL(
       window.location.href.split("update")[1],
       caterpillarSettings.apiURL,
     );
@@ -37,8 +37,6 @@ export default function UpdateProfile() {
 
     currentUser = await currentUser.json();
 
-    console.log(currentUser);
-    console.log(userD);
     setUser(currentUser.id === userD.id);
 
     setInputs({
@@ -69,8 +67,8 @@ export default function UpdateProfile() {
     setInputs((values) => ({ ...values, [name]: value }));
   };
 
-  let icon = createRef();
-  let banner = createRef();
+  const icon = createRef();
+  const banner = createRef();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
