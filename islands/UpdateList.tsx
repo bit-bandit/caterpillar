@@ -3,9 +3,9 @@ import { IS_BROWSER } from "$fresh/runtime.ts";
 import { caterpillarSettings } from "../settings.ts";
 
 export default function UpdateList(props: any) {
-  let [listData, setLD] = useState({});
-  let [isUser, setUser] = useState("");
-  let [inputs, setInputs] = useState({});
+  const [listData, setLD] = useState({});
+  const [isUser, setUser] = useState("");
+  const [inputs, setInputs] = useState({});
 
   useEffect(async () => {
     let token = await caches.open("parasite");

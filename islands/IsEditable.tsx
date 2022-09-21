@@ -2,11 +2,10 @@ import { useEffect, useState } from "preact/hooks";
 
 // <IsEditable uid={id}/>
 export default function isEditable(props: any) {
-  let [usr, setUsr] = useState({ err: true, msg: "Users not equal." });
+  const [usr, setUsr] = useState({ err: true, msg: "Users not equal." });
 
   const onUpdate = () => {
-    let c = `/update${new URL(window.location.href).pathname}`;
-    window.location.href = c;
+    window.location.href = `/update${new URL(window.location.href).pathname}`;
   };
 
   useEffect(async () => {

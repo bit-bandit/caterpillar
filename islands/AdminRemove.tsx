@@ -7,7 +7,7 @@ import AdminRoutes from "../components/AdminRoutes.tsx";
 // Here be dragons.
 
 export default function AdminRemove(props: any) {
-  let [i, setI] = useState({ "undefined": true });
+  const [i, setI] = useState({ "undefined": true });
 
   useEffect(async () => {
     let token = await caches.open("parasite");
@@ -36,16 +36,16 @@ export default function AdminRemove(props: any) {
   }, []);
 
   if (i.msg && !i.err) {
-    let aURL = new URL("/a/roles", caterpillarSettings.apiURL);
+    const aURL = new URL("/a/roles", caterpillarSettings.apiURL);
 
-    let [res, setRes] = useState({});
+    const [res, setRes] = useState({});
     useEffect(async () => {
       let token = await caches.open("parasite");
       token = await token.match("/login");
 
       token = await token.text();
 
-      let a = await fetch(aURL.href, {
+      const a = await fetch(aURL.href, {
         method: "GET",
         headers: {
           "Authorization": `Bearer ${token}`,

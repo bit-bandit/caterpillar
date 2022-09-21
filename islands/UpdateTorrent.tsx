@@ -3,9 +3,9 @@ import { IS_BROWSER } from "$fresh/runtime.ts";
 import { caterpillarSettings } from "../settings.ts";
 
 export default function UpdateTorrent(props: any) {
-  let [torrentData, setTD] = useState({});
-  let [isUser, setUser] = useState("");
-  let [inputs, setInputs] = useState({});
+  const [torrentData, setTD] = useState({});
+  const [isUser, setUser] = useState("");
+  const [inputs, setInputs] = useState({});
 
   useEffect(async () => {
     let token = await caches.open("parasite");
@@ -17,7 +17,7 @@ export default function UpdateTorrent(props: any) {
 
     token = await token.text();
 
-    let torrentURL = new URL(
+    const torrentURL = new URL(
       window.location.href.split("update")[1],
       caterpillarSettings.apiURL,
     );

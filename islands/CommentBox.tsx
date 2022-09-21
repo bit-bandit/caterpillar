@@ -36,7 +36,7 @@ export default function CommentBox(props: any) {
 
     const API = new URL("/x/comment", caterpillarSettings.apiURL);
 
-    let r = await fetch(API.href, {
+    const r = await fetch(API.href, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -21,8 +21,6 @@ export async function handler(
   if (validHeaders.includes(req.headers.get("accept"))) {
     const u = new URL((new URL(req.url)).pathname, caterpillarSettings.apiURL);
 
-    let res: Response;
-
     const params = {
       method: req.method,
       headers: req.headers,
@@ -32,7 +30,7 @@ export async function handler(
       params.body = await req.body.text();
     }
 
-    res = await fetch(u.href, params);
+    const res = await fetch(u.href, params);
 
     return res;
   }

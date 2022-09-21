@@ -4,9 +4,9 @@ import { IS_BROWSER } from "$fresh/runtime.ts";
 import { caterpillarSettings } from "../settings.ts";
 
 export default function UpdateProfile() {
-  let [torrentData, setTD] = useState({});
-  let [isUser, setUser] = useState("");
-  let [inputs, setInputs] = useState({});
+  const [torrentData, setTD] = useState({});
+  const [isUser, setUser] = useState("");
+  const [inputs, setInputs] = useState({});
 
   useEffect(async () => {
     let token = await caches.open("parasite");
