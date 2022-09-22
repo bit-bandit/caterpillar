@@ -10,8 +10,6 @@ export default function Likes(props: any) {
         caterpillarSettings.apiURL,
       )).href;
 
-    console.log(objURL);
-
     let token = await caches.open("parasite");
     token = await token.match("/login");
     token = await token.text();

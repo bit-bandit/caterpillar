@@ -110,8 +110,6 @@ export default function UpdateProfile() {
     } else {
       alert(res.err);
     }
-
-    console.log(inputs);
   };
 
   return (

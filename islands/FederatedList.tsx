@@ -3,7 +3,7 @@ import { IS_BROWSER } from "$fresh/runtime.ts";
 import { caterpillarSettings } from "../settings.ts";
 
 export default function FederatedInstances() {
-  let [info, setInfo] = useState({
+  const [info, setInfo] = useState({
     pooledInstances: [],
     blockedInstances: [],
   });

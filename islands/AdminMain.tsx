@@ -5,7 +5,7 @@ import { caterpillarSettings } from "../settings.ts";
 import AdminRoutes from "../components/AdminRoutes.tsx";
 
 export default function AdminMain(props: any) {
-  let [i, setI] = useState({ "undefined": true });
+  const [i, setI] = useState({ "undefined": true });
 
   useEffect(async () => {
     let token = await caches.open("parasite");

@@ -3,7 +3,7 @@ import { caterpillarSettings } from "../settings.ts";
 import { useEffect, useState } from "preact/hooks";
 
 export default function UploadTorrent(props: any) {
-  let [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState({});
 
   useEffect(async () => {
     let res = await caches.open("parasite");

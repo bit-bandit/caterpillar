@@ -6,8 +6,8 @@ import AdminRoutes from "../components/AdminRoutes.tsx";
 import Federated from "./FederatedList.tsx";
 
 export default function AdminFederation() {
-  let [i, setI] = useState({ "undefined": true });
-  let [siteInfo, setSiteInfo] = useState({});
+  const [i, setI] = useState({ "undefined": true });
+  const [siteInfo, setSiteInfo] = useState({});
 
   useEffect(async () => {
     let token = await caches.open("parasite");
@@ -46,13 +46,10 @@ export default function AdminFederation() {
 
     const handleSubmit = async (event) => {
       event.preventDefault();
-      console.log(inputs);
 
       let token = await caches.open("parasite");
       token = await token.match("/login");
       token = await token.text();
-
-      console.log(token);
 
       let r = await fetch(
         (new URL("/a/federate", caterpillarSettings.apiURL)).href,

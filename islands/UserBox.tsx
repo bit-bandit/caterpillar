@@ -4,11 +4,9 @@ import { caterpillarSettings } from "../settings.ts";
 import { SmallUserCard } from "../components/UserCard.tsx";
 
 export default function UserBox() {
-  let [info, setInfo] = useState({});
+  const [info, setInfo] = useState({});
 
   useEffect(async () => {
-    let token = "";
-
     const c = await caches.open("parasite");
     const login = await c.match("/login");
     let user = await c.match("/u");

@@ -73,8 +73,6 @@ export default function AdminRemove(props: any) {
 
       token = await token.text();
 
-      console.log(inputs);
-
       let res = await fetch(u.href, {
         method: "POST",
         headers: {

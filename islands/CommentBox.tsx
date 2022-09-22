@@ -3,7 +3,7 @@ import { caterpillarSettings } from "../settings.ts";
 import { useEffect, useState } from "preact/hooks";
 
 export default function CommentBox(props: any) {
-  let [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {
     const name = event.target.name;

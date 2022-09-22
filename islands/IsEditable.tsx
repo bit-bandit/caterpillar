@@ -18,7 +18,6 @@ export default function isEditable(props: any) {
   }, []);
 
   if (usr.id === props.uid) {
-    console.log("aa");
     return (
       <div>
         <button

@@ -14,7 +14,6 @@ export default function FollowButton() {
     }
 
     user = await user.json();
-    console.log(user);
 
     let f = await fetch(user.following, {
       headers: {
@@ -23,8 +22,6 @@ export default function FollowButton() {
     });
 
     f = await f.json();
-
-    console.log(f);
 
     setFollowing(f.orderedItems.includes(
       new URL(window.location.pathname, caterpillarSettings.apiURL).href,
@@ -81,7 +78,6 @@ export default function FollowButton() {
 
     const actorURL =
       new URL(window.location.pathname, caterpillarSettings.apiURL).href;
-    console.log(actorURL);
 
     let followAttempt = await fetch(
       new URL("/x/undo", caterpillarSettings.apiURL).href,
