@@ -6,11 +6,9 @@ import { caterpillarSettings } from "../settings.ts";
 // API:
 // <Subcomp
 //  APIObject={objectDerivedFromAPI}
-//  Likes={likes.length}
-//  Dislikes={dislikes.length}
 //  />
 
-export function Subcomp(props: any) {
+export function Subcomp(props: unknown) {
   // A lot of this should probably be minimized...
   if (props.APIObject.type !== "Note") {
     return (

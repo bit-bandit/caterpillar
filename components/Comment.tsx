@@ -7,20 +7,7 @@ import * as ammonia from "https://deno.land/x/ammonia@0.3.1/mod.ts";
 
 await ammonia.init();
 
-/* API:
-<Comment
-  username={actor.name}
-  actor={actor.id}
-  avatarURL={actor.icon[0]}
-  date={object.published}
-  commentBody={object.content}
-  likes={likes.length}
-  dislikes={dislikes.length}
-/>
-
-*/
-
-export function Comment(props: any) {
+export function Comment(props: unknown) {
   const d = new Date(props.date);
   const username = new URL(props.actor).pathname.split("/")[2];
 
@@ -62,7 +49,9 @@ export function Comment(props: any) {
 }
 
 // Requires an array of objects that share the same syntax as Comment
-export function RenderReplies(props: any) {
+export function RenderReplies(props: {
+  items: unknown[];
+}) {
   return (
     <div class="px-9 mx-7">
       <details>

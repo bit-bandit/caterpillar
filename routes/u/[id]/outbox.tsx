@@ -113,7 +113,10 @@ export const handler = {
   },
 };
 
-function UserBox(props: any) {
+function UserBox(props: {
+  href: string;
+  name: string;
+}) {
   return (
     <div class="flex max-w-xl max-h-16 p-3 shadow-md items-center place-content-between rounded-2xl my-4 mx-auto hover:bg-gray-100 hover:shadow-lg">
       <p class="text-xl hover:underline">
