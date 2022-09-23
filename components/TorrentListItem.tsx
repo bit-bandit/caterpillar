@@ -1,6 +1,14 @@
-import { PageProps } from "$fresh/server.ts";
-// TODO: Add types to this.
-export function ListItemTorrent(props: any) {
+export function ListItemTorrent(props: {
+  date: string;
+  href: string;
+  name: string;
+  icon: string;
+  uploaderHref: string;
+  uploader: string;
+  magnet: string;
+  likes: number;
+  dislikes: number;
+}) {
   const d = new Date(props.date);
   return (
     <div class="max-w-screen-md max-h-26 m-4 flex rounded-2xl p-4 shadow-md bg-white">

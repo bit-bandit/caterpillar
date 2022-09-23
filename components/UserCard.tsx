@@ -1,6 +1,8 @@
 import { IS_BROWSER } from "$fresh/runtime.ts";
 // For the header
-export function SmallUserCard(props: any) {
+export function SmallUserCard(props: {
+  obj: unknown;
+}) {
   return (
     <div class="items-center">
       <div class="relative">
@@ -43,7 +45,13 @@ export function SmallUserCard(props: any) {
 }
 
 // For the `following`/`followers` page
-export function UserCard(props: any) {
+export function UserCard(props: {
+  followers: number;
+  id: string;
+  icon: string;
+  href: string;
+  name: string;
+}) {
   let followStr = "Followers";
 
   if (props.followers === 1) {
