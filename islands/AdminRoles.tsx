@@ -6,7 +6,7 @@ import AdminRoutes from "../components/AdminRoutes.tsx";
 
 // Here be dragons.
 
-export default function AdminRoles(props: any) {
+export default function AdminRoles() {
   const [i, setI] = useState({ "undefined": true });
 
   useEffect(async () => {

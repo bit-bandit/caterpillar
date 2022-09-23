@@ -1,7 +1,7 @@
 import { caterpillarSettings } from "../settings.ts";
 import { useEffect, useState } from "preact/hooks";
 
-export default function UploadList(props: any) {
+export default function UploadList() {
   const [inputs, setInputs] = useState({});
 
   useEffect(async () => {

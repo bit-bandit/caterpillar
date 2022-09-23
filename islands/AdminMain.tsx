@@ -4,7 +4,7 @@ import { caterpillarSettings } from "../settings.ts";
 
 import AdminRoutes from "../components/AdminRoutes.tsx";
 
-export default function AdminMain(props: any) {
+export default function AdminMain() {
   const [i, setI] = useState({ "undefined": true });
 
   useEffect(async () => {

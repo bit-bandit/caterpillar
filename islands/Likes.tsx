@@ -2,7 +2,10 @@ import { useState } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import { caterpillarSettings } from "../settings.ts";
 
-export default function Likes(props: any) {
+export default function Likes(props: {
+  href?: string;
+  total: number;
+}) {
   const handleVote = async () => {
     const objURL = props.href ??
       (new URL(

@@ -2,7 +2,9 @@ import { useState } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import { caterpillarSettings } from "../settings.ts";
 
-export default function Undo(props: any) {
+export default function Undo(props: {
+  href: string;
+}) {
   const handleVote = async () => {
     const objURL = props.href ??
       (new URL(

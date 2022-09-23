@@ -2,7 +2,9 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../settings.ts";
 import { useEffect, useState } from "preact/hooks";
 
-export default function CommentBox(props: any) {
+export default function CommentBox(props: {
+  href: string;
+}) {
   const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {

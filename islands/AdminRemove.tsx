@@ -6,7 +6,7 @@ import AdminRoutes from "../components/AdminRoutes.tsx";
 
 // Here be dragons.
 
-export default function AdminRemove(props: any) {
+export default function AdminRemove() {
   const [i, setI] = useState({ "undefined": true });
 
   useEffect(async () => {

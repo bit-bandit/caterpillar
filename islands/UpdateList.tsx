@@ -2,7 +2,7 @@ import { useEffect, useState } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import { caterpillarSettings } from "../settings.ts";
 
-export default function UpdateList(props: any) {
+export default function UpdateList() {
   const [listData, setLD] = useState({});
   const [isUser, setUser] = useState("");
   const [inputs, setInputs] = useState({});

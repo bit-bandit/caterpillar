@@ -1,7 +1,9 @@
 import { useEffect, useState } from "preact/hooks";
 
 // <IsEditable uid={id}/>
-export default function isEditable(props: any) {
+export default function isEditable(props: {
+  uid: string;
+}) {
   const [usr, setUsr] = useState({ err: true, msg: "Users not equal." });
 
   const onUpdate = () => {
