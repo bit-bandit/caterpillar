@@ -55,7 +55,15 @@ export const handler: Handlers = {
           "Accept": "application/activity+json",
         },
       });
+
       fetched = await fetched.json();
+
+      // Absolutely abominable hack to deal with (potentially) deleted entries.
+      if (fetched.err) {
+        res.list.orderedItems.splice(i, 1);
+        i--;
+        continue;
+      }
 
       if (fetched.orderedItems) {
         for (const url of fetched.orderedItems) {
@@ -294,7 +302,7 @@ export default function List(props: PageProps) {
             <h2>Items</h2>
           </div>
           <div class="m-auto">
-            {list.orderedItems.map((x) => {
+            {list.orderedItems.filter((x) => x.id ? true : false).map((x) => {
               if (x.type === "OrderedCollection") {
                 return (
                   <ListItemList

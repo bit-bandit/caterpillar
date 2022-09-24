@@ -10,7 +10,18 @@ import { caterpillarSettings } from "../settings.ts";
 
 export function Subcomp(props: unknown) {
   // A lot of this should probably be minimized...
-  if (props.APIObject.type !== "Note") {
+  if (props.APIObject.type === undefined) {
+    return (
+      <div class="max-h-26 m-3 flex rounded-2xl p-3 shadow-md bg-gray-200">
+        <img class="w-6" src="/ghost.svg" />
+        <h4 class="mx-3 text-xl font-bold text-gray-400">
+          (Lost Item)
+        </h4>
+      </div>
+    );
+  }
+
+  if (props.APIObject.type === "OrderedCollection") {
     return (
       <div class="max-h-26 m-3 flex rounded-2xl p-3 shadow-md bg-gray-100">
         <img class="w-7" src="/list.svg" />
@@ -28,6 +39,7 @@ export function Subcomp(props: unknown) {
       </div>
     );
   }
+
   return (
     <div class="max-h-26 m-3 flex rounded-2xl p-3 shadow-md bg-gray-100">
       <img class="w-7" src="/magnet.svg" />
