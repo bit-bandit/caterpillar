@@ -40,9 +40,15 @@ export const handler: Handlers = {
     req = await fetch(res.torrent.replies);
     req = await req.json();
 
-    for (const comment in req.orderedItems) {
+    for (let comment = 0; comment < req.orderedItems.length; comment++) {
       let f = await fetch(req.orderedItems[comment]);
       f = await f.json();
+
+      if (f.err) {
+        req.orderedItems.splice(comment, 1);
+        comment = -1;
+        continue;
+      }
 
       const actor = await fetch(f.attributedTo);
       f.attributedTo = await actor.json();
@@ -58,9 +64,15 @@ export const handler: Handlers = {
       let replies = await fetch(f.replies);
       replies = await replies.json();
 
-      for (const reply in replies.orderedItems) {
+      for (let reply = 0; reply < replies.orderedItems.length; reply++) {
         let r = await fetch(replies.orderedItems[reply]);
         r = await r.json();
+
+        if (r.err) {
+          replies.orderedItems.splice(reply, 1);
+          reply = -1;
+          continue;
+        }
 
         const replyActor = await fetch(r.attributedTo);
         r.attributedTo = await replyActor.json();
