@@ -20,6 +20,10 @@ export const handler: Handlers = {
     req = await fetch(userAPI.href);
     res.likes = await req.json();
 
+    if (res.likes.err) {
+      return ctx.renderNotFound();
+    }
+
     // TODO: Add an `accept` header to make sure we're not getting any JSON.
     for (const url in res.likes.orderedItems) {
       let fetched = await fetch(res.likes.orderedItems[url]);

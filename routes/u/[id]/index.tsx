@@ -23,6 +23,10 @@ export const handler: Handlers = {
 
     res.user = await req.json();
 
+    if (res.user.err) {
+      return ctx.renderNotFound();
+    }
+
     req = await fetch(res.user.outbox, {
       headers: {
         "Accept": "application/activity+json",

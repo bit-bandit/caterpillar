@@ -33,6 +33,10 @@ export const handler: Handlers = {
 
     res.list = await req.json();
 
+    if (res.list.err) {
+      return ctx.renderNotFound();
+    }
+
     let likes = await fetch(`${res.list.id}/likes`, {
       headers: {
         "Accept": "application/activity+json",
@@ -260,7 +264,7 @@ export default function List(props: PageProps) {
       </Head>
       <div class="flex flex-col min-h-screen">
         <Header />
-        <div class="flex-1 mx-auto max-w-screen-md">
+        <div class="flex-1 mx-auto min-w-screen-md">
           <div class="text-5xl font-bold leading-tight flex justify-center items-center">
             <h1>{list.name}</h1>
             <IsEditable uid={list.attributedTo} />
@@ -291,7 +295,7 @@ export default function List(props: PageProps) {
           </div>
           <div
             id="description"
-            class="p-6 shadow-md rounded-2xl my-3 bg-white"
+            class="p-6 shadow-md rounded-2xl my-3 bg-white min-w-screen-2xl"
           >
             <div
               dangerouslySetInnerHTML={{ __html: ammonia.clean(list.summary) }}

@@ -16,12 +16,24 @@ export const handler: Handlers = {
 
     res.user = await req.json();
 
+    if (res.user.err) {
+      return ctx.renderNotFound();
+    }
+
     req = await fetch(res.user.following);
     req = await req.json();
+
+    if (req.err) {
+      return ctx.renderNotFound();
+    }
 
     for (const url in req.orderedItems) {
       let f = await fetch(req.orderedItems[url]);
       f = await f.json();
+
+      if (f.err) {
+        continue;
+      }
 
       let followers = await fetch(f.followers);
       followers = await followers.json();

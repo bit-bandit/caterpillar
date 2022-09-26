@@ -25,6 +25,10 @@ export const handler: Handlers = {
 
     res.torrent = await req.json();
 
+    if (res.torrent.err) {
+      return ctx.renderNotFound();
+    }
+
     req = await fetch(res.torrent.attributedTo);
     res.user = await req.json();
 

@@ -24,7 +24,12 @@ export const handler = {
         "Accept": "application/activity+json",
       },
     });
+
     req = await req.json();
+
+    if (req.err) {
+      return ctx.renderNotFound();
+    }
 
     for (const i in req.orderedItems) {
       req.orderedItems[i] = req.orderedItems[i].object;
