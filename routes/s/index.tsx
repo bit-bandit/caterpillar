@@ -117,9 +117,9 @@ export default function Search(props: PageProps) {
               if (x.type === "OrderedCollection") {
                 return (
                   <ListItemList
-                    href={(new URL(x.id)).pathname}
+                    href={x.id}
                     name={x.name}
-                    uploaderHref={new URL(x.actor.id).pathname}
+                    uploaderHref={x.actor.id}
                     uploader={x.actor.name}
                     icon={x.actor.icon[0]}
                     date={x.published}
@@ -131,9 +131,9 @@ export default function Search(props: PageProps) {
               }
               return (
                 <ListItemTorrent
-                  href={(new URL(x.id)).pathname}
+                  href={x.id}
                   name={x.name}
-                  uploaderHref={new URL(x.attributedTo).pathname}
+                  uploaderHref={x.actor.id}
                   uploader={x.actor.name}
                   icon={x.actor.icon[0]}
                   date={x.published}

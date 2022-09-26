@@ -123,7 +123,7 @@ export default function Torrent(props: PageProps) {
       <div class="flex flex-col min-h-screen">
         <Header />
         <div class="flex-1 mx-auto max-w-screen-md">
-          <div class="text-5xl font-bold leading-tight flex justify-center items-center">
+          <div class="text-5xl font-bold leading-tight flex justify-center items-center text-center">
             <h1>{torrent.name}</h1>
             <IsEditable uid={torrent.attributedTo} />
           </div>

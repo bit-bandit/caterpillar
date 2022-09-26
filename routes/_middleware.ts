@@ -10,6 +10,13 @@ export async function handler(
   req: Request,
   ctx: MiddlewareHandlerContext<State>,
 ) {
+  // Deal with images
+  if (req.url.endsWith(".png") || req.url.endsWith(".jpg")) {
+    const u = new URL((new URL(req.url)).pathname, caterpillarSettings.apiURL);
+    const res = await fetch(u.href);
+    return res;
+  }
+
   // Headers we'll allow.
   const validHeaders = [
     "application/ld+json",

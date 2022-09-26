@@ -264,8 +264,8 @@ export default function List(props: PageProps) {
       </Head>
       <div class="flex flex-col min-h-screen">
         <Header />
-        <div class="flex-1 mx-auto min-w-screen-md">
-          <div class="text-5xl font-bold leading-tight flex justify-center items-center">
+        <div class="flex-1 mx-auto max-w-screen-md">
+          <div class="text-5xl font-bold leading-tight flex justify-center items-center text-center">
             <h1>{list.name}</h1>
             <IsEditable uid={list.attributedTo} />
           </div>
@@ -295,7 +295,7 @@ export default function List(props: PageProps) {
           </div>
           <div
             id="description"
-            class="p-6 shadow-md rounded-2xl my-3 bg-white min-w-screen-2xl"
+            class="p-6 shadow-md rounded-2xl my-3 bg-white break-all"
           >
             <div
               dangerouslySetInnerHTML={{ __html: ammonia.clean(list.summary) }}
@@ -317,7 +317,7 @@ export default function List(props: PageProps) {
           <div class="text-3xl font-bold leading-tight text-center">
             <h2>Items</h2>
           </div>
-          <div class="m-auto">
+          <div class="flex flex-col items-center">
             {list.orderedItems.filter((x) => x.id ? true : false).map((x) => {
               if (x.type === "OrderedCollection") {
                 return (
@@ -336,9 +336,9 @@ export default function List(props: PageProps) {
               }
               return (
                 <ListItemTorrent
-                  href={(new URL(x.id)).pathname}
+                  href={x.id}
                   name={x.name}
-                  uploaderHref={new URL(x.actor.id).pathname}
+                  uploaderHref={x.actor.id}
                   uploader={x.actor.name}
                   icon={x.actor.icon[0]}
                   date={list.published}
