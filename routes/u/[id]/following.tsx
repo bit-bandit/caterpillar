@@ -20,7 +20,10 @@ export const handler: Handlers = {
       return ctx.renderNotFound();
     }
 
-    req = await fetch(res.user.following);
+    req = await fetch(res.user.following, {
+      headers: { "Accept": "application/activity+json" },
+    });
+
     req = await req.json();
 
     if (req.err) {
@@ -28,14 +31,19 @@ export const handler: Handlers = {
     }
 
     for (const url in req.orderedItems) {
-      let f = await fetch(req.orderedItems[url]);
+      let f = await fetch(req.orderedItems[url], {
+        headers: { "Accept": "application/activity+json" },
+      });
+
       f = await f.json();
 
       if (f.err) {
         continue;
       }
 
-      let followers = await fetch(f.followers);
+      let followers = await fetch(f.followers, {
+        headers: { "Accept": "application/activity+json" },
+      });
       followers = await followers.json();
 
       f.followers = followers.totalItems;
