@@ -29,23 +29,36 @@ export const handler: Handlers = {
       return ctx.renderNotFound();
     }
 
-    req = await fetch(res.torrent.attributedTo);
+    req = await fetch(res.torrent.attributedTo, {
+      headers: { "Accept": "application/activity+json" },
+    });
+
     res.user = await req.json();
 
-    let likes = await fetch(`${res.torrent.id}/likes`);
+    let likes = await fetch(`${res.torrent.id}/likes`, {
+      headers: { "Accept": "application/activity+json" },
+    });
+
     likes = await likes.json();
     res.torrent.likes = likes.totalItems;
 
-    let dislikes = await fetch(`${res.torrent.id}/dislikes`);
+    let dislikes = await fetch(`${res.torrent.id}/dislikes`, {
+      headers: { "Accept": "application/activity+json" },
+    });
     dislikes = await dislikes.json();
     res.torrent.dislikes = dislikes.totalItems;
 
     // Comments
-    req = await fetch(res.torrent.replies);
+    req = await fetch(res.torrent.replies, {
+      headers: { "Accept": "application/activity+json" },
+    });
     req = await req.json();
 
     for (let comment = 0; comment < req.orderedItems.length; comment++) {
-      let f = await fetch(req.orderedItems[comment]);
+      let f = await fetch(req.orderedItems[comment], {
+        headers: { "Accept": "application/activity+json" },
+      });
+
       f = await f.json();
 
       if (f.err) {
@@ -54,22 +67,36 @@ export const handler: Handlers = {
         continue;
       }
 
-      const actor = await fetch(f.attributedTo);
+      const actor = await fetch(f.attributedTo, {
+        headers: { "Accept": "application/activity+json" },
+      });
+
       f.attributedTo = await actor.json();
 
-      let likes = await fetch(`${f.id}/likes`);
+      let likes = await fetch(`${f.id}/likes`, {
+        headers: { "Accept": "application/activity+json" },
+      });
+
       likes = await likes.json();
       f.likes = likes.totalItems;
 
-      let dislikes = await fetch(`${f.id}/dislikes`);
+      let dislikes = await fetch(`${f.id}/dislikes`, {
+        headers: { "Accept": "application/activity+json" },
+      });
+
       dislikes = await dislikes.json();
       f.dislikes = dislikes.totalItems;
 
-      let replies = await fetch(f.replies);
+      let replies = await fetch(f.replies, {
+        headers: { "Accept": "application/activity+json" },
+      });
+
       replies = await replies.json();
 
       for (let reply = 0; reply < replies.orderedItems.length; reply++) {
-        let r = await fetch(replies.orderedItems[reply]);
+        let r = await fetch(replies.orderedItems[reply], {
+          headers: { "Accept": "application/activity+json" },
+        });
         r = await r.json();
 
         if (r.err) {
@@ -78,14 +105,20 @@ export const handler: Handlers = {
           continue;
         }
 
-        const replyActor = await fetch(r.attributedTo);
+        const replyActor = await fetch(r.attributedTo, {
+          headers: { "Accept": "application/activity+json" },
+        });
         r.attributedTo = await replyActor.json();
 
-        let replyLikes = await fetch(`${r.id}/likes`);
+        let replyLikes = await fetch(`${r.id}/likes`, {
+          headers: { "Accept": "application/activity+json" },
+        });
         replyLikes = await replyLikes.json();
         r.likes = replyLikes.totalItems;
 
-        let replyDislikes = await fetch(`${r.id}/dislikes`);
+        let replyDislikes = await fetch(`${r.id}/dislikes`, {
+          headers: { "Accept": "application/activity+json" },
+        });
         replyDislikes = await replyDislikes.json();
         r.dislikes = replyDislikes.totalItems;
 
