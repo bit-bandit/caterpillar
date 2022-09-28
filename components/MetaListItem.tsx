@@ -19,7 +19,7 @@ export function ListItemList(props: {
   return (
     <div class="max-h-26 m-4 flex rounded-3xl p-4 shadow-md bg-white">
       <div class="w-24 h-24 p-5 rounded-full bg-gray-200">
-        <img class="w-24" src="/list.svg" />
+        <img class="w-24 h-14" src="/list.svg" />
       </div>
       <div>
         <div class="mx-4 my-2 text-3xl font-bold hover:underline">

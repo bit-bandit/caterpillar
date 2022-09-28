@@ -16,10 +16,10 @@ export function ListItemTorrent(props: {
   return (
     <div class="max-w-screen-md max-h-26 m-4 flex rounded-2xl p-4 shadow-md bg-white">
       <div class="w-24 h-24 p-5 rounded-full bg-gray-200">
-        <img class="w-24" src="/magnet.svg" />
+        <img class="w-24 h-14" src="/magnet.svg" />
       </div>
       <div>
-        <div class="mx-4 my-2 text-3xl font-bold hover:underline">
+        <div class="mx-4 my-2 text-3xl font-bold hover:underline truncate">
           <a href={props.href}>{props.name}</a>
         </div>
         <div class="flex">
