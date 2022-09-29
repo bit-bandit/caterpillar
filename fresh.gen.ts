@@ -18,15 +18,16 @@ import * as $11 from "./routes/s/index.tsx";
 import * as $12 from "./routes/t/[id].tsx";
 import * as $13 from "./routes/u/[id]/followers.tsx";
 import * as $14 from "./routes/u/[id]/following.tsx";
-import * as $15 from "./routes/u/[id]/index.tsx";
-import * as $16 from "./routes/u/[id]/likes.tsx";
-import * as $17 from "./routes/u/[id]/outbox.tsx";
-import * as $18 from "./routes/update/l/[id].tsx";
-import * as $19 from "./routes/update/t/[id].tsx";
-import * as $20 from "./routes/update/u/[id].tsx";
-import * as $21 from "./routes/upload/index.tsx";
-import * as $22 from "./routes/upload/list.tsx";
-import * as $23 from "./routes/upload/torrent.tsx";
+import * as $15 from "./routes/u/[id]/inbox.tsx";
+import * as $16 from "./routes/u/[id]/index.tsx";
+import * as $17 from "./routes/u/[id]/likes.tsx";
+import * as $18 from "./routes/u/[id]/outbox.tsx";
+import * as $19 from "./routes/update/l/[id].tsx";
+import * as $20 from "./routes/update/t/[id].tsx";
+import * as $21 from "./routes/update/u/[id].tsx";
+import * as $22 from "./routes/upload/index.tsx";
+import * as $23 from "./routes/upload/list.tsx";
+import * as $24 from "./routes/upload/torrent.tsx";
 import * as $$0 from "./islands/AdminFederation.tsx";
 import * as $$1 from "./islands/AdminMain.tsx";
 import * as $$2 from "./islands/AdminRemove.tsx";
@@ -66,15 +67,16 @@ const manifest = {
     "./routes/t/[id].tsx": $12,
     "./routes/u/[id]/followers.tsx": $13,
     "./routes/u/[id]/following.tsx": $14,
-    "./routes/u/[id]/index.tsx": $15,
-    "./routes/u/[id]/likes.tsx": $16,
-    "./routes/u/[id]/outbox.tsx": $17,
-    "./routes/update/l/[id].tsx": $18,
-    "./routes/update/t/[id].tsx": $19,
-    "./routes/update/u/[id].tsx": $20,
-    "./routes/upload/index.tsx": $21,
-    "./routes/upload/list.tsx": $22,
-    "./routes/upload/torrent.tsx": $23,
+    "./routes/u/[id]/inbox.tsx": $15,
+    "./routes/u/[id]/index.tsx": $16,
+    "./routes/u/[id]/likes.tsx": $17,
+    "./routes/u/[id]/outbox.tsx": $18,
+    "./routes/update/l/[id].tsx": $19,
+    "./routes/update/t/[id].tsx": $20,
+    "./routes/update/u/[id].tsx": $21,
+    "./routes/upload/index.tsx": $22,
+    "./routes/upload/list.tsx": $23,
+    "./routes/upload/torrent.tsx": $24,
   },
   islands: {
     "./islands/AdminFederation.tsx": $$0,

@@ -27,17 +27,28 @@ export const handler = {
 
     req = await req.json();
 
+    req.orderedItems = req.orderedItems.filter((x) =>
+      !new URL(x).pathname.startsWith("/c/")
+    );
+
     if (req.err) {
       return ctx.renderNotFound();
     }
 
     for (const i in req.orderedItems) {
+      req.orderedItems[i] = await (await fetch(req.orderedItems[i], {
+        headers: {
+          "Accept": "application/activity+json",
+        },
+      })).json();
       req.orderedItems[i] = req.orderedItems[i].object;
     }
 
-    req.orderedItems = req.orderedItems.filter((x) => !x.inReplyTo);
-
     for (let i = 0; i < req.orderedItems.length; i++) {
+      if (req.orderedItems[i] === undefined) {
+        continue;
+      }
+
       const actorData = await fetch(req.orderedItems[i].attributedTo, {
         headers: {
           "Accept": "application/activity+json",
@@ -102,6 +113,8 @@ export const handler = {
       }
     }
 
+    req.orderedItems = req.orderedItems.filter((x) => x !== undefined);
+
     res.inbox = req.orderedItems.reverse();
 
     let home = await fetch(caterpillarSettings.apiURL, {
@@ -144,13 +157,13 @@ export default function Inbox(props: PageProps) {
   return (
     <>
       <Head>
-        <title>Posts by {props.params.id} | {props.data.home.name}</title>
+        <title>Posts for {props.params.id} | {props.data.home.name}</title>
       </Head>
       <div class="flex flex-col min-h-screen">
         <Header />
         <div class="flex-1 mx-auto max-w-screen-md">
           <div class="text-5xl font-bold leading-tight text-center">
-            <h1>Posts by {props.params.id}</h1>
+            <h1>Posts for {props.params.id}</h1>
           </div>
           <div class="bg-white shadow-md p-9 rounded-2xl m-11 max-w-screen-md">
             {inbox.map((x) => {

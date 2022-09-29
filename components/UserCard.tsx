@@ -22,6 +22,11 @@ export function SmallUserCard(props: {
                 {props.obj.name}
               </div>
             </a>
+            <a href={new URL(props.obj.inbox).pathname}>
+              <div class="text flex items-center px-4 py-1 hover:bg-gray-200">
+                Inbox
+              </div>
+            </a>
             <a href={new URL(props.obj.following).pathname}>
               <div class="text flex items-center px-4 py-1 hover:bg-gray-200">
                 Following
