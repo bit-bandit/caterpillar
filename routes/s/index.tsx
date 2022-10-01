@@ -126,7 +126,19 @@ function DeterminePages(props: {
       <div class="flex justify-between">
         <div class="flex justify-left"></div>
         <a href={res}>
-          <div class="flex justify-right hover:underline">Next 🡒</div>
+          <div class="flex justify-right hover:underline">
+            Next<svg
+              class="w-3 fill-gray-400 mx-2 object-right"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 -256 1792 1792"
+            >
+              <path
+                d="M1099 704q0-52-37-91L410-38q-37-37-90-37t-90 37l-76 75q-37 39-37 91 0 53 37 90l486 486-486 485q-37 39-37 91 0 53 37 90l76 75q36 38 90 38t90-38l652-651q37-37 37-90z"
+                style="fill:currentColor"
+                transform="matrix(1 0 0 -1 349 1331)"
+              />
+            </svg>
+          </div>
         </a>
       </div>
     );
@@ -140,10 +152,34 @@ function DeterminePages(props: {
     return (
       <div class="flex justify-between">
         <a href={res2}>
-          <div class="flex justify-left hover:underline">🡐 Previous</div>
+          <div class="flex justify-left hover:underline">
+            <svg
+              class="w-3 fill-gray-400 mx-2 object-right"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 -256 1792 1792"
+            >
+              <path
+                d="M742-37 90 614q-37 37-37 91 0 53 37 90l652 651q37 37 91 37 53 0 90-37l75-75q37-37 37-90 0-54-37-91L512 704l486-485q37-38 37-91t-37-90l-75-75q-37-37-90-37-54 0-91 37z"
+                style="fill:currentColor"
+                transform="matrix(1 0 0 -1 387 1339)"
+              />
+            </svg>Last
+          </div>
         </a>
         <a href={res1}>
-          <div class="flex justify-right hover:underline">Next 🡒</div>
+          <div class="flex justify-right hover:underline">
+            Next<svg
+              class="w-3 fill-gray-400 mx-2 object-right"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 -256 1792 1792"
+            >
+              <path
+                d="M1099 704q0-52-37-91L410-38q-37-37-90-37t-90 37l-76 75q-37 39-37 91 0 53 37 90l486 486-486 485q-37 39-37 91 0 53 37 90l76 75q36 38 90 38t90-38l652-651q37-37 37-90z"
+                style="fill:currentColor"
+                transform="matrix(1 0 0 -1 349 1331)"
+              />
+            </svg>
+          </div>
         </a>
       </div>
     );
@@ -154,7 +190,19 @@ function DeterminePages(props: {
     return (
       <div class="flex justify-between">
         <a href={res}>
-          <div class="flex justify-left hover:underline">🡐 Previous</div>
+          <div class="flex justify-left hover:underline">
+            <svg
+              class="w-3 fill-gray-400 mx-2 object-right"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 -256 1792 1792"
+            >
+              <path
+                d="M742-37 90 614q-37 37-37 91 0 53 37 90l652 651q37 37 91 37 53 0 90-37l75-75q37-37 37-90 0-54-37-91L512 704l486-485q37-38 37-91t-37-90l-75-75q-37-37-90-37-54 0-91 37z"
+                style="fill:currentColor"
+                transform="matrix(1 0 0 -1 387 1339)"
+              />
+            </svg>Last
+          </div>
         </a>
         <div class="flex justify-right"></div>
       </div>
