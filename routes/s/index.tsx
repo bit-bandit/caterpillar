@@ -96,15 +96,79 @@ export const handler = {
 
     res.homeInfo = homeInfo;
 
+    res.pageEntry = parseInt(new URLSearchParams(c.search).get("p") ?? 1);
+
+    // Stolen from https://stackoverflow.com/a/37826698/19832997
+    res.orderedItems = res.orderedItems.reduce((all, one, i) => {
+      const ch = Math.floor(i / 15);
+      all[ch] = [].concat(all[ch] || [], one);
+      return all;
+    }, []);
+
+    res.metaTotalPages = res.orderedItems.length;
+    res.orderedItems = res.orderedItems[res.pageEntry - 1]; // Account for zero-based
+
     return ctx.render(res);
   },
 };
+
+function DeterminePages(props: {
+  pageEntry: number;
+  total: number;
+  url: string;
+}) {
+  let p = new URLSearchParams(new URL(props.url).search);
+  if (props.pageEntry === 1) {
+    p.set("p", props.pageEntry + 1);
+    let res = `/s?${p.toString()}`;
+
+    return (
+      <div class="flex justify-between">
+        <div class="flex justify-left"></div>
+        <a href={res}>
+          <div class="flex justify-right hover:underline">Next 🡒</div>
+        </a>
+      </div>
+    );
+  } else if (props.pageEntry > 1 && props.total > props.pageEntry) {
+    p.set("p", props.pageEntry + 1);
+    let res1 = `/s?${p.toString()}`;
+
+    p.set("p", props.pageEntry - 1);
+    let res2 = `/s?${p.toString()}`;
+
+    return (
+      <div class="flex justify-between">
+        <a href={res2}>
+          <div class="flex justify-left hover:underline">🡐 Previous</div>
+        </a>
+        <a href={res1}>
+          <div class="flex justify-right hover:underline">Next 🡒</div>
+        </a>
+      </div>
+    );
+  } else if (props.pageEntry === props.total) {
+    p.set("p", props.pageEntry - 1);
+    let res = `/s?${p.toString()}`;
+
+    return (
+      <div class="flex justify-between">
+        <a href={res}>
+          <div class="flex justify-left hover:underline">🡐 Previous</div>
+        </a>
+        <div class="flex justify-right"></div>
+      </div>
+    );
+  }
+}
 
 export default function Search(props: PageProps) {
   return (
     <>
       <Head>
-        <title>{props.data.summary} | {props.data.homeInfo.name}</title>
+        <title>
+          {props.data.summary} | {props.data.homeInfo.name}
+        </title>
       </Head>
       <div class="flex flex-col min-h-screen">
         <Header />
@@ -143,11 +207,18 @@ export default function Search(props: PageProps) {
                 />
               );
             })}
+            <div class="px-3 py-2">
+              <DeterminePages
+                pageEntry={props.data.pageEntry}
+                total={props.data.metaTotalPages}
+                url={props.url.href}
+              />
+            </div>
           </div>
         </div>
-        <br />
-        <Footer />
       </div>
+      <br />
+      <Footer />
     </>
   );
 }
