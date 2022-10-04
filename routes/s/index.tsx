@@ -117,10 +117,10 @@ function DeterminePages(props: {
   total: number;
   url: string;
 }) {
-  let p = new URLSearchParams(new URL(props.url).search);
+  const p = new URLSearchParams(new URL(props.url).search);
   if (props.pageEntry === 1) {
     p.set("p", props.pageEntry + 1);
-    let res = `/s?${p.toString()}`;
+    const res = `/s?${p.toString()}`;
 
     return (
       <div class="flex justify-between">
@@ -144,10 +144,10 @@ function DeterminePages(props: {
     );
   } else if (props.pageEntry > 1 && props.total > props.pageEntry) {
     p.set("p", props.pageEntry + 1);
-    let res1 = `/s?${p.toString()}`;
+    const res1 = `/s?${p.toString()}`;
 
     p.set("p", props.pageEntry - 1);
-    let res2 = `/s?${p.toString()}`;
+    const res2 = `/s?${p.toString()}`;
 
     return (
       <div class="flex justify-between">
@@ -185,7 +185,7 @@ function DeterminePages(props: {
     );
   } else if (props.pageEntry === props.total) {
     p.set("p", props.pageEntry - 1);
-    let res = `/s?${p.toString()}`;
+    const res = `/s?${p.toString()}`;
 
     return (
       <div class="flex justify-between">
