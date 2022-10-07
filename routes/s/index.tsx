@@ -117,6 +117,10 @@ function DeterminePages(props: {
   total: number;
   url: string;
 }) {
+  if (props.total === 1) {
+    return;
+  }
+
   const p = new URLSearchParams(new URL(props.url).search);
   if (props.pageEntry === 1) {
     p.set("p", props.pageEntry + 1);
