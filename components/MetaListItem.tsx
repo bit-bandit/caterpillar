@@ -38,7 +38,7 @@ export function ListItemList(props: {
             </div>
           </a>
           <p class="mx-2">-</p>
-          <div class="italic text-slate-500">{d.toLocaleDateString()}</div>
+          <div class="text-slate-500">{d.toLocaleDateString()}</div>
           <p class="mx-2">-</p>
           <div class="flex">
             <div class="text-green-700">+{props.likes}</div>

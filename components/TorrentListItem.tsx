@@ -35,7 +35,7 @@ export function ListItemTorrent(props: {
             </div>
           </a>
           <p class="mx-2">-</p>
-          <div class="italic text-slate-500">{d.toLocaleDateString()}</div>
+          <div class="text-slate-500">{d.toLocaleDateString()}</div>
           <p class="mx-2">-</p>
           <div class="hover:underline">
             <a href={props.magnet}>Download</a>
