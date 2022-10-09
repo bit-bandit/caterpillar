@@ -112,12 +112,88 @@ export const handler = {
   },
 };
 
+// Basic date ranges
+function Ranges(props: {
+  url: string;
+}) {
+  const c = new URLSearchParams(new URL(props.url).search);
+
+  c.set("r", "1w");
+  const res1w = `/s?${c.toString()}`;
+  c.set("r", "1m");
+  const res1m = `/s?${c.toString()}`;
+  c.set("r", "1y");
+  const res1y = `/s?${c.toString()}`;
+
+  return (
+    <div class="m-2">
+      <details>
+        <summary class="w-16 bg-white text-center rounded-md shadow-md list-none py-2 hover:bg-gray-100">
+          Range
+        </summary>
+        <div class="absolute w-30 bg-white text-center rounded-md shadow-md mt-2">
+          <a href={res1w}>
+            <div class="text flex items-center px-4 py-1 hover:bg-gray-100">
+              This Week
+            </div>
+          </a>
+          <a href={res1m}>
+            <div class="text flex items-center px-4 py-1 hover:bg-gray-100">
+              This Month
+            </div>
+          </a>
+          <a href={res1y}>
+            <div class="text flex items-center px-4 py-1 hover:bg-gray-100">
+              This Year
+            </div>
+          </a>
+        </div>
+      </details>
+    </div>
+  );
+}
+
+// Sort by new, or top.
+function Sortable(props: {
+  url: string;
+}) {
+  const c = new URLSearchParams(new URL(props.url).search);
+
+  c.set("s", "new");
+  const resNew = `/s?${c.toString()}`;
+  c.set("s", "top");
+  const resTop = `/s?${c.toString()}`;
+
+  return (
+    <div class="m-2">
+      <details>
+        <summary class="w-16 bg-white text-center rounded-md shadow-md list-none py-2 hover:bg-gray-100">
+          Sort
+        </summary>
+        <div class="absolute w-30 bg-white text-center rounded-md shadow-md mt-2">
+          <a href={resTop}>
+            <div class="text flex items-center px-4 py-1 hover:bg-gray-100">
+              Top
+            </div>
+          </a>
+          <a href={resNew}>
+            <div class="text flex items-center px-4 py-1 hover:bg-gray-100">
+              New
+            </div>
+          </a>
+        </div>
+      </details>
+    </div>
+  );
+}
+
+// Deal with page navigation
 function DeterminePages(props: {
   pageEntry: number;
   total: number;
   url: string;
 }) {
-  if (props.total === 1) {
+  if (props.total === 0 || props.total === 1) {
     return;
   }
 
@@ -228,6 +304,10 @@ export default function Search(props: PageProps) {
           <div class="text-3xl font-bold leading-tight text-center m-6">
             <h1>Search results</h1>
           </div>
+          <div class="flex">
+            <Sortable url={props.url.href} />
+            <Ranges url={props.url.href} />
+          </div>
           <div class="bg-white shadow-md p-5 rounded-2xl m-0 max-w-screen-md">
             {props.data.orderedItems.map((x) => {
               if (x.type === "OrderedCollection") {
@@ -244,20 +324,21 @@ export default function Search(props: PageProps) {
                     subitems={x.orderedItems}
                   />
                 );
+              } else {
+                return (
+                  <ListItemTorrent
+                    href={x.id}
+                    name={x.name}
+                    uploaderHref={x.actor.id}
+                    uploader={x.actor.name}
+                    icon={x.actor.icon[0]}
+                    date={x.published}
+                    likes={x.likes}
+                    dislikes={x.dislikes}
+                    magnet={x.attachment.href}
+                  />
+                );
               }
-              return (
-                <ListItemTorrent
-                  href={x.id}
-                  name={x.name}
-                  uploaderHref={x.actor.id}
-                  uploader={x.actor.name}
-                  icon={x.actor.icon[0]}
-                  date={x.published}
-                  likes={x.likes}
-                  dislikes={x.dislikes}
-                  magnet={x.attachment.href}
-                />
-              );
             })}
             <div class="px-3 py-2">
               <DeterminePages
