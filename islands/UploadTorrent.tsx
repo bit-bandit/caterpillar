@@ -45,6 +45,9 @@ export default function UploadTorrent() {
       r = await r.json();
       r = r.msg.split(" ").pop();
       window.location.href = (new URL(r)).pathname;
+    } else {
+      r = await r.json();
+      alert(r.msg);
     }
   };
   return (
