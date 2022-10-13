@@ -3,6 +3,7 @@ import { Head } from "$fresh/runtime.ts";
 import { caterpillarSettings } from "../../settings.ts";
 import { ListItemTorrent } from "../../components/TorrentListItem.tsx";
 import { ListItemList } from "../../components/MetaListItem.tsx";
+import { UserCard } from "../../components/UserCard.tsx";
 import Footer from "../../components/Footer.tsx";
 import Header from "../../islands/Header.tsx";
 
@@ -23,6 +24,18 @@ export const handler = {
       // We'll fix that later - For now, this will do.
       if (res.orderedItems[i].item) {
         res.orderedItems[i] = res.orderedItems[i].item;
+      }
+
+      if (res.orderedItems[i].type === "Person") {
+        let f = await fetch(`${res.orderedItems[i].followers}`, {
+          headers: {
+            "Accept": "application/activity+json",
+          },
+        });
+
+        f = await f.json();
+        res.orderedItems[i].followers = f.totalItems;
+        continue;
       }
 
       const likes = await fetch(`${res.orderedItems[i].id}/likes`, {
@@ -290,6 +303,61 @@ function DeterminePages(props: {
   }
 }
 
+// TODO: Put this in its own file(?)
+function RenderItems(props: { data: unknown }) {
+  if (props.data.orderedItems === undefined) {
+    return;
+  }
+
+  return (
+    <div>
+      {props.data.orderedItems.map((x) => {
+        if (x.type === "OrderedCollection") {
+          return (
+            <ListItemList
+              href={x.id}
+              name={x.name}
+              uploaderHref={x.actor.id}
+              uploader={x.actor.name}
+              icon={x.actor.icon[0]}
+              date={x.published}
+              likes={x.likes}
+              dislikes={x.dislikes}
+              subitems={x.orderedItems}
+            />
+          );
+        } else if (x.type === "Person") {
+          return (
+            <UserCard
+              id={x.id}
+              followers={x.followers}
+              href={new URL(x.id).pathname}
+              icon={x.icon[0]}
+              name={x.name}
+            />
+          );
+        } else if (x.type === "Note") {
+          return (
+            <ListItemTorrent
+              href={x.id}
+              name={x.name}
+              uploaderHref={x.actor.id}
+              uploader={x.actor.name}
+              icon={x.actor.icon[0]}
+              date={x.published}
+              likes={x.likes}
+              dislikes={x.dislikes}
+              magnet={x.attachment.href}
+            />
+          );
+        } else {
+          return;
+        }
+      })}
+    </div>
+  );
+}
+
 export default function Search(props: PageProps) {
   return (
     <>
@@ -309,37 +377,7 @@ export default function Search(props: PageProps) {
             <Ranges url={props.url.href} />
           </div>
           <div class="bg-white shadow-md p-5 rounded-2xl m-0 max-w-screen-md">
-            {props.data.orderedItems.map((x) => {
-              if (x.type === "OrderedCollection") {
-                return (
-                  <ListItemList
-                    href={x.id}
-                    name={x.name}
-                    uploaderHref={x.actor.id}
-                    uploader={x.actor.name}
-                    icon={x.actor.icon[0]}
-                    date={x.published}
-                    likes={x.likes}
-                    dislikes={x.dislikes}
-                    subitems={x.orderedItems}
-                  />
-                );
-              } else {
-                return (
-                  <ListItemTorrent
-                    href={x.id}
-                    name={x.name}
-                    uploaderHref={x.actor.id}
-                    uploader={x.actor.name}
-                    icon={x.actor.icon[0]}
-                    date={x.published}
-                    likes={x.likes}
-                    dislikes={x.dislikes}
-                    magnet={x.attachment.href}
-                  />
-                );
-              }
-            })}
+            <RenderItems data={props.data} />
             <div class="px-3 py-2">
               <DeterminePages
                 pageEntry={props.data.pageEntry}
