@@ -22,7 +22,7 @@ export function ListItemList(props: {
         <img class="w-24 h-14" src="/list.svg" />
       </div>
       <div>
-        <div class="mx-4 my-2 text-3xl font-bold hover:underline">
+        <div class="mx-4 my-2 text-3xl font-bold hover:underline break-all max-w-2xl">
           <a href={props.href}>{props.name}</a>
         </div>
         <div class="flex">
