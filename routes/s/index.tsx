@@ -141,7 +141,7 @@ function Ranges(props: {
   return (
     <div class="m-2">
       <details>
-        <summary class="w-16 bg-white text-center rounded-md shadow-md list-none py-2 hover:bg-gray-100">
+        <summary class="w-20 bg-white text-center rounded-md shadow-md py-2 hover:bg-gray-100">
           Range
         </summary>
         <div class="absolute w-30 bg-white text-center rounded-md shadow-md mt-2">
@@ -180,7 +180,7 @@ function Sortable(props: {
   return (
     <div class="m-2">
       <details>
-        <summary class="w-16 bg-white text-center rounded-md shadow-md list-none py-2 hover:bg-gray-100">
+        <summary class="w-16 bg-white text-center rounded-md shadow-md py-2 hover:bg-gray-100">
           Sort
         </summary>
         <div class="absolute w-30 bg-white text-center rounded-md shadow-md mt-2">

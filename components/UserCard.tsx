@@ -72,7 +72,7 @@ export function UserCard(props: {
   const formattedUsername = `@${u.pathname.split("/")[2]}@${u.host}`;
 
   return (
-    <div class="p-5 m-4 shadow-md flex items-center max-w-lg rounded-2xl bg-white justify-between m-auto">
+    <div class="max-w-screen-md max-h-26 m-4 flex rounded-2xl p-4 shadow-md bg-white items-center justify-between">
       <div class="flex">
         <div>
           <img class="rounded-full shadow-md w-24" src={props.icon} />
