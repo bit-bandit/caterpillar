@@ -42,13 +42,14 @@ import * as $$10 from "./islands/Likes.tsx";
 import * as $$11 from "./islands/Login.tsx";
 import * as $$12 from "./islands/Logout.tsx";
 import * as $$13 from "./islands/Register.tsx";
-import * as $$14 from "./islands/Undo.tsx";
-import * as $$15 from "./islands/UpdateList.tsx";
-import * as $$16 from "./islands/UpdateProfile.tsx";
-import * as $$17 from "./islands/UpdateTorrent.tsx";
-import * as $$18 from "./islands/UploadList.tsx";
-import * as $$19 from "./islands/UploadTorrent.tsx";
-import * as $$20 from "./islands/UserBox.tsx";
+import * as $$14 from "./islands/RootHeader.tsx";
+import * as $$15 from "./islands/Undo.tsx";
+import * as $$16 from "./islands/UpdateList.tsx";
+import * as $$17 from "./islands/UpdateProfile.tsx";
+import * as $$18 from "./islands/UpdateTorrent.tsx";
+import * as $$19 from "./islands/UploadList.tsx";
+import * as $$20 from "./islands/UploadTorrent.tsx";
+import * as $$21 from "./islands/UserBox.tsx";
 
 const manifest = {
   routes: {
@@ -93,13 +94,14 @@ const manifest = {
     "./islands/Login.tsx": $$11,
     "./islands/Logout.tsx": $$12,
     "./islands/Register.tsx": $$13,
-    "./islands/Undo.tsx": $$14,
-    "./islands/UpdateList.tsx": $$15,
-    "./islands/UpdateProfile.tsx": $$16,
-    "./islands/UpdateTorrent.tsx": $$17,
-    "./islands/UploadList.tsx": $$18,
-    "./islands/UploadTorrent.tsx": $$19,
-    "./islands/UserBox.tsx": $$20,
+    "./islands/RootHeader.tsx": $$14,
+    "./islands/Undo.tsx": $$15,
+    "./islands/UpdateList.tsx": $$16,
+    "./islands/UpdateProfile.tsx": $$17,
+    "./islands/UpdateTorrent.tsx": $$18,
+    "./islands/UploadList.tsx": $$19,
+    "./islands/UploadTorrent.tsx": $$20,
+    "./islands/UserBox.tsx": $$21,
   },
   baseUrl: import.meta.url,
   config,

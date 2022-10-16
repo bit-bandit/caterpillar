@@ -2,6 +2,7 @@ import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { caterpillarSettings } from "../settings.ts";
 import { SearchBar } from "../components/SearchBar.tsx";
+import RootHeader from "../islands/RootHeader.tsx";
 
 export const handler: Handlers = {
   async GET(_, ctx) {
@@ -32,6 +33,7 @@ export default function Index(props: PageProps) {
       <Head>
         <title>Home | {props.data.name}</title>
       </Head>
+      <RootHeader />
       <div class="p-4 mx-auto max-w-screen-md">
         <div class="my-6 text-center">
           <h1 class="text-4xl font-bold">{props.data.name}</h1>
