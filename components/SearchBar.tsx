@@ -21,7 +21,9 @@ export function SearchBar() {
   );
 }
 
-export function SmallSearchBar() {
+export function SmallSearchBar(props: {
+  str?: string;
+}) {
   return (
     <div class="flex">
       <form action="/s" method="GET" class="flex">
@@ -30,6 +32,7 @@ export function SmallSearchBar() {
           name="q"
           class="ml-3 mr-2 rounded-2xl bg-white px-2 max-h-9 shadow-md"
           placeholder="Search"
+          value={props.str}
         />
         <button type="submit">
           <img

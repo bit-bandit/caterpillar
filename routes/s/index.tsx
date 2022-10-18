@@ -359,6 +359,7 @@ function RenderItems(props: { data: unknown }) {
 }
 
 export default function Search(props: PageProps) {
+  const c = new URLSearchParams(props.url.search);
   return (
     <>
       <Head>
@@ -367,7 +368,7 @@ export default function Search(props: PageProps) {
         </title>
       </Head>
       <div class="flex flex-col min-h-screen">
-        <Header />
+        <Header searchStr={c.get("q")} />
         <div class="flex-1 mx-auto max-w-screen-md">
           <div class="text-3xl font-bold leading-tight text-center m-6">
             <h1>Search results</h1>

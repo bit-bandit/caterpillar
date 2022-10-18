@@ -3,7 +3,9 @@ import { caterpillarSettings } from "../settings.ts";
 import UserBox from "./UserBox.tsx";
 import { SmallSearchBar } from "../components/SearchBar.tsx";
 
-export default function Header() {
+export default function Header(props: {
+  searchStr?: string;
+}) {
   return (
     <div class="bg-white px-5 shadow-md mb-7 justify-around items-center flex">
       <a href="/">
@@ -12,7 +14,7 @@ export default function Header() {
         </div>
       </a>
       <div class="my-4 flex justify-center">
-        <SmallSearchBar />
+        <SmallSearchBar str={props.searchStr} />
       </div>
       <div class="flex items-center">
         <div class="relative">
