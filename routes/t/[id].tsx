@@ -211,6 +211,9 @@ export default function Torrent(props: PageProps) {
                 );
               })}
             </div>
+            <p class="ml-4 text-gray-600">
+              {new Date(torrent.published).toLocaleString()}
+            </p>
           </div>
           <br />
           <h1 class="text-4xl font-bold leading-tight snap-center text-center">

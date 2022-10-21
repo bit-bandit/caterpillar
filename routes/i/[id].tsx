@@ -10,12 +10,7 @@ export const handler: Handlers = {
   async GET(_, ctx) {
     const { id } = ctx.params;
 
-    const query = new URL(
-      `/i/${id}`,
-      caterpillarSettings.apiURL,
-    );
-
-    const r = await fetch(query.href, {
+    const r = await fetch(_.url, {
       headers: {
         "Accept": "application/activity+json",
       },
@@ -54,7 +49,7 @@ export const handler: Handlers = {
           "Accept": "application/activity+json",
         },
       });
-      res.orderedItems[i].actor = await actor.json();
+      res.orderedItems[i].attributedTo = await actor.json();
     }
 
     let home = await fetch(caterpillarSettings.apiURL, {
@@ -88,11 +83,11 @@ export default function Tag(props: PageProps) {
               if (x.type === "OrderedCollection") {
                 return (
                   <ListItemList
-                    href={(new URL(x.id)).pathname}
+                    href={x.id}
                     name={x.name}
-                    uploaderHref={new URL(x.actor.id).pathname}
-                    uploader={x.actor.name}
-                    icon={x.actor.icon[0]}
+                    uploaderHref={x.attributedTo.id}
+                    uploader={x.attributedTo.name}
+                    icon={x.attributedTo.icon[0]}
                     date={x.published}
                     likes={x.likes}
                     dislikes={x.dislikes}
@@ -102,11 +97,11 @@ export default function Tag(props: PageProps) {
               }
               return (
                 <ListItemTorrent
-                  href={(new URL(x.id)).pathname}
+                  href={x.id}
                   name={x.name}
-                  uploaderHref={new URL(x.attributedTo).pathname}
-                  uploader={x.actor.name}
-                  icon={x.actor.icon[0]}
+                  uploaderHref={x.attributedTo.id}
+                  uploader={x.attributedTo.name}
+                  icon={x.attributedTo.icon[0]}
                   date={x.published}
                   likes={x.likes}
                   dislikes={x.dislikes}
