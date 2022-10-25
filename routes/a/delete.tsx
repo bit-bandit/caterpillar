@@ -8,9 +8,9 @@ import Header from "../../islands/Header.tsx";
 export default function Index(props: PageProps) {
   return (
     <div>
-      <div class="mx-auto max-w-screen-xl">
+      <div class="p-4 mx-auto max-w-screen-md">
         <AdminRemove />
-        <a href="/" class="hover:underline text-blue-800 mx-5">🡐 Back</a>
+        <a href="/" class="hover:underline mx-5">🡐 Back</a>
       </div>
     </div>
   );
