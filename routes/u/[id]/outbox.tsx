@@ -11,12 +11,22 @@ export const handler = {
     const res = {};
     const { id } = ctx.params;
 
-    const userAPI = new URL(`/u/${id}`, caterpillarSettings.apiURL);
+    let userAPI: unknown;
+    let re = /^([A-Za-z0-9_-]{1,24})@(.*)$/gm;
+
+    if (re.test(id)) {
+      let vals = /^([A-Za-z0-9_-]{1,24})@(.*)$/gm.exec(id);
+      userAPI = new URL(`/u/${vals[1]}`, `http://${vals[2]}`);
+    } else {
+      userAPI = new URL(_.url);
+    }
+
     let req = await fetch(userAPI.href, {
       headers: {
         "Accept": "application/activity+json",
       },
     });
+
     req = await req.json();
 
     req = await fetch(req.outbox, {

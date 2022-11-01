@@ -10,14 +10,23 @@ export const handler: Handlers = {
   async GET(_, ctx) {
     const { id } = ctx.params;
     const res = {};
-    let userAPI = new URL(`/u/${id}`, caterpillarSettings.apiURL);
 
-    let req = await fetch(userAPI.href);
-    res.user = await req.json();
+    let userAPI: unknown;
+    let re = /^([A-Za-z0-9_-]{1,24})@(.*)$/gm;
 
-    userAPI = new URL(`/u/${id}/likes`, caterpillarSettings.apiURL);
+    if (re.test(id)) {
+      let vals = /^([A-Za-z0-9_-]{1,24})@(.*)$/gm.exec(id);
+      userAPI = new URL(`/u/${vals[1]}`, `http://${vals[2]}`);
+    } else {
+      userAPI = new URL(_.url);
+    }
 
-    req = await fetch(userAPI.href);
+    let req = await fetch(userAPI.href, {
+      headers: {
+        "Accept": "application/activity+json",
+      },
+    });
+
     res.likes = await req.json();
 
     if (res.likes.err) {
@@ -26,28 +35,56 @@ export const handler: Handlers = {
 
     // TODO: Add an `accept` header to make sure we're not getting any JSON.
     for (const url in res.likes.orderedItems) {
-      let fetched = await fetch(res.likes.orderedItems[url]);
+      let fetched = await fetch(res.likes.orderedItems[url], {
+        headers: {
+          "Accept": "application/activity+json",
+        },
+      });
+
       fetched = await fetched.json();
 
       if (!fetched.err) {
-        let f = await fetch(fetched.attributedTo);
+        let f = await fetch(fetched.attributedTo, {
+          headers: {
+            "Accept": "application/activity+json",
+          },
+        });
         fetched.actor = await f.json();
 
-        f = await fetch(`${res.likes.orderedItems[url]}/likes`);
+        f = await fetch(`${res.likes.orderedItems[url]}/likes`, {
+          headers: {
+            "Accept": "application/activity+json",
+          },
+        });
         fetched.likes = (await f.json()).totalItems;
 
-        f = await fetch(`${res.likes.orderedItems[url]}/dislikes`);
+        f = await fetch(`${res.likes.orderedItems[url]}/dislikes`, {
+          headers: {
+            "Accept": "application/activity+json",
+          },
+        });
         fetched.dislikes = (await f.json()).totalItems;
         if (fetched.type === "OrderedCollection") {
           for (const url in fetched.orderedItems) {
-            let subObj = await fetch(fetched.orderedItems[url]);
+            let subObj = await fetch(fetched.orderedItems[url], {
+              headers: {
+                "Accept": "application/activity+json",
+              },
+            });
             subObj = await subObj.json();
 
             const likes =
-              await (await fetch(`${fetched.orderedItems[url]}/likes`)).json();
+              await (await fetch(`${fetched.orderedItems[url]}/likes`, {
+                headers: {
+                  "Accept": "application/activity+json",
+                },
+              })).json();
             const dislikes =
-              await (await fetch(`${fetched.orderedItems[url]}/dislikes`))
-                .json();
+              await (await fetch(`${fetched.orderedItems[url]}/dislikes`, {
+                headers: {
+                  "Accept": "application/activity+json",
+                },
+              })).json();
 
             const u = new URL(fetched.orderedItems[url]);
 
