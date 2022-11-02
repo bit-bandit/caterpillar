@@ -19,7 +19,16 @@ export const handler: Handlers = {
     const res = {};
     const { id } = ctx.params;
 
-    const torrentAPI = new URL(`/t/${id}`, caterpillarSettings.apiURL);
+    let torrentAPI: unknown;
+
+    let re = /^([A-Za-z0-9_-]{1,24})@(.*)$/gm;
+
+    if (re.test(id)) {
+      let vals = /^([A-Za-z0-9_-]{1,24})@(.*)$/gm.exec(id);
+      torrentAPI = new URL(`/t/${vals[1]}`, `http://${vals[2]}`);
+    } else {
+      torrentAPI = new URL(_.url);
+    }
 
     let req = await fetch(torrentAPI.href);
 

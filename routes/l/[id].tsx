@@ -22,7 +22,16 @@ export const handler: Handlers = {
     const res = {};
     const { id } = ctx.params;
 
-    const listAPI = new URL(`/l/${id}`, caterpillarSettings.apiURL);
+    let listAPI: unknown;
+
+    let re = /^([A-Za-z0-9_-]{1,24})@(.*)$/gm;
+
+    if (re.test(id)) {
+      let vals = /^([A-Za-z0-9_-]{1,24})@(.*)$/gm.exec(id);
+      listAPI = new URL(`/l/${vals[1]}`, `http://${vals[2]}`);
+    } else {
+      listAPI = new URL(_.url);
+    }
 
     // List object
     let req = await fetch(listAPI.href, {
