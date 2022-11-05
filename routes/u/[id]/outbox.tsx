@@ -16,20 +16,12 @@ export const handler = {
 
     if (re.test(id)) {
       let vals = /^([A-Za-z0-9_-]{1,24})@(.*)$/gm.exec(id);
-      userAPI = new URL(`/u/${vals[1]}`, `http://${vals[2]}`);
+      userAPI = new URL(`/u/${vals[1]}/outbox`, `http://${vals[2]}`);
     } else {
       userAPI = new URL(_.url);
     }
 
     let req = await fetch(userAPI.href, {
-      headers: {
-        "Accept": "application/activity+json",
-      },
-    });
-
-    req = await req.json();
-
-    req = await fetch(req.outbox, {
       headers: {
         "Accept": "application/activity+json",
       },
@@ -171,7 +163,7 @@ export default function Outbox(props: PageProps) {
                     name={x.name}
                     uploaderHref={x.actor.id}
                     uploader={x.actor.name}
-                    icon={x.actor.icon[0]}
+                    icon={x.actor.icon.url}
                     date={x.published}
                     likes={x.likes}
                     dislikes={x.dislikes}
@@ -185,7 +177,7 @@ export default function Outbox(props: PageProps) {
                   name={x.name}
                   uploaderHref={x.attributedTo}
                   uploader={x.actor.name}
-                  icon={x.actor.icon[0]}
+                  icon={x.actor.icon.url}
                   date={x.published}
                   likes={x.likes}
                   dislikes={x.dislikes}

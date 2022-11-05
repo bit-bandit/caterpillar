@@ -87,7 +87,7 @@ export default function Tag(props: PageProps) {
                     name={x.name}
                     uploaderHref={x.attributedTo.id}
                     uploader={x.attributedTo.name}
-                    icon={x.attributedTo.icon[0]}
+                    icon={x.attributedTo.icon.url}
                     date={x.published}
                     likes={x.likes}
                     dislikes={x.dislikes}
@@ -101,7 +101,7 @@ export default function Tag(props: PageProps) {
                   name={x.name}
                   uploaderHref={x.attributedTo.id}
                   uploader={x.attributedTo.name}
-                  icon={x.attributedTo.icon[0]}
+                  icon={x.attributedTo.icon.url}
                   date={x.published}
                   likes={x.likes}
                   dislikes={x.dislikes}

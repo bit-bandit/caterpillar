@@ -20,6 +20,7 @@ export default function LoginForm() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Accept": "application/activity+json",
       },
       body: JSON.stringify(inputs),
     });
@@ -37,7 +38,7 @@ export default function LoginForm() {
       const r = await fetch(checkURL.href, {
         method: "GET",
         headers: {
-          "Accept": "application/json",
+          "Accept": "application/activity+json",
         },
       });
 

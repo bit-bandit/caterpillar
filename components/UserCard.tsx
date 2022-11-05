@@ -12,7 +12,7 @@ export function SmallUserCard(props: {
             title="See user info"
           >
             <img
-              src={props.obj.icon[0]}
+              src={props.obj.icon.url}
               class="w-8 rounded-full shadow-md"
             />
           </summary>

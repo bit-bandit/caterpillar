@@ -281,7 +281,7 @@ export default function List(props: PageProps) {
           <div class="m-3 flex justify-center gap-12">
             <div class="justify-center px-6 py-3 rounded-2xl shadow-md text-center flex gap-6 bg-white hover:bg-gray-100 hover:shadow-lg">
               <div class="w-6 h-6 rounded-2xl">
-                <img class="rounded-full" src={submitter.icon[0]} />
+                <img class="rounded-full" src={submitter.icon.url} />
               </div>
               <div class="font-bold">
                 <a href={new URL(list.attributedTo).pathname}>
@@ -326,16 +326,16 @@ export default function List(props: PageProps) {
           <div class="text-3xl font-bold leading-tight text-center">
             <h2>Items</h2>
           </div>
-          <div class="flex flex-col items-center">
+          <div>
             {list.orderedItems.filter((x) => x.id ? true : false).map((x) => {
               if (x.type === "OrderedCollection") {
                 return (
                   <ListItemList
                     href={(new URL(x.id)).pathname}
                     name={x.name}
-                    uploaderHref={new URL(x.actor.id).pathname}
+                    uploaderHref={new URL(x.actor.id)}
                     uploader={x.actor.name}
-                    icon={x.actor.icon[0]}
+                    icon={x.actor.icon.url}
                     date={list.published}
                     likes={x.likes.orderedItems.length}
                     dislikes={x.dislikes.orderedItems.length}
@@ -349,7 +349,7 @@ export default function List(props: PageProps) {
                   name={x.name}
                   uploaderHref={x.actor.id}
                   uploader={x.actor.name}
-                  icon={x.actor.icon[0]}
+                  icon={x.actor.icon.url}
                   date={list.published}
                   likes={x.likes.orderedItems.length}
                   dislikes={x.dislikes.orderedItems.length}
@@ -371,7 +371,7 @@ export default function List(props: PageProps) {
                     id={x.id}
                     actor={x.attributedTo.id}
                     username={x.attributedTo.name}
-                    avatarURL={x.attributedTo.icon[0]}
+                    avatarURL={x.attributedTo.icon.url}
                     date={x.published}
                     commentBody={x.content}
                     likes={x.likes}

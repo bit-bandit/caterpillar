@@ -140,7 +140,7 @@ export default function Likes(props: PageProps) {
                     name={x.name}
                     uploaderHref={x.actor.id}
                     uploader={x.actor.name}
-                    icon={x.actor.icon[0]}
+                    icon={x.actor.icon.url}
                     date={x.published}
                     likes={x.likes}
                     dislikes={x.dislikes}
@@ -154,7 +154,7 @@ export default function Likes(props: PageProps) {
                   name={x.name}
                   uploaderHref={x.attributedTo}
                   uploader={x.actor.name}
-                  icon={x.actor.icon[0]}
+                  icon={x.actor.icon.url}
                   date={x.published}
                   likes={x.likes}
                   dislikes={x.dislikes}

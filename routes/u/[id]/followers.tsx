@@ -95,7 +95,7 @@ export default function Followers(props: PageProps) {
                   id={x.id}
                   followers={x.followers}
                   href={new URL(x.id).pathname}
-                  icon={x.icon[0]}
+                  icon={x.icon.url}
                   name={x.name}
                 />
               );

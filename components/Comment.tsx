@@ -62,7 +62,7 @@ export function RenderReplies(props: {
               id={x.id}
               actor={x.attributedTo.id}
               username={x.attributedTo.name}
-              avatarURL={x.attributedTo.icon[0]}
+              avatarURL={x.attributedTo.icon.url}
               date={x.published}
               commentBody={x.content}
               likes={x.likes}

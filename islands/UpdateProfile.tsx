@@ -99,6 +99,7 @@ export default function UpdateProfile() {
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`,
+	"Accept": "application/activity+json",
       },
       body: JSON.stringify(inputs),
     });

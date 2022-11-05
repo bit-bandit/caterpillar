@@ -30,7 +30,11 @@ export const handler: Handlers = {
       torrentAPI = new URL(_.url);
     }
 
-    let req = await fetch(torrentAPI.href);
+    let req = await fetch(torrentAPI.href, {
+    	headers: {
+        "Accept": "application/activity+json",
+      },
+    });
 
     res.torrent = await req.json();
 
@@ -173,7 +177,7 @@ export default function Torrent(props: PageProps) {
             <a href={torrent.attributedTo}>
               <div class="px-6 py-3 rounded-2xl shadow-md text-center flex gap-6 bg-white hover:bg-gray-100 hover:shadow-lg">
                 <div class="w-6 h-6 rounded-full">
-                  <img class="rounded-full" src={submitter.icon[0]} />
+                  <img class="rounded-full" src={submitter.icon.url} />
                 </div>
                 <div class="font-bold truncate">
                   {submitter.name}
@@ -237,7 +241,7 @@ export default function Torrent(props: PageProps) {
                     id={x.id}
                     actor={x.attributedTo.id}
                     username={x.attributedTo.name}
-                    avatarURL={x.attributedTo.icon[0]}
+                    avatarURL={x.attributedTo.icon.url}
                     date={x.published}
                     commentBody={x.content}
                     likes={x.likes}

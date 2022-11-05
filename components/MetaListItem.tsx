@@ -17,7 +17,7 @@ export function ListItemList(props: {
   const formattedUsername = `@${u.pathname.split("/")[2]}@${u.host}`;
 
   return (
-    <div class="max-h-26 m-4 flex rounded-3xl p-4 shadow-md bg-white">
+    <div class="max-w-screen-md max-h-26 m-4 flex rounded-2xl p-4 shadow-md bg-white">
       <div class="w-24 h-24 p-5 rounded-full bg-gray-200">
         <img class="w-24 h-14" src="/list.svg" />
       </div>
@@ -45,6 +45,7 @@ export function ListItemList(props: {
             <div>/</div>
             <div class="text-red-700">-{props.dislikes}</div>
           </div>
+	  <br/>
         </div>
         <div class="my-2">
           <details class="min-w-fit">

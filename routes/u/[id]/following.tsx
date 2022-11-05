@@ -11,16 +11,19 @@ export const handler: Handlers = {
     const { id } = ctx.params;
 
     let userAPI: unknown;
-    let re = /^([A-Za-z0-9_-]{1,24})@(.*)$/gm;
+    let re = /^([A-Za-z0-9_-]{1,24})@(.*)(\/.*)?$/gm;
 
     if (re.test(id)) {
-      let vals = /^([A-Za-z0-9_-]{1,24})@(.*)$/gm.exec(id);
+      let vals = /^([A-Za-z0-9_-]{1,24})@(.*)(\/.*)?$/gm.exec(id);
       userAPI = new URL(`/u/${vals[1]}`, `http://${vals[2]}`);
     } else {
-      userAPI = new URL(_.url);
+      let usrurl = /(.*)\/following/.exec(_.url)[1];
+      userAPI = new URL(usrurl);
     }
 
-    let req = await fetch(userAPI.href);
+    let req = await fetch(userAPI.href, {
+      headers: { "Accept": "application/activity+json" },
+    });
 
     res.user = await req.json();
 
@@ -95,7 +98,7 @@ export default function Following(props: PageProps) {
                   id={x.id}
                   followers={x.followers}
                   href={new URL(x.id).pathname}
-                  icon={x.icon[0]}
+                  icon={x.icon.url}
                   name={x.name}
                 />
               );

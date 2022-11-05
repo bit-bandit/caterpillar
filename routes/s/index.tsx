@@ -319,7 +319,7 @@ function RenderItems(props: { data: unknown }) {
               name={x.name}
               uploaderHref={x.actor.id}
               uploader={x.actor.name}
-              icon={x.actor.icon[0]}
+              icon={x.actor.icon.url}
               date={x.published}
               likes={x.likes}
               dislikes={x.dislikes}
@@ -332,7 +332,7 @@ function RenderItems(props: { data: unknown }) {
               id={x.id}
               followers={x.followers}
               href={new URL(x.id).pathname}
-              icon={x.icon[0]}
+              icon={x.icon.url}
               name={x.name}
             />
           );
@@ -343,7 +343,7 @@ function RenderItems(props: { data: unknown }) {
               name={x.name}
               uploaderHref={x.actor.id}
               uploader={x.actor.name}
-              icon={x.actor.icon[0]}
+              icon={x.actor.icon.url}
               date={x.published}
               likes={x.likes}
               dislikes={x.dislikes}

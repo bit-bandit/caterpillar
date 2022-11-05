@@ -171,17 +171,17 @@ export default function User(props: PageProps) {
       <div class="flex flex-col min-h-screen">
         <Header />
         <div class="flex-1 mx-auto max-w-screen-md">
-          <div class="mx-auto max-w-screen-md shadow-md p-9 rounded-2xl m-11 bg-white">
+          <div class="mx-auto max-w-screen-md shadow-md p-9 rounded-2xl my-5 mx-4 bg-white">
             <div class="relative">
               <img
                 class="rounded-2xl my-3 mx-auto object-fill min-w-full"
-                src={user.image}
+                src={user.image.url}
               />
               <div class="flex">
                 <div class="p-4">
                   <img
                     class="absolute -bottom-6 w-40 rounded-full shadow-md"
-                    src={user.icon[0]}
+                    src={user.icon.url}
                   />
                 </div>
                 <br />
@@ -219,7 +219,7 @@ export default function User(props: PageProps) {
                     name={x.name}
                     uploaderHref={x.actor.id}
                     uploader={x.actor.name}
-                    icon={x.actor.icon[0]}
+                    icon={x.actor.icon.url}
                     date={x.published}
                     likes={x.likes}
                     dislikes={x.dislikes}
@@ -233,7 +233,7 @@ export default function User(props: PageProps) {
                   name={x.name}
                   uploaderHref={x.actor.id}
                   uploader={x.actor.name}
-                  icon={x.actor.icon[0]}
+                  icon={x.actor.icon.url}
                   date={x.published}
                   likes={x.likes}
                   dislikes={x.dislikes}
