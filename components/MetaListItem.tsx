@@ -45,7 +45,7 @@ export function ListItemList(props: {
             <div>/</div>
             <div class="text-red-700">-{props.dislikes}</div>
           </div>
-	  <br/>
+          <br />
         </div>
         <div class="my-2">
           <details class="min-w-fit">

@@ -31,7 +31,7 @@ export const handler: Handlers = {
     }
 
     let req = await fetch(torrentAPI.href, {
-    	headers: {
+      headers: {
         "Accept": "application/activity+json",
       },
     });

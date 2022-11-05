@@ -20,7 +20,7 @@ export default function RegistrationForm() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-	"Accept": "application/activity+json",
+        "Accept": "application/activity+json",
       },
       body: JSON.stringify(inputs),
     });

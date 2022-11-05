@@ -43,7 +43,7 @@ export default function CommentBox(props: {
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`,
-	"Accept": "application/activity+json",
+        "Accept": "application/activity+json",
       },
       body: JSON.stringify(inputs),
     });
@@ -51,7 +51,7 @@ export default function CommentBox(props: {
     if (r.status === 201) {
       window.location.reload();
     } else {
-      alert("Something went wrong.")
+      alert("Something went wrong.");
     }
   };
 

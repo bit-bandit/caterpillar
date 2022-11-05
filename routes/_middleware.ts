@@ -12,9 +12,9 @@ export async function handler(
 ) {
   // Deal with images
   if (req.url.endsWith(".png") || req.url.endsWith(".jpg")) {
-      const u = new URL((new URL(req.url)).pathname, caterpillarSettings.apiURL);
-      const res = await fetch(u.href);
-      return res;
+    const u = new URL((new URL(req.url)).pathname, caterpillarSettings.apiURL);
+    const res = await fetch(u.href);
+    return res;
   }
 
   // Headers we'll allow.
@@ -42,7 +42,7 @@ export async function handler(
     return res;
   }
   const resp = await ctx.next();
-    
+
   resp.headers.set("Access-Control-Allow-Origin", "*");
   resp.headers.set("Connection", "keep-alive");
   resp.headers.set("Access-Control-Allow-Origin", "*");
@@ -51,6 +51,6 @@ export async function handler(
     "POST, GET, OPTIONS",
   );
   resp.headers.set("Access-Control-Allow-Headers", "*,Authorization");
-    
+
   return resp;
 }

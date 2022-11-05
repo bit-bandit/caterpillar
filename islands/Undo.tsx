@@ -23,7 +23,7 @@ export default function Undo(props: {
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${token}`,
-	  "Accept": "application/activity+json",
+          "Accept": "application/activity+json",
         },
         body: JSON.stringify({
           "type": "Undo",
