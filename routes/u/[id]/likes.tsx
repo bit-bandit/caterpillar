@@ -11,6 +11,10 @@ export const handler: Handlers = {
     const { id } = ctx.params;
     const res = {};
 
+    if (id[0] === "@") {
+      id = id.slice(1);
+    }
+
     let userAPI: unknown;
     let re = /^([A-Za-z0-9_-]{1,24})@(.*)$/gm;
 
