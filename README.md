@@ -4,7 +4,26 @@
 
 A clean frontend for Parasite - Built with Fresh.
 
-### Usage
+## Usage
+
+### Setting up
+
+Edit `settings.ts`:
+
+```
+// General settings for the frontend go here.
+export const caterpillarSettings = {
+  "siteName": "Parasite Instance",
+  "apiURL": "http://localhost:8080",
+};
+```
+
+Make sure these match:
+
+1. `siteName`, and
+2. `sitePort` in Parasite's `settings.ts`.
+
+### Running
 
 Start the project:
 
