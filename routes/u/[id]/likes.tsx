@@ -8,7 +8,7 @@ import Header from "../../../islands/Header.tsx";
 
 export const handler: Handlers = {
   async GET(_, ctx) {
-    const { id } = ctx.params;
+    let { id } = ctx.params;
     const res = {};
 
     if (id[0] === "@") {
@@ -20,12 +20,20 @@ export const handler: Handlers = {
 
     if (re.test(id)) {
       let vals = /^([A-Za-z0-9_-]{1,24})@(.*)$/gm.exec(id);
-      userAPI = new URL(`/u/${vals[1]}`, `http://${vals[2]}`);
+      userAPI = new URL(`/u/${vals[1].split("/")[0]}`, `http://${vals[2]}`);
     } else {
-      userAPI = new URL(_.url);
+      userAPI = new URL(_.url.split("/likes")[0]);
     }
 
     let req = await fetch(userAPI.href, {
+      headers: {
+        "Accept": "application/activity+json",
+      },
+    });
+
+    req = await req.json();
+
+    req = await fetch(req.liked, {
       headers: {
         "Accept": "application/activity+json",
       },
@@ -37,7 +45,6 @@ export const handler: Handlers = {
       return ctx.renderNotFound();
     }
 
-    // TODO: Add an `accept` header to make sure we're not getting any JSON.
     for (const url in res.likes.orderedItems) {
       let fetched = await fetch(res.likes.orderedItems[url], {
         headers: {
@@ -105,9 +112,12 @@ export const handler: Handlers = {
       res.likes.orderedItems[url] = fetched;
     }
     // Filter out comments, and errors
-    res.likes.orderedItems = res.likes.orderedItems.filter((x) => !x.inReplyTo);
-    res.likes.orderedItems = res.likes.orderedItems.filter((x) => !x.err);
-
+    if (res.likes.orderedItems.length > 0) {
+      res.likes.orderedItems = res.likes.orderedItems.filter((x) =>
+        !x.inReplyTo
+      );
+      res.likes.orderedItems = res.likes.orderedItems.filter((x) => !x.err);
+    }
     let home = await fetch(caterpillarSettings.apiURL, {
       headers: {
         "Accept": "application/activity+json",
@@ -151,20 +161,27 @@ export default function Likes(props: PageProps) {
                     subitems={x.orderedItems}
                   />
                 );
+              } else if (
+                x.attachment &&
+                x.attachment.mediaType ===
+                  "application/x-bittorrent;x-scheme-handler/magnet"
+              ) {
+                return (
+                  <ListItemTorrent
+                    href={x.id}
+                    name={x.name}
+                    uploaderHref={x.actor.id}
+                    uploader={x.actor.name}
+                    icon={x.actor.icon.url}
+                    date={x.published}
+                    likes={x.likes}
+                    dislikes={x.dislikes}
+                    magnet={x.attachment.href}
+                  />
+                );
+              } else {
+                return;
               }
-              return (
-                <ListItemTorrent
-                  href={x.id}
-                  name={x.name}
-                  uploaderHref={x.attributedTo}
-                  uploader={x.actor.name}
-                  icon={x.actor.icon.url}
-                  date={x.published}
-                  likes={x.likes}
-                  dislikes={x.dislikes}
-                  magnet={x.attachment.href}
-                />
-              );
             })}
           </div>
         </div>

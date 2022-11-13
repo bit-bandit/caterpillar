@@ -9,7 +9,7 @@ import Header from "../../../islands/Header.tsx";
 export const handler = {
   async GET(_, ctx) {
     const res = {};
-    const { id } = ctx.params;
+    let { id } = ctx.params;
 
     if (id[0] === "@") {
       id = id.slice(1);
@@ -184,7 +184,7 @@ export default function Inbox(props: PageProps) {
               if (x.type === "OrderedCollection") {
                 return (
                   <ListItemList
-                    href={(new URL(x.id)).pathname}
+                    href={x.id}
                     name={x.name}
                     uploaderHref={x.actor.id}
                     uploader={x.actor.name}
@@ -195,20 +195,27 @@ export default function Inbox(props: PageProps) {
                     subitems={x.orderedItems}
                   />
                 );
+              } else if (
+                x.attachment &&
+                x.attachment.mediaType ===
+                  "application/x-bittorrent;x-scheme-handler/magnet"
+              ) {
+                return (
+                  <ListItemTorrent
+                    href={x.id}
+                    name={x.name}
+                    uploaderHref={x.actor.id}
+                    uploader={x.actor.name}
+                    icon={x.actor.icon.url}
+                    date={x.published}
+                    likes={x.likes}
+                    dislikes={x.dislikes}
+                    magnet={x.attachment.href}
+                  />
+                );
+              } else {
+                return;
               }
-              return (
-                <ListItemTorrent
-                  href={x.id}
-                  name={x.name}
-                  uploaderHref={x.attributedTo}
-                  uploader={x.actor.name}
-                  icon={x.actor.icon.url}
-                  date={x.published}
-                  likes={x.likes}
-                  dislikes={x.dislikes}
-                  magnet={x.attachment.href}
-                />
-              );
             })}
           </div>
         </div>

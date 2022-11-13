@@ -8,7 +8,7 @@ import Header from "../../../islands/Header.tsx";
 export const handler: Handlers = {
   async GET(_, ctx) {
     const res = {};
-    const { id } = ctx.params;
+    let { id } = ctx.params;
 
     if (id[0] === "@") {
       id = id.slice(1);

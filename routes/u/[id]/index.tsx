@@ -11,7 +11,7 @@ import IsEditable from "../../../islands/IsEditable.tsx";
 export const handler: Handlers = {
   async GET(_, ctx) {
     const res = {};
-    const { id } = ctx.params;
+    let { id } = ctx.params;
 
     if (id[0] === "@") {
       id = id.slice(1);
@@ -53,73 +53,77 @@ export const handler: Handlers = {
     req.orderedItems = req.orderedItems.filter((x) => !x.inReplyTo);
 
     for (let i = 0; i < req.orderedItems.length; i++) {
-      const actorData = await fetch(req.orderedItems[i].attributedTo, {
-        headers: {
-          "Accept": "application/activity+json",
-        },
-      });
-      req.orderedItems[i].actor = await actorData.json();
+      try {
+        const actorData = await fetch(req.orderedItems[i].attributedTo, {
+          headers: {
+            "Accept": "application/activity+json",
+          },
+        });
+        req.orderedItems[i].actor = await actorData.json();
 
-      const likes = await (await fetch(`${req.orderedItems[i].id}/likes`, {
-        headers: {
-          "Accept": "application/activity+json",
-        },
-      }))
-        .json();
-      const dislikes =
-        await (await fetch(`${req.orderedItems[i].id}/dislikes`, {
+        const likes = await (await fetch(`${req.orderedItems[i].id}/likes`, {
           headers: {
             "Accept": "application/activity+json",
           },
         }))
           .json();
-
-      req.orderedItems[i].likes = likes.totalItems;
-      req.orderedItems[i].dislikes = dislikes.totalItems;
-
-      if (req.orderedItems[i].type === "OrderedCollection") {
-        for (const url of req.orderedItems[i].orderedItems) {
-          let subObj = await fetch(url, {
+        const dislikes =
+          await (await fetch(`${req.orderedItems[i].id}/dislikes`, {
             headers: {
               "Accept": "application/activity+json",
             },
-          });
-          subObj = await subObj.json();
+          }))
+            .json();
 
-          const likes = await (await fetch(`${url}/likes`, {
-            headers: {
-              "Accept": "application/activity+json",
-            },
-          })).json();
-          const dislikes = await (await fetch(`${url}/dislikes`, {
-            headers: {
-              "Accept": "application/activity+json",
-            },
-          })).json();
+        req.orderedItems[i].likes = likes.totalItems;
+        req.orderedItems[i].dislikes = dislikes.totalItems;
 
-          const u = new URL(url);
+        if (req.orderedItems[i].type === "OrderedCollection") {
+          for (const url of req.orderedItems[i].orderedItems) {
+            let subObj = await fetch(url, {
+              headers: {
+                "Accept": "application/activity+json",
+              },
+            });
+            subObj = await subObj.json();
 
-          const index = req.orderedItems[i].orderedItems.indexOf(url);
+            const likes = await (await fetch(`${url}/likes`, {
+              headers: {
+                "Accept": "application/activity+json",
+              },
+            })).json();
+            const dislikes = await (await fetch(`${url}/dislikes`, {
+              headers: {
+                "Accept": "application/activity+json",
+              },
+            })).json();
 
-          if (subObj.type !== "Note") {
-            req.orderedItems[i].orderedItems[index] = {
-              "type": subObj.type,
-              "name": subObj.name,
-              "likes": likes.totalItems,
-              "dislikes": dislikes.totalItems,
-              "url": u.pathname,
-              "totalItems": subObj.totalItems,
-            };
-          } else {
-            req.orderedItems[i].orderedItems[index] = {
-              "type": subObj.type,
-              "name": subObj.name,
-              "likes": likes.totalItems,
-              "dislikes": dislikes.totalItems,
-              "url": u.pathname,
-            };
+            const u = new URL(url);
+
+            const index = req.orderedItems[i].orderedItems.indexOf(url);
+
+            if (subObj.type !== "Note") {
+              req.orderedItems[i].orderedItems[index] = {
+                "type": subObj.type,
+                "name": subObj.name,
+                "likes": likes.totalItems,
+                "dislikes": dislikes.totalItems,
+                "url": u.pathname,
+                "totalItems": subObj.totalItems,
+              };
+            } else {
+              req.orderedItems[i].orderedItems[index] = {
+                "type": subObj.type,
+                "name": subObj.name,
+                "likes": likes.totalItems,
+                "dislikes": dislikes.totalItems,
+                "url": u.pathname,
+              };
+            }
           }
         }
+      } catch {
+        // Do nothing
       }
     }
 
@@ -230,20 +234,27 @@ export default function User(props: PageProps) {
                     subitems={x.orderedItems}
                   />
                 );
+              } else if (
+                x.attachment &&
+                x.attachment.mediaType ===
+                  "application/x-bittorrent;x-scheme-handler/magnet"
+              ) {
+                return (
+                  <ListItemTorrent
+                    href={x.id}
+                    name={x.name}
+                    uploaderHref={x.actor.id}
+                    uploader={x.actor.name}
+                    icon={x.actor.icon.url}
+                    date={x.published}
+                    likes={x.likes}
+                    dislikes={x.dislikes}
+                    magnet={x.attachment.href}
+                  />
+                );
+              } else {
+                return;
               }
-              return (
-                <ListItemTorrent
-                  href={x.id}
-                  name={x.name}
-                  uploaderHref={x.actor.id}
-                  uploader={x.actor.name}
-                  icon={x.actor.icon.url}
-                  date={x.published}
-                  likes={x.likes}
-                  dislikes={x.dislikes}
-                  magnet={x.attachment.href}
-                />
-              );
             })}
             <div class="flex max-h-16 p-3 shadow-md items-center place-content-between rounded-2xl my-9 mx-auto bg-white hover:bg-gray-100 hover:shadow-lg max-w-lg">
               <p class="text-xl hover:underline">
