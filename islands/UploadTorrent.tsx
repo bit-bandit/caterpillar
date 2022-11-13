@@ -87,7 +87,7 @@ export default function UploadTorrent() {
         <textarea
           name="content"
           rows="6"
-          cols="63"
+          cols="60"
           value={inputs.content || ""}
           onChange={handleChange}
           placeholder="Add information about the torrent."

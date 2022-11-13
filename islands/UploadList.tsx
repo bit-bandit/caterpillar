@@ -78,7 +78,7 @@ export default function UploadList() {
         <textarea
           name="summary"
           rows="3"
-          cols="63"
+          cols="60"
           value={inputs.summary || ""}
           onChange={handleChange}
           placeholder="Add information about the list."
@@ -87,7 +87,7 @@ export default function UploadList() {
         <textarea
           name="orderedItems"
           rows="5"
-          cols="63"
+          cols="60"
           value={inputs.orderedItems || ""}
           onChange={handleChange}
           placeholder="URLs of items you want to include in the list."
