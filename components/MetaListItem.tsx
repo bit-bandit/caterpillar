@@ -27,7 +27,11 @@ export function ListItemList(props: {
         </div>
         <div class="flex">
           <div class="w-6 ml-3">
-            <img class="rounded-full shadow-md" src={props.icon} />
+            <img
+              class="rounded-full shadow-md"
+              src={props.icon}
+              alt={`Avatar for ${props.uploader}`}
+            />
           </div>
           <a href={props.uploaderHref}>
             <div class="flex">

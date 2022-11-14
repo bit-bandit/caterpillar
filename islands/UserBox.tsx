@@ -26,7 +26,7 @@ export default function UserBox() {
   } else if (info.err && info.msg) {
     return (
       <a href="/login">
-        <h3 class="hover:underline">Login</h3>
+        <p class="hover:underline">Login</p>
       </a>
     );
   } else if (info.msg === undefined) {

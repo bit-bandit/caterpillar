@@ -165,6 +165,10 @@ export default function Torrent(props: PageProps) {
     <>
       <Head>
         <title>{torrent.name} | {props.data.home.name}</title>
+        <meta
+          name="description"
+          content={`Torrent uploaded by ${submitter.name} with ${torrent.likes} likes and ${torrent.dislikes} dislikes.`}
+        />
       </Head>
       <div class="flex flex-col min-h-screen">
         <Header />

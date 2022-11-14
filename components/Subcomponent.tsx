@@ -14,9 +14,9 @@ export function Subcomp(props: unknown) {
     return (
       <div class="max-h-26 m-3 flex rounded-2xl p-3 shadow-md bg-gray-200">
         <img class="w-6" src="/ghost.svg" alt="Lost Item" />
-        <h4 class="mx-3 text-xl font-bold text-gray-400">
+        <p class="mx-3 text-xl font-bold text-gray-400">
           (Lost Item)
-        </h4>
+        </p>
       </div>
     );
   }
@@ -25,11 +25,11 @@ export function Subcomp(props: unknown) {
     return (
       <div class="max-h-26 m-3 flex rounded-2xl p-3 shadow-md bg-gray-100">
         <img class="w-7" src="/list.svg" alt="List" />
-        <h4 class="mx-3 text-xl font-bold">
+        <p class="mx-3 text-xl font-bold">
           <a href={props.APIObject.url} class="hover:underline">
             {props.APIObject.name}
           </a>
-        </h4>
+        </p>
         <p>({props.APIObject.totalItems} items)</p>
         <div class="mx-4 flex">
           <div class="text-green-700">+{props.APIObject.dislikes}</div>
@@ -43,11 +43,11 @@ export function Subcomp(props: unknown) {
   return (
     <div class="max-h-26 m-3 flex rounded-2xl p-3 shadow-md bg-gray-100">
       <img class="w-7" src="/magnet.svg" alt="Torrent" />
-      <h4 class="mx-3 text-xl font-bold">
+      <p class="mx-3 text-xl font-bold">
         <a href={props.APIObject.url} class="hover:underline">
           {props.APIObject.name}
         </a>
-      </h4>
+      </p>
       <div class="mx-1 flex">
         <div class="text-green-700">+{props.APIObject.likes}</div>
         <div>/</div>

@@ -27,7 +27,7 @@ export default function isEditable(props: {
           onclick={onUpdate}
           title="Update"
         >
-          <img src="/pencil.svg" />
+          <img src="/pencil.svg" alt="Edit" />
         </button>
       </div>
     );

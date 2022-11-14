@@ -175,6 +175,7 @@ export default function User(props: PageProps) {
     <>
       <Head>
         <title>{user.name} | {props.data.home.name}</title>
+        <meta name="description" content={`User page for ${user.name}`} />
       </Head>
       <div class="flex flex-col min-h-screen">
         <Header />
@@ -184,12 +185,14 @@ export default function User(props: PageProps) {
               <img
                 class="rounded-2xl my-3 mx-auto object-fill min-w-full"
                 src={user.image.url}
+                alt={`Banner for ${user.name}`}
               />
               <div class="flex">
                 <div class="p-4">
                   <img
                     class="absolute -bottom-6 w-40 rounded-full shadow-md"
                     src={user.icon.url}
+                    alt={`Avatar for ${user.name}`}
                   />
                 </div>
                 <br />

@@ -270,6 +270,10 @@ export default function List(props: PageProps) {
     <>
       <Head>
         <title>{list.name} | {props.data.home.name}</title>
+        <meta
+          name="description"
+          content={`Torrent uploaded by ${submitter.name} with ${list.likes} likes and ${list.dislikes} dislikes.`}
+        />
       </Head>
       <div class="flex flex-col min-h-screen">
         <Header />
