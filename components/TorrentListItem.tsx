@@ -16,7 +16,7 @@ export function ListItemTorrent(props: {
   return (
     <div class="max-w-screen-md max-h-26 m-4 flex rounded-2xl p-4 shadow-md bg-white">
       <div class="w-24 h-24 p-5 rounded-full bg-gray-200">
-        <img class="w-24 h-14" src="/magnet.svg" />
+        <img class="w-24 h-14" src="/magnet.svg" alt="Torrent" />
       </div>
       <div>
         <div class="mx-4 my-2 text-3xl font-bold hover:underline break-all max-w-2xl">
@@ -24,7 +24,11 @@ export function ListItemTorrent(props: {
         </div>
         <div class="flex">
           <div class="w-6 ml-3">
-            <img class="rounded-full shadow-md" src={props.icon} />
+            <img
+              class="rounded-full shadow-md"
+              src={props.icon}
+              alt={`Avatar for ${props.uploader}`}
+            />
           </div>
           <a href={props.uploaderHref}>
             <div class="flex">

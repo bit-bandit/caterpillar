@@ -177,7 +177,11 @@ export default function Torrent(props: PageProps) {
             <a href={torrent.attributedTo}>
               <div class="px-6 py-3 rounded-2xl shadow-md text-center flex gap-6 bg-white hover:bg-gray-100 hover:shadow-lg">
                 <div class="w-6 h-6 rounded-full">
-                  <img class="rounded-full" src={submitter.icon.url} />
+                  <img
+                    class="rounded-full"
+                    src={submitter.icon.url}
+                    alt={`Avatar for ${submitter.name}`}
+                  />
                 </div>
                 <div class="font-bold truncate">
                   {submitter.name}

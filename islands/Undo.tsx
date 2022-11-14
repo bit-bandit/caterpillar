@@ -42,7 +42,7 @@ export default function Undo(props: {
   return (
     <div>
       <button class="w-2.5" onClick={handleVote} title="Undo like/dislike">
-        <img src="/undo.svg" />
+        <img src="/undo.svg" alt="Undo" />
       </button>
     </div>
   );

@@ -13,7 +13,7 @@ export function Subcomp(props: unknown) {
   if (props.APIObject.type === undefined) {
     return (
       <div class="max-h-26 m-3 flex rounded-2xl p-3 shadow-md bg-gray-200">
-        <img class="w-6" src="/ghost.svg" />
+        <img class="w-6" src="/ghost.svg" alt="Lost Item" />
         <h4 class="mx-3 text-xl font-bold text-gray-400">
           (Lost Item)
         </h4>
@@ -24,7 +24,7 @@ export function Subcomp(props: unknown) {
   if (props.APIObject.type === "OrderedCollection") {
     return (
       <div class="max-h-26 m-3 flex rounded-2xl p-3 shadow-md bg-gray-100">
-        <img class="w-7" src="/list.svg" />
+        <img class="w-7" src="/list.svg" alt="List" />
         <h4 class="mx-3 text-xl font-bold">
           <a href={props.APIObject.url} class="hover:underline">
             {props.APIObject.name}
@@ -42,7 +42,7 @@ export function Subcomp(props: unknown) {
 
   return (
     <div class="max-h-26 m-3 flex rounded-2xl p-3 shadow-md bg-gray-100">
-      <img class="w-7" src="/magnet.svg" />
+      <img class="w-7" src="/magnet.svg" alt="Torrent" />
       <h4 class="mx-3 text-xl font-bold">
         <a href={props.APIObject.url} class="hover:underline">
           {props.APIObject.name}

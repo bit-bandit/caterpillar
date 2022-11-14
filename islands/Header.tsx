@@ -28,13 +28,17 @@ export default function Header(props: {
             <div class="absolute shadow-lg w-32 right-2.5 bg-white py-3 text-center">
               <a href="/upload/torrent">
                 <div class="flex items-center hover:bg-gray-200 px-4 text">
-                  <img src="/magnet.svg" class="w-8 p-2" />
+                  <img
+                    src="/magnet.svg"
+                    alt="Upload a torrent"
+                    class="w-8 p-2"
+                  />
                   Torrent
                 </div>
               </a>
               <a href="/upload/list">
                 <div class="flex items-center hover:bg-gray-200 px-4 text">
-                  <img src="/list.svg" class="w-8 p-2" />
+                  <img src="/list.svg" alt="Upload a list" class="w-8 p-2" />
                   List
                 </div>
               </a>

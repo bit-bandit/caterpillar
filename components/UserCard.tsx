@@ -14,6 +14,7 @@ export function SmallUserCard(props: {
             <img
               src={props.obj.icon.url}
               class="w-8 rounded-full shadow-md"
+              alt={`Avatar for ${props.obj.name}`}
             />
           </summary>
           <div class="absolute  w-30 bg-white py-3 text-center shadow-lg">

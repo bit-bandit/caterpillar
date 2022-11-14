@@ -15,7 +15,11 @@ export function Comment(props: unknown) {
     <div class="m-4 flex max-w-3xl items-center rounded-2xl py-4 px-5 shadow-md bg-white">
       <div class="w-16">
         <a href={props.actor}>
-          <img class="rounded-full shadow-md" src={props.avatarURL} />
+          <img
+            class="rounded-full shadow-md"
+            src={props.avatarURL}
+            alt={`Avatar for ${props.username}`}
+          />
         </a>
       </div>
       <div class="flex-none">
