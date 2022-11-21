@@ -15,16 +15,18 @@ export const handler: Handlers = {
     }
 
     let userAPI: unknown;
-    let re = /^([A-Za-z0-9_-]{1,24})@(.*)$/gm;
+    let re = /^([A-Za-z0-9_-]{1,24})@(.*)(\/.*)?$/gm;
 
     if (re.test(id)) {
-      let vals = /^([A-Za-z0-9_-]{1,24})@(.*)$/gm.exec(id);
+      let vals = /^([A-Za-z0-9_-]{1,24})@(.*)(\/.*)?$/gm.exec(id);
       userAPI = new URL(`/u/${vals[1]}`, `http://${vals[2]}`);
     } else {
-      userAPI = new URL(_.url);
+      userAPI = new URL(_.url.split("followers")[0]);
     }
 
-    let req = await fetch(userAPI.href);
+    let req = await fetch(userAPI.href, {
+      headers: { "Accept": "application/activity+json" },
+    });
 
     res.user = await req.json();
 
@@ -49,14 +51,14 @@ export const handler: Handlers = {
 
       f = await f.json();
 
+      if (f.err) {
+        continue;
+      }
+
       let followers = await fetch(f.followers, {
         headers: { "Accept": "application/activity+json" },
       });
       followers = await followers.json();
-
-      if (followers.err) {
-        continue;
-      }
 
       f.followers = followers.totalItems;
 
@@ -79,7 +81,7 @@ export const handler: Handlers = {
   },
 };
 
-export default function Followers(props: PageProps) {
+export default function Following(props: PageProps) {
   const followers = props.data.followers;
   return (
     <>

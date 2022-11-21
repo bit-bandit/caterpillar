@@ -39,6 +39,13 @@ export const handler: Handlers = {
       return ctx.renderNotFound();
     }
 
+    req = await fetch(res.user.followers, {
+      headers: {
+        "Accept": "application/activity+json",
+      },
+    });
+    res.user.followers = await req.json();
+
     req = await fetch(res.user.outbox, {
       headers: {
         "Accept": "application/activity+json",
@@ -213,11 +220,20 @@ export default function User(props: PageProps) {
             </div>
             <br />
             <div class="mx-3">
-              <UserBox name="Likes" href={`${props.url.pathname}/likes`} />
+              <UserBox
+                name={`Followers (${
+                  Intl.NumberFormat("en-US", {
+                    notation: "compact",
+                    maximumFractionDigits: 1,
+                  }).format(user.followers.totalItems)
+                })`}
+                href={`${props.url.pathname}/followers`}
+              />
               <UserBox
                 name="Following"
                 href={`${props.url.pathname}/following`}
               />
+              <UserBox name="Likes" href={`${props.url.pathname}/likes`} />
             </div>
           </div>
           <h1 class="font-bold text-3xl text-center">Recent Uploads</h1>
