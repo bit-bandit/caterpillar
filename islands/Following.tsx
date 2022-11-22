@@ -24,7 +24,7 @@ export default function FollowButton() {
     f = await f.json();
 
     setFollowing(f.orderedItems.includes(
-      new URL(window.location.pathname, caterpillarSettings.apiURL).href,
+      window.location.href,
     ));
   }, []);
 
@@ -37,8 +37,7 @@ export default function FollowButton() {
     let user = await c.match("/u");
     user = await user.json();
 
-    const actorURL =
-      new URL(window.location.pathname, caterpillarSettings.apiURL).href;
+    const actorURL = new URL(window.location.href);
 
     if (actorURL === user.id) {
       return alert("You can't follow yourself");
@@ -76,9 +75,6 @@ export default function FollowButton() {
     let user = await c.match("/u");
     user = await user.json();
 
-    const actorURL =
-      new URL(window.location.pathname, caterpillarSettings.apiURL).href;
-
     let followAttempt = await fetch(
       new URL("/x/undo", caterpillarSettings.apiURL).href,
       {
@@ -88,7 +84,7 @@ export default function FollowButton() {
           "Authorization": `Bearer ${token}`,
         },
         body: JSON.stringify({
-          "object": actorURL,
+          "object": window.location.href,
         }),
       },
     );
