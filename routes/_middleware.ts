@@ -18,14 +18,14 @@ export async function handler(
   }
 
   // Headers we'll allow.
-  const validHeaders = [
+  const validAlternateHeaders = [
     "application/ld+json",
     'application/ld+json; profile="https://www.w3.org/ns/activitystreams"',
     "application/json",
     "application/activity+json",
   ];
 
-  if (validHeaders.includes(req.headers.get("accept"))) {
+  if (validAlternateHeaders.includes(req.headers.get("accept"))) {
     const u = new URL((new URL(req.url)).pathname, caterpillarSettings.apiURL);
 
     const params = {

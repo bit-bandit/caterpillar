@@ -12,6 +12,7 @@ import Likes from "../../islands/Likes.tsx";
 import Dislikes from "../../islands/Dislikes.tsx";
 import Undo from "../../islands/Undo.tsx";
 import IsEditable from "../../islands/IsEditable.tsx";
+import { ensureURL } from "../../utils/ensureURL.ts";
 import * as ammonia from "https://deno.land/x/ammonia@0.3.1/mod.ts";
 
 await ammonia.init();
@@ -34,7 +35,7 @@ export const handler: Handlers = {
     }
 
     // List object
-    let req = await fetch(listAPI.href, {
+    let req = await fetch(ensureURL(listAPI.href, _.url), {
       headers: {
         "Accept": "application/activity+json",
       },
@@ -46,7 +47,7 @@ export const handler: Handlers = {
       return ctx.renderNotFound();
     }
 
-    let likes = await fetch(`${res.list.id}/likes`, {
+    let likes = await fetch(ensureURL(`${res.list.id}/likes`, _.url), {
       headers: {
         "Accept": "application/activity+json",
       },
@@ -54,7 +55,7 @@ export const handler: Handlers = {
     likes = await likes.json();
     res.list.likes = likes.totalItems;
 
-    let dislikes = await fetch(`${res.list.id}/dislikes`, {
+    let dislikes = await fetch(ensureURL(`${res.list.id}/dislikes`, _.url), {
       headers: {
         "Accept": "application/activity+json",
       },
@@ -63,7 +64,7 @@ export const handler: Handlers = {
     res.list.dislikes = dislikes.totalItems;
 
     for (let i = 0; i < res.list.orderedItems.length; i++) {
-      let fetched = await fetch(res.list.orderedItems[i], {
+      let fetched = await fetch(ensureURL(res.list.orderedItems[i], _.url), {
         headers: {
           "Accept": "application/activity+json",
         },
@@ -80,7 +81,7 @@ export const handler: Handlers = {
 
       if (fetched.orderedItems) {
         for (const url of fetched.orderedItems) {
-          let subObj = await fetch(url, {
+          let subObj = await fetch(ensureURL(url, _.url), {
             headers: {
               "Accept": "application/activity+json",
             },
@@ -88,17 +89,18 @@ export const handler: Handlers = {
 
           subObj = await subObj.json();
 
-          const likes = await (await fetch(`${url}/likes`, {
+          const likes = await (await fetch(ensureURL(`${url}/likes`, _.url), {
             headers: {
               "Accept": "application/activity+json",
             },
           }))
             .json();
-          const dislikes = await (await fetch(`${url}/dislikes`, {
-            headers: {
-              "Accept": "application/activity+json",
-            },
-          })).json();
+          const dislikes =
+            await (await fetch(ensureURL(`${url}/dislikes`, _.url), {
+              headers: {
+                "Accept": "application/activity+json",
+              },
+            })).json();
 
           const u = new URL(url);
 
@@ -120,30 +122,39 @@ export const handler: Handlers = {
 
       res.list.orderedItems[i] = fetched;
 
-      fetched = await fetch(`${res.list.orderedItems[i].id}/likes`, {
-        headers: {
-          "Accept": "application/activity+json",
+      fetched = await fetch(
+        ensureURL(`${res.list.orderedItems[i].id}/likes`, _.url),
+        {
+          headers: {
+            "Accept": "application/activity+json",
+          },
         },
-      });
+      );
       res.list.orderedItems[i].likes = await fetched.json();
-      fetched = await fetch(`${res.list.orderedItems[i].id}/dislikes`, {
-        headers: {
-          "Accept": "application/activity+json",
+      fetched = await fetch(
+        ensureURL(`${res.list.orderedItems[i].id}/dislikes`, _.url),
+        {
+          headers: {
+            "Accept": "application/activity+json",
+          },
         },
-      });
+      );
       res.list.orderedItems[i].dislikes = await fetched.json();
 
-      fetched = await fetch(res.list.orderedItems[i].attributedTo, {
-        headers: {
-          "Accept": "application/activity+json",
+      fetched = await fetch(
+        ensureURL(res.list.orderedItems[i].attributedTo, _.url),
+        {
+          headers: {
+            "Accept": "application/activity+json",
+          },
         },
-      });
+      );
 
       res.list.orderedItems[i].actor = await fetched.json();
     }
 
     // Actor data
-    req = await fetch(res.list.attributedTo, {
+    req = await fetch(ensureURL(res.list.attributedTo, _.url), {
       headers: {
         "Accept": "application/activity+json",
       },
@@ -151,7 +162,7 @@ export const handler: Handlers = {
     res.user = await req.json();
 
     // Replies
-    req = await fetch(res.list.replies, {
+    req = await fetch(ensureURL(res.list.replies, _.url), {
       headers: {
         "Accept": "application/activity+json",
       },
@@ -160,7 +171,7 @@ export const handler: Handlers = {
     req = await req.json();
 
     for (let comment = 0; comment < req.orderedItems.length; comment++) {
-      let f = await fetch(req.orderedItems[comment], {
+      let f = await fetch(ensureURL(req.orderedItems[comment], _.url), {
         headers: {
           "Accept": "application/activity+json",
         },
@@ -173,14 +184,14 @@ export const handler: Handlers = {
         continue;
       }
 
-      const actor = await fetch(f.attributedTo, {
+      const actor = await fetch(ensureURL(f.attributedTo, _.url), {
         headers: {
           "Accept": "application/activity+json",
         },
       });
       f.attributedTo = await actor.json();
 
-      let likes = await fetch(`${f.id}/likes`, {
+      let likes = await fetch(ensureURL(`${f.id}/likes`, _.url), {
         headers: {
           "Accept": "application/activity+json",
         },
@@ -188,7 +199,7 @@ export const handler: Handlers = {
       likes = await likes.json();
       f.likes = likes.totalItems;
 
-      let dislikes = await fetch(`${f.id}/dislikes`, {
+      let dislikes = await fetch(ensureURL(`${f.id}/dislikes`, _.url), {
         headers: {
           "Accept": "application/activity+json",
         },
@@ -196,7 +207,7 @@ export const handler: Handlers = {
       dislikes = await dislikes.json();
       f.dislikes = dislikes.totalItems;
 
-      let replies = await fetch(f.replies, {
+      let replies = await fetch(ensureURL(f.replies, _.url), {
         headers: {
           "Accept": "application/activity+json",
         },
@@ -204,7 +215,7 @@ export const handler: Handlers = {
       replies = await replies.json();
 
       for (let reply = 0; reply < replies.orderedItems.length; reply++) {
-        let r = await fetch(replies.orderedItems[reply], {
+        let r = await fetch(ensureURL(replies.orderedItems[reply], _.url), {
           headers: {
             "Accept": "application/activity+json",
           },
@@ -217,14 +228,14 @@ export const handler: Handlers = {
           continue;
         }
 
-        const replyActor = await fetch(r.attributedTo, {
+        const replyActor = await fetch(ensureURL(r.attributedTo, _.url), {
           headers: {
             "Accept": "application/activity+json",
           },
         });
         r.attributedTo = await replyActor.json();
 
-        let replyLikes = await fetch(`${r.id}/likes`, {
+        let replyLikes = await fetch(ensureURL(`${r.id}/likes`, _.url), {
           headers: {
             "Accept": "application/activity+json",
           },
@@ -232,7 +243,7 @@ export const handler: Handlers = {
         replyLikes = await replyLikes.json();
         r.likes = replyLikes.totalItems;
 
-        let replyDislikes = await fetch(`${r.id}/dislikes`, {
+        let replyDislikes = await fetch(ensureURL(`${r.id}/dislikes`, _.url), {
           headers: {
             "Accept": "application/activity+json",
           },

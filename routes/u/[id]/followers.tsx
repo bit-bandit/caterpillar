@@ -4,6 +4,7 @@ import { caterpillarSettings } from "../../../settings.ts";
 import { UserCard } from "../../../components/UserCard.tsx";
 import Footer from "../../../components/Footer.tsx";
 import Header from "../../../islands/Header.tsx";
+import { ensureURL } from "../../../utils/ensureURL.ts";
 
 export const handler: Handlers = {
   async GET(_, ctx) {
@@ -24,7 +25,7 @@ export const handler: Handlers = {
       userAPI = new URL(_.url.split("followers")[0]);
     }
 
-    let req = await fetch(userAPI.href, {
+    let req = await fetch(ensureURL(userAPI.href, _.url), {
       headers: { "Accept": "application/activity+json" },
     });
 
@@ -34,7 +35,7 @@ export const handler: Handlers = {
       return ctx.renderNotFound();
     }
 
-    req = await fetch(res.user.followers, {
+    req = await fetch(ensureURL(res.user.followers, _.url), {
       headers: { "Accept": "application/activity+json" },
     });
 
@@ -45,7 +46,7 @@ export const handler: Handlers = {
     }
 
     for (const url in req.orderedItems) {
-      let f = await fetch(req.orderedItems[url], {
+      let f = await fetch(ensureURL(req.orderedItems[url], _.url), {
         headers: { "Accept": "application/activity+json" },
       });
 
@@ -55,7 +56,7 @@ export const handler: Handlers = {
         continue;
       }
 
-      let followers = await fetch(f.followers, {
+      let followers = await fetch(ensureURL(f.followers, _.url), {
         headers: { "Accept": "application/activity+json" },
       });
       followers = await followers.json();

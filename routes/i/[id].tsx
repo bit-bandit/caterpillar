@@ -5,12 +5,13 @@ import { ListItemTorrent } from "../../components/TorrentListItem.tsx";
 import { ListItemList } from "../../components/MetaListItem.tsx";
 import Footer from "../../components/Footer.tsx";
 import Header from "../../islands/Header.tsx";
+import { ensureURL } from "../../utils/ensureURL.ts";
 
 export const handler: Handlers = {
   async GET(_, ctx) {
     const { id } = ctx.params;
 
-    const r = await fetch(_.url, {
+    const r = await fetch(ensureURL(_.url, _.url), {
       headers: {
         "Accept": "application/activity+json",
       },
@@ -22,7 +23,7 @@ export const handler: Handlers = {
         res.orderedItems[i] = res.orderedItems[i].item;
       }
 
-      const r = await fetch(res.orderedItems[i], {
+      const r = await fetch(ensureURL(res.orderedItems[i], _.url), {
         headers: {
           "Accept": "application/activity+json",
         },
@@ -30,25 +31,34 @@ export const handler: Handlers = {
 
       res.orderedItems[i] = await r.json();
 
-      const likes = await fetch(`${res.orderedItems[i].id}/likes`, {
-        headers: {
-          "Accept": "application/activity+json",
+      const likes = await fetch(
+        ensureURL(`${res.orderedItems[i].id}/likes`, _.url),
+        {
+          headers: {
+            "Accept": "application/activity+json",
+          },
         },
-      });
+      );
       res.orderedItems[i].likes = (await likes.json()).totalItems;
 
-      const dislikes = await fetch(`${res.orderedItems[i].id}/dislikes`, {
-        headers: {
-          "Accept": "application/activity+json",
+      const dislikes = await fetch(
+        ensureURL(`${res.orderedItems[i].id}/dislikes`, _.url),
+        {
+          headers: {
+            "Accept": "application/activity+json",
+          },
         },
-      });
+      );
       res.orderedItems[i].dislikes = (await dislikes.json()).totalItems;
 
-      const actor = await fetch(res.orderedItems[i].attributedTo, {
-        headers: {
-          "Accept": "application/activity+json",
+      const actor = await fetch(
+        ensureURL(res.orderedItems[i].attributedTo, _.url),
+        {
+          headers: {
+            "Accept": "application/activity+json",
+          },
         },
-      });
+      );
       res.orderedItems[i].attributedTo = await actor.json();
     }
 

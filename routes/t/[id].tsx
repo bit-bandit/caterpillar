@@ -9,6 +9,7 @@ import Likes from "../../islands/Likes.tsx";
 import Dislikes from "../../islands/Dislikes.tsx";
 import Undo from "../../islands/Undo.tsx";
 import IsEditable from "../../islands/IsEditable.tsx";
+import { ensureURL } from "../../utils/ensureURL.ts";
 import * as ammonia from "https://deno.land/x/ammonia@0.3.1/mod.ts";
 
 await ammonia.init();
@@ -19,6 +20,8 @@ export const handler: Handlers = {
     const res = {};
     const { id } = ctx.params;
 
+    let localURL = _.url;
+
     let torrentAPI: unknown;
 
     let re = /^([A-Za-z0-9_-]{1,24})@(.*)$/gm;
@@ -28,9 +31,10 @@ export const handler: Handlers = {
       torrentAPI = new URL(`/t/${vals[1]}`, `http://${vals[2]}`);
     } else {
       torrentAPI = new URL(_.url);
+      torrentAPI.hostname = new URL(caterpillarSettings.apiURL).hostname;
     }
 
-    let req = await fetch(torrentAPI.href, {
+    let req = await fetch(ensureURL(torrentAPI.href, _.url), {
       headers: {
         "Accept": "application/activity+json",
       },
@@ -42,27 +46,36 @@ export const handler: Handlers = {
       return ctx.renderNotFound();
     }
 
-    req = await fetch(res.torrent.attributedTo, {
+    let attributedTo = res.torrent.attributedTo;
+
+    req = await fetch(ensureURL(res.torrent.attributedTo, _.url), {
       headers: { "Accept": "application/activity+json" },
     });
 
     res.user = await req.json();
 
-    let likes = await fetch(`${res.torrent.id}/likes`, {
+    // This is so messy
+    let localObj = {
+      "likes": `${res.torrent.id}/likes`,
+      "dislikes": `${res.torrent.id}/dislikes`,
+      "replies": res.torrent.replies,
+    };
+
+    let likes = await fetch(ensureURL(`${res.torrent.id}/likes`, _.url), {
       headers: { "Accept": "application/activity+json" },
     });
 
     likes = await likes.json();
     res.torrent.likes = likes.totalItems;
 
-    let dislikes = await fetch(`${res.torrent.id}/dislikes`, {
+    let dislikes = await fetch(ensureURL(`${res.torrent.id}/dislikes`, _.url), {
       headers: { "Accept": "application/activity+json" },
     });
     dislikes = await dislikes.json();
     res.torrent.dislikes = dislikes.totalItems;
 
     // Comments
-    req = await fetch(res.torrent.replies, {
+    req = await fetch(ensureURL(res.torrent.replies, _.url), {
       headers: { "Accept": "application/activity+json" },
     });
     req = await req.json();
@@ -80,34 +93,34 @@ export const handler: Handlers = {
         continue;
       }
 
-      const actor = await fetch(f.attributedTo, {
+      const actor = await fetch(ensureURL(f.attributedTo, _.url), {
         headers: { "Accept": "application/activity+json" },
       });
 
       f.attributedTo = await actor.json();
 
-      let likes = await fetch(`${f.id}/likes`, {
+      let likes = await fetch(ensureURL(`${f.id}/likes`, _.url), {
         headers: { "Accept": "application/activity+json" },
       });
 
       likes = await likes.json();
       f.likes = likes.totalItems;
 
-      let dislikes = await fetch(`${f.id}/dislikes`, {
+      let dislikes = await fetch(ensureURL(`${f.id}/dislikes`, _.url), {
         headers: { "Accept": "application/activity+json" },
       });
 
       dislikes = await dislikes.json();
       f.dislikes = dislikes.totalItems;
 
-      let replies = await fetch(f.replies, {
+      let replies = await fetch(ensureURL(f.replies, _.url), {
         headers: { "Accept": "application/activity+json" },
       });
 
       replies = await replies.json();
 
       for (let reply = 0; reply < replies.orderedItems.length; reply++) {
-        let r = await fetch(replies.orderedItems[reply], {
+        let r = await fetch(ensureURL(replies.orderedItems[reply], _.url), {
           headers: { "Accept": "application/activity+json" },
         });
         r = await r.json();
@@ -118,18 +131,18 @@ export const handler: Handlers = {
           continue;
         }
 
-        const replyActor = await fetch(r.attributedTo, {
+        const replyActor = await fetch(ensureURL(r.attributedTo, _.url), {
           headers: { "Accept": "application/activity+json" },
         });
         r.attributedTo = await replyActor.json();
 
-        let replyLikes = await fetch(`${r.id}/likes`, {
+        let replyLikes = await fetch(ensureURL(`${r.id}/likes`, _.url), {
           headers: { "Accept": "application/activity+json" },
         });
         replyLikes = await replyLikes.json();
         r.likes = replyLikes.totalItems;
 
-        let replyDislikes = await fetch(`${r.id}/dislikes`, {
+        let replyDislikes = await fetch(ensureURL(`${r.id}/dislikes`, _.url), {
           headers: { "Accept": "application/activity+json" },
         });
         replyDislikes = await replyDislikes.json();

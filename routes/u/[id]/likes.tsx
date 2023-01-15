@@ -5,6 +5,7 @@ import { ListItemTorrent } from "../../../components/TorrentListItem.tsx";
 import { ListItemList } from "../../../components/MetaListItem.tsx";
 import Footer from "../../../components/Footer.tsx";
 import Header from "../../../islands/Header.tsx";
+import { ensureURL } from "../../../utils/ensureURL.ts";
 
 export const handler: Handlers = {
   async GET(_, ctx) {
@@ -25,7 +26,7 @@ export const handler: Handlers = {
       userAPI = new URL(_.url.split("/likes")[0]);
     }
 
-    let req = await fetch(userAPI.href, {
+    let req = await fetch(ensureURL(userAPI.href, _.url), {
       headers: {
         "Accept": "application/activity+json",
       },
@@ -33,7 +34,7 @@ export const handler: Handlers = {
 
     req = await req.json();
 
-    req = await fetch(req.liked, {
+    req = await fetch(ensureURL(req.liked, _.url), {
       headers: {
         "Accept": "application/activity+json",
       },
@@ -46,7 +47,7 @@ export const handler: Handlers = {
     }
 
     for (const url in res.likes.orderedItems) {
-      let fetched = await fetch(res.likes.orderedItems[url], {
+      let fetched = await fetch(ensureURL(res.likes.orderedItems[url], _.url), {
         headers: {
           "Accept": "application/activity+json",
         },
@@ -55,47 +56,60 @@ export const handler: Handlers = {
       fetched = await fetched.json();
 
       if (!fetched.err) {
-        let f = await fetch(fetched.attributedTo, {
+        let f = await fetch(ensureURL(fetched.attributedTo, _.url), {
           headers: {
             "Accept": "application/activity+json",
           },
         });
         fetched.actor = await f.json();
 
-        f = await fetch(`${res.likes.orderedItems[url]}/likes`, {
-          headers: {
-            "Accept": "application/activity+json",
+        f = await fetch(
+          ensureURL(`${res.likes.orderedItems[url]}/likes`, _.url),
+          {
+            headers: {
+              "Accept": "application/activity+json",
+            },
           },
-        });
+        );
         fetched.likes = (await f.json()).totalItems;
 
-        f = await fetch(`${res.likes.orderedItems[url]}/dislikes`, {
-          headers: {
-            "Accept": "application/activity+json",
+        f = await fetch(
+          ensureURL(`${res.likes.orderedItems[url]}/dislikes`, _.url),
+          {
+            headers: {
+              "Accept": "application/activity+json",
+            },
           },
-        });
+        );
         fetched.dislikes = (await f.json()).totalItems;
         if (fetched.type === "OrderedCollection") {
           for (const url in fetched.orderedItems) {
-            let subObj = await fetch(fetched.orderedItems[url], {
-              headers: {
-                "Accept": "application/activity+json",
+            let subObj = await fetch(
+              ensureURL(fetched.orderedItems[url], _.url),
+              {
+                headers: {
+                  "Accept": "application/activity+json",
+                },
               },
-            });
+            );
             subObj = await subObj.json();
 
-            const likes =
-              await (await fetch(`${fetched.orderedItems[url]}/likes`, {
+            const likes = await (await fetch(
+              ensureURL(`${fetched.orderedItems[url]}/likes`, _.url),
+              {
                 headers: {
                   "Accept": "application/activity+json",
                 },
-              })).json();
-            const dislikes =
-              await (await fetch(`${fetched.orderedItems[url]}/dislikes`, {
+              },
+            )).json();
+            const dislikes = await (await fetch(
+              ensureURL(`${fetched.orderedItems[url]}/dislikes`, _.url),
+              {
                 headers: {
                   "Accept": "application/activity+json",
                 },
-              })).json();
+              },
+            )).json();
 
             const u = new URL(fetched.orderedItems[url]);
 
